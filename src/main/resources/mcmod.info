@@ -1,0 +1,16 @@
+[
+{
+  "modid": "explochem",
+  "name": "Craft explosives!",
+  "description": "",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["rafii6311"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

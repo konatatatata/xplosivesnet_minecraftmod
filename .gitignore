@@ -1,0 +1,19 @@
+# folder
+/.gradle/
+/.metadata/
+/.settings/
+/bin/
+/build/
+/eclipse/
+/gradle/
+/logs/
+/mods/
+$RECYCLE.BIN/
+
+# files
+.classpath
+.project
+*.bat
+Thumbs.db
+ehthumbs.db
+Desktop.ini
