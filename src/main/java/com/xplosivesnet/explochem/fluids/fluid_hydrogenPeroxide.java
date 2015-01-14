@@ -5,6 +5,9 @@ import java.util.Random;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -58,13 +61,13 @@ public class fluid_hydrogenPeroxide extends BlockFluidClassic
             return super.displaceIfPossible(world, x, y, z);
     }
     
-    public void onEntityCollidedWithBlock(World a, int b, int c, int d, Entity player)
+    public void onEntityCollidedWithBlock(World a, int b, int c, int d, Entity entity)
     {
-		if (Helper.isPlayer(player))
+		if (Helper.isPlayer(entity))
 		{
-			Helper.attack(player, explo_damageSource.acid_heavy, 4.0f);
+			Helper.attack(entity, explo_damageSource.acid_heavy, 4.0f);
 		} else {
-			Helper.destroy(player);
+			Helper.destroy(entity);
 		}
     }
     
