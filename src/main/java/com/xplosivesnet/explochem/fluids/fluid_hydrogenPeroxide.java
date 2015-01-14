@@ -61,12 +61,13 @@ public class fluid_hydrogenPeroxide extends BlockFluidClassic
             return super.displaceIfPossible(world, x, y, z);
     }
     
-    public void onEntityCollidedWithBlock(World a, int b, int c, int d, Entity entity)
+    public void onEntityCollidedWithBlock(World world, int b, int c, int d, Entity entity)
     {
 		if (Helper.isPlayer(entity))
 		{
 			Helper.attack(entity, explo_damageSource.acid_heavy, 4.0f);
 		} else {
+			world.createExplosion(null, (double)entity.posX, (double)entity.posX , (double)entity.posZ, 3f, true);
 			Helper.destroy(entity);
 		}
     }
