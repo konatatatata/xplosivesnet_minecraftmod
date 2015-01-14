@@ -1,5 +1,6 @@
 package com.xplosivesnet.explochem.devices;
 
+import com.xplosivesnet.explochem.Helper;
 import com.xplosivesnet.explochem.explo_tabs;
 import com.xplosivesnet.explochem.explochem;
 
@@ -37,7 +38,7 @@ public class reactionVessel extends BlockContainer
 	
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
 	{
-		
+		Helper.sendMessage(player, "left clicked!");
     }
 	
 	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)

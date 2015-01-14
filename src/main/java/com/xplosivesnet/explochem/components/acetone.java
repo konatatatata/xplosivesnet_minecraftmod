@@ -1,7 +1,9 @@
 package com.xplosivesnet.explochem.components;
+import com.xplosivesnet.explochem.explo_fluids;
 import com.xplosivesnet.explochem.explo_items;
 import com.xplosivesnet.explochem.explo_tabs;
 import com.xplosivesnet.explochem.explochem;
+import com.xplosivesnet.explochem.utilities.bottle;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -20,19 +22,11 @@ public class acetone extends Item
 		setCreativeTab(explo_tabs.explo_tabs_components);
 		setUnlocalizedName("acetone");
 		setTextureName(explochem.MODID + ":" + this.getUnlocalizedName().substring(5));
-		setContainerItem(explo_items.bottle);
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)
 	{
-		if(lastClick + 500 < System.currentTimeMillis())
-		{
-			//only usable every 500ms
-			lastClick = System.currentTimeMillis();
-			
-		}
-		return itemStack;
+		return par1ItemStack;
 	}
 
 }

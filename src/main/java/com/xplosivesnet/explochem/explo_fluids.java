@@ -1,54 +1,79 @@
 package com.xplosivesnet.explochem;
 
+import com.xplosivesnet.explochem.fluids.fluid_acetone;
+import com.xplosivesnet.explochem.fluids.fluid_glycerine;
+import com.xplosivesnet.explochem.fluids.fluid_hydrochloricAcid;
+import com.xplosivesnet.explochem.fluids.fluid_hydrogenPeroxide;
+import com.xplosivesnet.explochem.fluids.fluid_nitricAcid;
+import com.xplosivesnet.explochem.fluids.fluid_nitroGlycerine;
+import com.xplosivesnet.explochem.fluids.fluid_sulfuricAcid;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.material.Material;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-import com.xplosivesnet.explochem.fluids.fluid_acetone;
-import com.xplosivesnet.explochem.fluids.fluid_hydrogenPeroxide;
-import com.xplosivesnet.explochem.fluids.fluid_nitroGlycerine;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-
 public class explo_fluids
 {
-	public static Fluid acetone;
-	public static fluid_acetone fluid_acetone;
-	
-	public static Fluid hydrogenPeroxide;
-	public static fluid_hydrogenPeroxide fluid_hydrogenPeroxide;
-	
-	public static Fluid nitroGlycerine;
-	public static fluid_nitroGlycerine fluid_nitroGlycerine;
-	
-	
+	public static Fluid[] explo_fluids = new Fluid[10];
+	private static int counter = 0;
 	
 	public static void loadFluids()
 	{
-		acetone = new Fluid("fluid_acetone");
-		FluidRegistry.registerFluid(acetone);
-		fluid_acetone = new fluid_acetone(acetone, Material.water);
-		fluid_acetone.setBlockName("fluid_acetone");
-		GameRegistry.registerBlock(fluid_acetone, explochem.MODID + ":" + fluid_acetone.getUnlocalizedName().substring(5));
-		acetone.setUnlocalizedName(fluid_acetone.getUnlocalizedName());
-		
-		hydrogenPeroxide = new Fluid("fluid_hydrogenPeroxide");
-		FluidRegistry.registerFluid(hydrogenPeroxide);
-		fluid_hydrogenPeroxide = new fluid_hydrogenPeroxide(hydrogenPeroxide, Material.water);
-		fluid_hydrogenPeroxide.setBlockName("fluid_hydrogenPeroxide");
-		GameRegistry.registerBlock(fluid_hydrogenPeroxide, explochem.MODID + ":" + fluid_hydrogenPeroxide.getUnlocalizedName().substring(5));
-		hydrogenPeroxide.setUnlocalizedName(fluid_hydrogenPeroxide.getUnlocalizedName());
-		
-		nitroGlycerine = new Fluid("fluid_nitroGlycerine");
-		FluidRegistry.registerFluid(nitroGlycerine);
-		fluid_nitroGlycerine = new fluid_nitroGlycerine(nitroGlycerine, Material.water);
-		fluid_nitroGlycerine.setBlockName("fluid_nitroGlycerine");
-		GameRegistry.registerBlock(fluid_nitroGlycerine, explochem.MODID + ":" + fluid_hydrogenPeroxide.getUnlocalizedName().substring(5));
-		hydrogenPeroxide.setUnlocalizedName(fluid_nitroGlycerine.getUnlocalizedName());
-		
-		
-		//FluidContainerRegistry.registerFluidContainer(new FluidStack(acetone, 1), new ItemStack(explo_items.acetone), new ItemStack(explo_items.bottle));
-		
+		addFluid("acetone");
+		addFluid("glycerine");
+		addFluid("hydrochloricAcid");
+		addFluid("hydrogenPeroxide");
+		addFluid("nitricAcid");
+		addFluid("nitroGlycerine");
+		addFluid("sulfuricAcid");
 	}
 	
+	public static void addFluid(String fluidName)
+	{
+		Fluid fluid = new Fluid(fluidName);
+		explo_fluids[counter] = fluid;
+		counter++;
+		FluidRegistry.registerFluid(fluid);
+		BlockFluidClassic fluid_x = getFluid(fluidName, fluid);
+		fluid_x.setBlockName("fluid_" + fluidName);
+		GameRegistry.registerBlock(fluid_x, explochem.MODID + ":" + fluid_x.getUnlocalizedName().substring(5));
+		fluid.setUnlocalizedName(fluid_x.getUnlocalizedName());
+	}
+	
+	private static BlockFluidClassic getFluid(String fluidName, Fluid fluid)
+	{
+		if(fluidName == "acetone")
+		{
+			return new fluid_acetone(fluid, Material.water);
+		}
+		else if(fluidName == "glycerine")
+		{
+			return new fluid_glycerine(fluid, Material.water);
+		}
+		else if(fluidName == "hydrochloricAcid")
+		{
+			return new fluid_hydrochloricAcid(fluid, Material.water);
+		}
+		else if(fluidName == "hydrogenPeroxide")
+		{
+			return new fluid_hydrogenPeroxide(fluid, Material.water);
+		}
+		else if(fluidName == "nitricAcid")
+		{
+			return new fluid_nitricAcid(fluid, Material.water);
+		}
+		else if(fluidName == "nitroGlycerine")
+		{
+			return new fluid_nitroGlycerine(fluid, Material.water);
+		}
+		else if(fluidName == "sulfuricAcid")
+		{
+			return new fluid_sulfuricAcid(fluid, Material.water);
+		}
+		else {
+			return null;
+		}
+	}
 }

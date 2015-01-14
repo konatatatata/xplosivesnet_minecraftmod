@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 import com.xplosivesnet.explochem.explo_tabs;
 import com.xplosivesnet.explochem.explochem;
-import com.xplosivesnet.explochem.components.bottle;
+import com.xplosivesnet.explochem.utilities.bottle;
 
 public class nitroGlycerine extends Item
 {

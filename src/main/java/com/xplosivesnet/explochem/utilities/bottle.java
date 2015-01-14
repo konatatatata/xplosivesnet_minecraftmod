@@ -1,4 +1,4 @@
-package com.xplosivesnet.explochem.components;
+package com.xplosivesnet.explochem.utilities;
 
 import net.minecraft.item.Item;
 

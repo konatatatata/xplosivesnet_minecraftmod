@@ -19,7 +19,7 @@ import com.xplosivesnet.explochem.explochem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class fluid_acetone extends BlockFluidClassic
+public class fluid_glycerine extends BlockFluidClassic
 {
 	
 	@SideOnly(Side.CLIENT)
@@ -27,7 +27,7 @@ public class fluid_acetone extends BlockFluidClassic
     @SideOnly(Side.CLIENT)
     protected IIcon flowingIcon;
 
-	public fluid_acetone(Fluid fluid, Material material)
+	public fluid_glycerine(Fluid fluid, Material material)
 	{
 		super(fluid, material);
 		this.setCreativeTab(explo_tabs.explo_tabs_components);
@@ -60,10 +60,7 @@ public class fluid_acetone extends BlockFluidClassic
     
     public void onEntityCollidedWithBlock(World a, int b, int c, int d, Entity player)
     {
-		if (Helper.isPlayer(player))
-		{
-			Helper.attack(player, explo_damageSource.poison, 0.5f);
-		}
+		
     }
     
     @SideOnly(Side.CLIENT)
@@ -75,6 +72,6 @@ public class fluid_acetone extends BlockFluidClassic
    		float f4 = random.nextFloat() * 0.3F;
    		float f5 = random.nextFloat() * -0.6F - -0.3F;
    		
-   		world.spawnParticle("splash", (double)(f1+f4), (double)f2, (double)(f3+f5), 0.0D, 0.0D, 0.0D);
+   		world.spawnParticle("bubble", (double)(f1+f4), (double)f2, (double)(f3+f5), 0.0D, 0.0D, 0.0D);
    	}
 }
