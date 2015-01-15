@@ -1,10 +1,5 @@
 package com.xplosivesnet.explochem.devices;
 
-import com.xplosivesnet.explochem.Helper;
-import com.xplosivesnet.explochem.explo_tabs;
-import com.xplosivesnet.explochem.explochem;
-
-import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -13,6 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import com.xplosivesnet.explochem.Helper;
+import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_tabs;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -26,7 +26,7 @@ public class reactionVessel extends BlockContainer
 	public reactionVessel()
 	{
 		super(Material.rock);
-		this.setCreativeTab(explo_tabs.explo_tabs_machines);
+		this.setCreativeTab(xplosivesnet_tabs.explo_tabs_machines);
 		this.setBlockName("reactionVessel");
 		this.setHardness(2f);
 	}
@@ -64,10 +64,10 @@ public class reactionVessel extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.texture_top = icon.registerIcon(explochem.MODID + ":" + this.getUnlocalizedName().substring(5) + "_top");
-		this.texture_bottom = icon.registerIcon(explochem.MODID + ":" + this.getUnlocalizedName().substring(5) + "_bottom");
-		this.texture_side = icon.registerIcon(explochem.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
-		this.texture_front = icon.registerIcon(explochem.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
+		this.texture_top = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_top");
+		this.texture_bottom = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_bottom");
+		this.texture_side = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
+		this.texture_front = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
 	}
 
 

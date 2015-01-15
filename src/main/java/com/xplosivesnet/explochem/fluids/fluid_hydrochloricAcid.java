@@ -13,8 +13,8 @@ import net.minecraftforge.fluids.Fluid;
 
 import com.xplosivesnet.explochem.Helper;
 import com.xplosivesnet.explochem.explo_damageSource;
-import com.xplosivesnet.explochem.explo_tabs;
-import com.xplosivesnet.explochem.explochem;
+import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_tabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,7 +30,7 @@ public class fluid_hydrochloricAcid extends BlockFluidClassic
 	public fluid_hydrochloricAcid(Fluid fluid, Material material)
 	{
 		super(fluid, material);
-		this.setCreativeTab(explo_tabs.explo_tabs_components);
+		this.setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
 		this.setDensity(500);
 	}
 	
@@ -42,8 +42,8 @@ public class fluid_hydrochloricAcid extends BlockFluidClassic
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-            stillIcon = register.registerIcon(explochem.MODID + ":" + this.getUnlocalizedName().substring(5) + "_s");
-            flowingIcon = register.registerIcon(explochem.MODID + ":" + this.getUnlocalizedName().substring(5) + "_f");
+            stillIcon = register.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_s");
+            flowingIcon = register.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_f");
     }
    
     @Override

@@ -1,6 +1,6 @@
 package com.xplosivesnet.explochem;
 
-public class explo_machines
+public class xplosivesnet_machines
 {
 	public static void loadMachines()
 	{

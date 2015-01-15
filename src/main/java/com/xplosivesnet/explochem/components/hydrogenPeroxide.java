@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.xplosivesnet.explochem.explo_tabs;
-import com.xplosivesnet.explochem.explochem;
+import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_tabs;
 import com.xplosivesnet.explochem.utilities.bottle;
 
 public class hydrogenPeroxide extends Item
@@ -14,9 +14,9 @@ public class hydrogenPeroxide extends Item
 	public hydrogenPeroxide()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(explo_tabs.explo_tabs_components);
+		setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
 		setUnlocalizedName("hydrogenPeroxide");
-		setTextureName(explochem.MODID + ":" + this.getUnlocalizedName().substring(5));
+		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)

@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.xplosivesnet.explochem.explo_tabs;
-import com.xplosivesnet.explochem.explochem;
+import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_tabs;
 import com.xplosivesnet.explochem.utilities.bottle;
 
 public class acetonePeroxide extends Item
@@ -16,9 +16,9 @@ public class acetonePeroxide extends Item
 	public acetonePeroxide()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(explo_tabs.explo_tabs_explosives);
+		setCreativeTab(xplosivesnet_tabs.explo_tabs_explosives);
 		setUnlocalizedName("acetonePeroxide");
-		setTextureName(explochem.MODID + ":" + this.getUnlocalizedName().substring(5));
+		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}
 	
 	//Item rightclick

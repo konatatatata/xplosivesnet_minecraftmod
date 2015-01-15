@@ -14,9 +14,9 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class explo_fluids
+public class xplosivesnet_fluids
 {
-	public static Fluid[] explo_fluids = new Fluid[10];
+	public static Fluid[] xplosivesnet_fluids = new Fluid[10];
 	private static int counter = 0;
 	
 	public static void loadFluids()
@@ -33,12 +33,12 @@ public class explo_fluids
 	public static void addFluid(String fluidName)
 	{
 		Fluid fluid = new Fluid(fluidName);
-		explo_fluids[counter] = fluid;
+		xplosivesnet_fluids[counter] = fluid;
 		counter++;
 		FluidRegistry.registerFluid(fluid);
 		BlockFluidClassic fluid_x = getFluid(fluidName, fluid);
 		fluid_x.setBlockName("fluid_" + fluidName);
-		GameRegistry.registerBlock(fluid_x, explochem.MODID + ":" + fluid_x.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(fluid_x, xplosivesnet.MODID + ":" + fluid_x.getUnlocalizedName().substring(5));
 		fluid.setUnlocalizedName(fluid_x.getUnlocalizedName());
 	}
 	

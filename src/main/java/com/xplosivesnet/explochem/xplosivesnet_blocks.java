@@ -3,9 +3,10 @@ package com.xplosivesnet.explochem;
 import net.minecraft.block.Block;
 
 import com.xplosivesnet.explochem.devices.reactionVessel;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class explo_blocks
+public class xplosivesnet_blocks
 {
 	public static Block reactionVessel;
 	

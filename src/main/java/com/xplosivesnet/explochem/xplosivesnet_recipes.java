@@ -4,7 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class explo_recipes
+public class xplosivesnet_recipes
 {
 	public static void loadRecipes()
 	{

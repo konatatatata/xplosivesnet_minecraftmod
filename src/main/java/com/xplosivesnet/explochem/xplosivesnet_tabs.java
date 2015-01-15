@@ -6,7 +6,7 @@ import com.xplosivesnet.explochem.tabs.explo_tabs_components;
 import com.xplosivesnet.explochem.tabs.explo_tabs_explosives;
 import com.xplosivesnet.explochem.tabs.explo_tabs_machines;
 
-public class explo_tabs
+public class xplosivesnet_tabs
 {
 	public static CreativeTabs explo_tabs_components;
 	public static CreativeTabs explo_tabs_explosives;
