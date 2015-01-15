@@ -23,7 +23,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xplosivesnet_items
 {
-	public static Item[] xplosivesnet_items = new Item[10];
+	public static Item[] xplosivesnet_items = new Item[20];
 	private static int counter = 0;
 	
 	public static void loadItems()
