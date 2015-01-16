@@ -23,6 +23,8 @@ public class genericOre extends BlockContainer
 	private IIcon texture_bottom;
 	private IIcon texture_side;
 	private IIcon texture_front;
+	private IIcon texture_generic;
+	
 	
 	private boolean customTexture = false;
 	
@@ -37,12 +39,12 @@ public class genericOre extends BlockContainer
 
 	public TileEntity createNewTileEntity(World world)
 	{
-		return new tile_reactionVessel();
+		return null;
 	}
 
-	public void onBlockClicked(World world, int x, int y, int z,
-			EntityPlayer player) {
-		Helper.sendMessage(player, "left clicked!");
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
+	{
+		
 	}
 
 	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world,
@@ -54,7 +56,10 @@ public class genericOre extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
 	{
-		if (side == 0) {
+		if(!customTexture)
+		{
+			return this.texture_generic;
+		} else if (side == 0) {
 			return this.texture_bottom;
 		} else if (side == 1) {
 			return this.texture_top;
@@ -68,10 +73,15 @@ public class genericOre extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon)
 	{
-		this.texture_top = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_top");
-		this.texture_bottom = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_bottom");
-		this.texture_side = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
-		this.texture_front = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
+		if(this.customTexture)
+		{
+			this.texture_top = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_top");
+			this.texture_bottom = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_bottom");
+			this.texture_side = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
+			this.texture_front = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
+		} else {
+			this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
+		}
 	}
 
 

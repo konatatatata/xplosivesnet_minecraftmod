@@ -19,8 +19,8 @@ public class xplosivesnet
     	xplosivesnet_blocks.loadBlocks();
     	xplosivesnet_machines.loadMachines();
     	xplosivesnet_fluids.loadFluids();
-    	xplosivesnet_recipes.loadRecipes();
     	xplosivesnet_ores.loadOres();
+    	xplosivesnet_recipes.loadRecipes();
     }
     
     @EventHandler

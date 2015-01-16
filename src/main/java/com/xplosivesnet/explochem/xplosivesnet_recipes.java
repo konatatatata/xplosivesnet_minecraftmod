@@ -8,6 +8,7 @@ public class xplosivesnet_recipes
 {
 	public static void loadRecipes()
 	{
+		//crafting
 		GameRegistry.addRecipe(new ItemStack(Items.apple), new Object[]
 			{
 		    	"AAA",
@@ -16,5 +17,8 @@ public class xplosivesnet_recipes
 		    	'A', Items.cookie
 			});
 		
+		
+		//smelting
+		GameRegistry.addSmelting(xplosivesnet_ores.blocks[3], new ItemStack(xplosivesnet_items.items[15]), 0.1f); //ilmenite -> titaniumIngot
 	}
 }

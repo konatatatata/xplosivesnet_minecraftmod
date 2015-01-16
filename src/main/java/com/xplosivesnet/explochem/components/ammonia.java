@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_items;
 import com.xplosivesnet.explochem.xplosivesnet_tabs;
 
 public class ammonia extends Item
@@ -20,7 +21,8 @@ public class ammonia extends Item
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)
 	{
-		return par1ItemStack;
+		//place fluid
+		return new ItemStack(xplosivesnet_items.items[0]);
 	}
 
 }

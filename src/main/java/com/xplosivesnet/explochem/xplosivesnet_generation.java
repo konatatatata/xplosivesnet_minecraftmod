@@ -27,9 +27,9 @@ public class xplosivesnet_generation implements IWorldGenerator
 	
 	public void generateSurface(World world, Random random, int x, int z)
 	{
-		for(int i = 0; i < xplosivesnet_ores.nitrates.length; i++)
+		for(int i = 0; i < xplosivesnet_ores.blocks.length; i++)
 		{
-			this.addOreSpawn(xplosivesnet_ores.nitrates[i], world, random, x, z, 16, 16, 8, xplosivesnet_ores.spawnrates[i], 0, 256);	
+			this.addOreSpawn(xplosivesnet_ores.blocks[i], world, random, x, z, 16, 16, 8, xplosivesnet_ores.spawnrates[i], 0, 256);	
 		}
 	}
 	

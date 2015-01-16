@@ -9,8 +9,8 @@ import net.minecraft.item.Item;
 
 public class xplosivesnet_ores
 {
-	public static Block[] nitrates = new Block[10];
-	public static int[] spawnrates =  new int[nitrates.length];
+	public static Block[] blocks = new Block[10];
+	public static int[] spawnrates =  new int[blocks.length];
 	private static int counter = 0;
 	
 	public static void loadOres()
@@ -25,7 +25,7 @@ public class xplosivesnet_ores
 	public static void addOre(String name, int spawnRate)
 	{
 		Block ore = new genericOre(name, 1f, Material.rock, false);
-		nitrates[counter] = ore;
+		blocks[counter] = ore;
 		spawnrates[counter] = spawnRate;
 		counter++;
 		GameRegistry.registerBlock(ore, ore.getUnlocalizedName());

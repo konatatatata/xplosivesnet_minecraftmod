@@ -1,4 +1,5 @@
-package com.xplosivesnet.explochem.components;
+package com.xplosivesnet.explochem.utilities;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,22 +9,19 @@ import com.xplosivesnet.explochem.xplosivesnet;
 import com.xplosivesnet.explochem.xplosivesnet_items;
 import com.xplosivesnet.explochem.xplosivesnet_tabs;
 
-public class hydrochloricAcid extends Item
+public class genericIngot extends Item
 {
-	public hydrochloricAcid()
+	public genericIngot(String name)
 	{
-		setMaxStackSize(1);
+		setMaxStackSize(64);
 		setCreativeTab(xplosivesnet_tabs.components);
-		setUnlocalizedName("hydrochloricAcid");
+		setUnlocalizedName(name);
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}
 	
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entity)
 	{
-		//place fluid
-		return new ItemStack(xplosivesnet_items.items[0]);
+		return itemstack;
 	}
+	
 }
-
-
-

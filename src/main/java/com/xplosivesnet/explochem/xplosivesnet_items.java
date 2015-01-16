@@ -1,8 +1,6 @@
 package com.xplosivesnet.explochem;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
-import net.minecraftforge.fluids.Fluid;
 
 import com.xplosivesnet.explochem.components.acetone;
 import com.xplosivesnet.explochem.components.ammonia;
@@ -14,16 +12,15 @@ import com.xplosivesnet.explochem.components.nitricAcid;
 import com.xplosivesnet.explochem.components.sulfuricAcid;
 import com.xplosivesnet.explochem.explosives.initial.acetonePeroxide;
 import com.xplosivesnet.explochem.explosives.initial.nitroGlycerine;
-import com.xplosivesnet.explochem.fluids.fluid_acetone;
-import com.xplosivesnet.explochem.fluids.fluid_glycerine;
 import com.xplosivesnet.explochem.preComponents.genericComponent;
 import com.xplosivesnet.explochem.utilities.bottle;
+import com.xplosivesnet.explochem.utilities.genericIngot;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xplosivesnet_items
 {
-	public static Item[] items = new Item[20];
+	public static Item[] items = new Item[25];
 	private static int counter = 0;
 	
 	public static void loadItems()
@@ -45,15 +42,24 @@ public class xplosivesnet_items
 		addGenericItem(new nitrate("potassiumNitrate", xplosivesnet_tabs.components, 16));
 		addGenericItem(new nitrate("bariumNitrate", xplosivesnet_tabs.components, 16));
 		addGenericItem(new nitrate("sodiumNitrate", xplosivesnet_tabs.components, 16));
-		
 		addGenericItem(new genericComponent("potassiumCarbonate", xplosivesnet_tabs.components, 16));
-		
+		addGenericIngot(new genericIngot("titaniumIngot"));
 	}
 	
 	private static void addGenericItem(Item item)
 	{
 		items[counter] = item;
 		if(counter != 0) item.setContainerItem(items[0]);
+		System.out.println(item.getUnlocalizedName() + " : " + counter);
+		counter++;
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
+	}
+	
+	private static void addGenericIngot(Item item)
+	{
+		items[counter] = item;
+		if(counter != 0) item.setContainerItem(items[0]);
+		System.out.println(item.getUnlocalizedName() + " : " + counter);
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -100,12 +106,15 @@ public class xplosivesnet_items
 		else if(itemName == "nitroGlycerine")
 		{
 			item = new nitroGlycerine();
-		} else {
+		}
+		else
+		{
 			item = new bottle();
 		}
 		items[counter] = item;
-		if(counter != 0) item.setContainerItem(items[0]);
-		counter++;	
+		//if(counter != 0) item.setContainerItem(items[0]);
+		System.out.println(item.getUnlocalizedName() + " : " + counter);
+		counter++;
 		GameRegistry.registerItem(item, itemName);
 	}
 }

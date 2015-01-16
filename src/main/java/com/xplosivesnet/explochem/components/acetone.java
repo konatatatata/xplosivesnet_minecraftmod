@@ -1,5 +1,6 @@
 package com.xplosivesnet.explochem.components;
 import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_items;
 import com.xplosivesnet.explochem.xplosivesnet_tabs;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,8 @@ public class acetone extends Item
 	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World world, EntityPlayer player)
 	{
-		return par1ItemStack;
+		//place fluid
+		return new ItemStack(xplosivesnet_items.items[0]);
 	}
 
 }
