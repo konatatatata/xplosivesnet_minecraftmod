@@ -14,7 +14,7 @@ public class hydrogenPeroxide extends Item
 	public hydrogenPeroxide()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		setCreativeTab(xplosivesnet_tabs.components);
 		setUnlocalizedName("hydrogenPeroxide");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

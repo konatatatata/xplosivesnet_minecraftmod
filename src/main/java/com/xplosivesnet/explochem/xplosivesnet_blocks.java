@@ -15,6 +15,9 @@ public class xplosivesnet_blocks
 		reactionVessel = new reactionVessel();
 		GameRegistry.registerBlock(reactionVessel, "reactionVessel");
 		//GameRegistry.registerTileEntity(reactionVesselTile.class, "reactionVesselTile");
+	
+		xplosivesnet_generation ore_gen = new xplosivesnet_generation();
+		GameRegistry.registerWorldGenerator(ore_gen, 0);
 	}
 }
 

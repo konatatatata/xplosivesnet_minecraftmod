@@ -12,7 +12,7 @@ public class nitricAcid extends Item
 	public nitricAcid()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		setCreativeTab(xplosivesnet_tabs.components);
 		setUnlocalizedName("nitricAcid");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

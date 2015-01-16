@@ -30,7 +30,7 @@ public class fluid_sulfuricAcid extends BlockFluidClassic
 	public fluid_sulfuricAcid(Fluid fluid, Material material)
 	{
 		super(fluid, material);
-		this.setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		this.setCreativeTab(xplosivesnet_tabs.components);
 		this.setDensity(500);
 	}
 	

@@ -12,7 +12,7 @@ public class hydrochloricAcid extends Item
 	public hydrochloricAcid()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		setCreativeTab(xplosivesnet_tabs.components);
 		setUnlocalizedName("hydrochloricAcid");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

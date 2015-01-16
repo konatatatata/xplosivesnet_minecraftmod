@@ -21,7 +21,4 @@ public class explo_tabs_components extends CreativeTabs
 	{
 		return Items.book;
 	}
-	
-	
-
 }

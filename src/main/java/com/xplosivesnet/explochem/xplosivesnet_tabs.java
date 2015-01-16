@@ -5,20 +5,21 @@ import net.minecraft.creativetab.CreativeTabs;
 import com.xplosivesnet.explochem.tabs.explo_tabs_components;
 import com.xplosivesnet.explochem.tabs.explo_tabs_explosives;
 import com.xplosivesnet.explochem.tabs.explo_tabs_machines;
+import com.xplosivesnet.explochem.tabs.tabs_ores;
 
 public class xplosivesnet_tabs
 {
-	public static CreativeTabs explo_tabs_components;
-	public static CreativeTabs explo_tabs_explosives;
-	public static CreativeTabs explo_tabs_machines;
-	
-	
+	public static CreativeTabs components;
+	public static CreativeTabs explosives;
+	public static CreativeTabs machines;
+	public static CreativeTabs ores;
+		
 	public static void loadTabs()
 	{
-		explo_tabs_components = new explo_tabs_components();
-		explo_tabs_explosives = new explo_tabs_explosives();
-		explo_tabs_machines = new explo_tabs_machines();
-		
+		components = new explo_tabs_components();
+		explosives = new explo_tabs_explosives();
+		machines = new explo_tabs_machines();
+		ores = new tabs_ores();
 	}
 }
 

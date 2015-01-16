@@ -13,7 +13,7 @@ public class bottle extends Item
 	public bottle()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		setCreativeTab(xplosivesnet_tabs.components);
 		setUnlocalizedName("bottle");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

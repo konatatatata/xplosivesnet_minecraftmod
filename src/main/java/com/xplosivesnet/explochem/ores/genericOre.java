@@ -1,4 +1,4 @@
-package com.xplosivesnet.explochem.devices;
+package com.xplosivesnet.explochem.ores;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,23 +12,27 @@ import net.minecraft.world.World;
 import com.xplosivesnet.explochem.Helper;
 import com.xplosivesnet.explochem.xplosivesnet;
 import com.xplosivesnet.explochem.xplosivesnet_tabs;
+import com.xplosivesnet.explochem.devices.tile_reactionVessel;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class reactionVessel extends BlockContainer
+public class genericOre extends BlockContainer
 {
 	private IIcon texture_top;
 	private IIcon texture_bottom;
 	private IIcon texture_side;
 	private IIcon texture_front;
-
-	public reactionVessel()
+	
+	private boolean customTexture = false;
+	
+	public genericOre(String name, float hardness, Material mat, boolean textureEachSide)
 	{
-		super(Material.rock);
-		this.setCreativeTab(xplosivesnet_tabs.machines);
-		this.setBlockName("reactionVessel");
-		this.setHardness(2f);
+		super(mat);
+		this.setCreativeTab(xplosivesnet_tabs.ores);
+		this.setBlockName(name);
+		this.setHardness(hardness);
+		this.customTexture = textureEachSide;
 	}
 
 	public TileEntity createNewTileEntity(World world)

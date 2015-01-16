@@ -12,7 +12,7 @@ public class acetone extends Item
 	public acetone()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		setCreativeTab(xplosivesnet_tabs.components);
 		setUnlocalizedName("acetone");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

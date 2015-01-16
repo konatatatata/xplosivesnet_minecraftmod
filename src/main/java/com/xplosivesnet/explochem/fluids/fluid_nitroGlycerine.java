@@ -28,7 +28,7 @@ public class fluid_nitroGlycerine extends BlockFluidClassic
 	public fluid_nitroGlycerine(Fluid fluid, Material material)
 	{
 		super(fluid, material);
-		this.setCreativeTab(xplosivesnet_tabs.explo_tabs_components);
+		this.setCreativeTab(xplosivesnet_tabs.components);
 		this.setDensity(500);
 	}
 	

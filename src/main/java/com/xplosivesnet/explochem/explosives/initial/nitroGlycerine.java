@@ -15,7 +15,7 @@ public class nitroGlycerine extends Item
 	public nitroGlycerine()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_explosives);
+		setCreativeTab(xplosivesnet_tabs.explosives);
 		setUnlocalizedName("nitroGlycerine");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

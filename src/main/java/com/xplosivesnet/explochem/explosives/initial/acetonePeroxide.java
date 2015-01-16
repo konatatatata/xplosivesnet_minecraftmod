@@ -16,7 +16,7 @@ public class acetonePeroxide extends Item
 	public acetonePeroxide()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(xplosivesnet_tabs.explo_tabs_explosives);
+		setCreativeTab(xplosivesnet_tabs.explosives);
 		setUnlocalizedName("acetonePeroxide");
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

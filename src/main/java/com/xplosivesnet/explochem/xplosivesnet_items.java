@@ -23,7 +23,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xplosivesnet_items
 {
-	public static Item[] xplosivesnet_items = new Item[20];
+	public static Item[] items = new Item[20];
 	private static int counter = 0;
 	
 	public static void loadItems()
@@ -41,19 +41,19 @@ public class xplosivesnet_items
 		addItem("nitroGlycerine");
 		
 		//no texture yet
-		addGenericItem(new nitrate("ammoniumNitrate", xplosivesnet_tabs.explo_tabs_components, 16));
-		addGenericItem(new nitrate("potassiumNitrate", xplosivesnet_tabs.explo_tabs_components, 16));
-		addGenericItem(new nitrate("bariumNitrate", xplosivesnet_tabs.explo_tabs_components, 16));
-		addGenericItem(new nitrate("sodiumNitrate", xplosivesnet_tabs.explo_tabs_components, 16));
+		addGenericItem(new nitrate("ammoniumNitrate", xplosivesnet_tabs.components, 16));
+		addGenericItem(new nitrate("potassiumNitrate", xplosivesnet_tabs.components, 16));
+		addGenericItem(new nitrate("bariumNitrate", xplosivesnet_tabs.components, 16));
+		addGenericItem(new nitrate("sodiumNitrate", xplosivesnet_tabs.components, 16));
 		
-		addGenericItem(new genericComponent("potassiumCarbonate", xplosivesnet_tabs.explo_tabs_components, 16));
+		addGenericItem(new genericComponent("potassiumCarbonate", xplosivesnet_tabs.components, 16));
 		
 	}
 	
 	private static void addGenericItem(Item item)
 	{
-		xplosivesnet_items[counter] = item;
-		if(counter != 0) item.setContainerItem(xplosivesnet_items[0]);
+		items[counter] = item;
+		if(counter != 0) item.setContainerItem(items[0]);
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -103,8 +103,8 @@ public class xplosivesnet_items
 		} else {
 			item = new bottle();
 		}
-		xplosivesnet_items[counter] = item;
-		if(counter != 0) item.setContainerItem(xplosivesnet_items[0]);
+		items[counter] = item;
+		if(counter != 0) item.setContainerItem(items[0]);
 		counter++;	
 		GameRegistry.registerItem(item, itemName);
 	}
