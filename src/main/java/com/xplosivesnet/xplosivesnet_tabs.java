@@ -1,11 +1,9 @@
 package com.xplosivesnet;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 
-import com.xplosivesnet.tabs.explo_tabs_components;
-import com.xplosivesnet.tabs.explo_tabs_explosives;
-import com.xplosivesnet.tabs.explo_tabs_machines;
-import com.xplosivesnet.tabs.tabs_ores;
+import com.xplosivesnet.tabs.genericTab;
 
 public class xplosivesnet_tabs
 {
@@ -16,10 +14,10 @@ public class xplosivesnet_tabs
 		
 	public static void loadTabs()
 	{
-		components = new explo_tabs_components();
-		explosives = new explo_tabs_explosives();
-		machines = new explo_tabs_machines();
-		ores = new tabs_ores();
+		components = new genericTab("components", Items.apple);
+		explosives = new genericTab("explosives", Items.apple);
+		machines = new genericTab("machines", Items.apple);
+		ores = new genericTab("ores", Items.apple);
 	}
 }
 

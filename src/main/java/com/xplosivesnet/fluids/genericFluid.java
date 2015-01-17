@@ -52,8 +52,8 @@ public class genericFluid  extends BlockFluidClassic
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-            stillIcon = register.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_s");
-            flowingIcon = register.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_f");
+            stillIcon = register.registerIcon(xplosivesnet.MODID + ":fluids/" + this.getUnlocalizedName().substring(5) + "_s");
+            flowingIcon = register.registerIcon(xplosivesnet.MODID + ":fluids/" + this.getUnlocalizedName().substring(5) + "_f");
     }
    
     @Override

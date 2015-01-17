@@ -2,6 +2,7 @@ package com.xplosivesnet;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -25,6 +26,7 @@ public class xplosivesnet
     	xplosivesnet_ores.loadOres();
     	xplosivesnet_recipes.loadRecipes();
     	
+    	
     	System.out.println("ID : ITEM");
 		int i = 0;
 		for (Item item : xplosivesnet_items.items)
@@ -40,7 +42,7 @@ public class xplosivesnet
 		    }
 		}
 		
-		System.out.println("ID : BLOCK");
+		System.out.println("ID : BLOCK : ORE");
 		int j = 0;
 		for (Block block : xplosivesnet_ores.blocks)
 		{
@@ -54,6 +56,37 @@ public class xplosivesnet
 		        
 		    }
 		}
+		
+		System.out.println("ID : BLOCK");
+		int k = 0;
+		for (Block block : xplosivesnet_blocks.blocks)
+		{
+			try
+			{
+				System.out.println(k + " : " + block.getUnlocalizedName());
+				k++;
+		    }
+		    catch (NullPointerException e)
+			{
+		        
+		    }
+		}
+		
+		System.out.println("ID : BLOCK : FLUID");
+		int l = 0;
+		for (Fluid fluid : xplosivesnet_fluids.fluids)
+		{
+			try
+			{
+				System.out.println(l + " : " + fluid.getUnlocalizedName());
+				l++;
+		    }
+		    catch (NullPointerException e)
+			{
+		        
+		    }
+		}
+		
 		
 		FMLCommonHandler.instance().bus().register(new xplosivesnet_ticker());
     }

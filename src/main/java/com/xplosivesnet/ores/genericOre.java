@@ -72,12 +72,12 @@ public class genericOre extends BlockContainer
 	{
 		if(this.customTexture)
 		{
-			this.texture_top = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_top");
-			this.texture_bottom = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5) + "_bottom");
-			this.texture_side = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
-			this.texture_front = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
+			this.texture_top = icon.registerIcon(xplosivesnet.MODID + ":ores/" + this.getUnlocalizedName().substring(5) + "_top");
+			this.texture_bottom = icon.registerIcon(xplosivesnet.MODID + ":ores/" + this.getUnlocalizedName().substring(5) + "_bottom");
+			this.texture_side = icon.registerIcon(xplosivesnet.MODID + ":ores/"	+ this.getUnlocalizedName().substring(5) + "_side");
+			this.texture_front = icon.registerIcon(xplosivesnet.MODID + ":ores/"	+ this.getUnlocalizedName().substring(5) + "_side");
 		} else {
-			this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
+			this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":ores/" + this.getUnlocalizedName().substring(5));
 		}
 	}
 

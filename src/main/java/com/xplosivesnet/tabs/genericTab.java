@@ -6,22 +6,24 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-
-public class explo_tabs_machines extends CreativeTabs
+public class genericTab extends CreativeTabs
 {
-
-	public explo_tabs_machines()
+	public Item icon;
+	public genericTab(String name, Item icon)
 	{
-		super(CreativeTabs.getNextID(), "explo_tabs_machines");
+		super(CreativeTabs.getNextID(), name);
+		this.icon = icon;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem()
 	{
-		return Items.beef;
+		return icon;
 	}
 	
-	
-
+	public void setIcon(Item item)
+	{
+		this.icon = item;
+	}
 }

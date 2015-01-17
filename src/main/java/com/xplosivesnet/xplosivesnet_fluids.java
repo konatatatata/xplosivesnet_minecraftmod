@@ -11,7 +11,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xplosivesnet_fluids
 {
-	public static Fluid[] xplosivesnet_fluids = new Fluid[10];
+	public static Fluid[] fluids = new Fluid[100];
+	public static String[] fluidNames = new String[100];
+	
 	private static int counter = 0;
 	
 	public static void loadFluids()
@@ -29,12 +31,13 @@ public class xplosivesnet_fluids
 	public static void addFluid(String fluidName, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)
 	{
 		Fluid fluid = new Fluid(fluidName);
-		xplosivesnet_fluids[counter] = fluid;
+		fluids[counter] = fluid;
+		fluidNames[counter] = fluidName;
 		counter++;
 		FluidRegistry.registerFluid(fluid);
 		BlockFluidClassic fluid_x = new genericFluid(fluid, density, particleType, doDamage, damage, destroyItems, dmg);
-		fluid_x.setBlockName("fluid_" + fluidName);
-		GameRegistry.registerBlock(fluid_x, xplosivesnet.MODID + ":" + fluid_x.getUnlocalizedName().substring(5));
+		fluid_x.setBlockName(fluidName);
+		GameRegistry.registerBlock(fluid_x, fluid_x.getUnlocalizedName().substring(5));
 		fluid.setUnlocalizedName(fluid_x.getUnlocalizedName());
 	}
 }
