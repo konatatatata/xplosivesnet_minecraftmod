@@ -3,12 +3,14 @@ package com.xplosivesnet.explosives;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -16,11 +18,12 @@ import net.minecraft.world.World;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xplosivesnet_tabs;
 import com.xplosivesnet.explosives.entities.genericExplosion;
+import com.xplosivesnet.models.tileGenericCustomExplosive;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class genericExplosive extends Block
+public class genericCustomExplosive extends BlockContainer
 {
 	public float sensitivity;
 	
@@ -35,7 +38,7 @@ public class genericExplosive extends Block
     private float strength;
     private boolean explodeOnPower;
     
-    public genericExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
+    public genericCustomExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
     {
         super(Material.tnt);
         this.setCreativeTab(xplosivesnet_tabs.explosives);
@@ -196,6 +199,28 @@ public class genericExplosive extends Block
 	{
 		this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":explosives/" + this.getUnlocalizedName().substring(5));
 	}
+
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		// TODO Auto-generated method stub
+		return new tileGenericCustomExplosive();
+	}
+	
+	@Override
+    public int getRenderType() {
+            return -1;
+    }
+   
+    //It's not an opaque cube, so you need this.
+    @Override
+    public boolean isOpaqueCube() {
+            return false;
+    }
+   
+    //It's not a normal block, so you need this too.
+    public boolean renderAsNormalBlock() {
+            return false;
+    }
 	
 	
 	

@@ -2,10 +2,13 @@ package com.xplosivesnet;
 
 import net.minecraft.block.Block;
 
+import com.xplosivesnet.explosives.genericCustomExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
+import com.xplosivesnet.models.genericCustomExplosiveRenderer;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-
+import com.xplosivesnet.models.tileGenericCustomExplosive;
 public class xplosivesnet_blocks
 {
 	public static Block[] blocks = new Block[25];
@@ -17,7 +20,7 @@ public class xplosivesnet_blocks
 		addExplosive("hmtd", true, false, false, 1f, 0.1f);
 		addExplosive("leadAzide", true, false, false, 1f, 0.1f);
 		
-		addExplosive("detonatingCord", true, false, false, 0.5f, 0.1f);
+		addCustomExplosive("detonatingCord", true, false, false, 0.5f, 0.1f);
 		
 		addExplosive("ANFO", false, false, true, 3.5f, 1f);
 		addExplosive("ANNM", false, false, true, 5f, 1f);
@@ -34,6 +37,15 @@ public class xplosivesnet_blocks
 		blocks[counter] = block;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+	}
+	
+	public static void addCustomExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)
+	{
+		Block block = new genericCustomExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
+		blocks[counter] = block;
+		counter++;
+		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomExplosive.class, new genericCustomExplosiveRenderer(10f));
 	}
 }
 
