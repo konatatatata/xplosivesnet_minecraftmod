@@ -12,8 +12,8 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
 import com.xplosivesnet.explochem.Helper;
-import com.xplosivesnet.explochem.explo_damageSource;
 import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_damageSource;
 import com.xplosivesnet.explochem.xplosivesnet_tabs;
 
 import cpw.mods.fml.relauncher.Side;
@@ -62,7 +62,7 @@ public class fluid_hydrogenPeroxide extends BlockFluidClassic
     {
 		if (Helper.isPlayer(entity))
 		{
-			Helper.attack(entity, explo_damageSource.acid_heavy, 4.0f);
+			Helper.attack(entity, xplosivesnet_damageSource.acid_heavy, 4.0f);
 		} else {
 			Helper.destroy(entity);
 		}

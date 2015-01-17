@@ -12,8 +12,8 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
 import com.xplosivesnet.explochem.Helper;
-import com.xplosivesnet.explochem.explo_damageSource;
 import com.xplosivesnet.explochem.xplosivesnet;
+import com.xplosivesnet.explochem.xplosivesnet_damageSource;
 import com.xplosivesnet.explochem.xplosivesnet_tabs;
 
 import cpw.mods.fml.relauncher.Side;
@@ -62,7 +62,7 @@ public class fluid_sulfuricAcid extends BlockFluidClassic
     {
 		if (Helper.isPlayer(player))
 		{
-			Helper.attack(player, explo_damageSource.poison_heavy, 3f);
+			Helper.attack(player, xplosivesnet_damageSource.poison_heavy, 3f);
 		} else {
 			Helper.destroy(player);
 		}

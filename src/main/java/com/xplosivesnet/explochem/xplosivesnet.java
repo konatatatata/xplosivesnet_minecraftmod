@@ -2,6 +2,7 @@ package com.xplosivesnet.explochem;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -53,6 +54,8 @@ public class xplosivesnet
 		        
 		    }
 		}
+		
+		FMLCommonHandler.instance().bus().register(new xplosivesnet_ticker());
     }
     
     @EventHandler

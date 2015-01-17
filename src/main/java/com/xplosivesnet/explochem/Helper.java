@@ -3,6 +3,8 @@ package com.xplosivesnet.explochem;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
@@ -10,6 +12,11 @@ import net.minecraft.util.DamageSource;
 public class Helper
 {
 
+	public static void addPotionEffect(EntityPlayer player, Potion potion, int duration)
+	{
+		player.addPotionEffect((new PotionEffect(potion.id, duration, 0)));
+	}
+	
 	public static boolean isInteger(String in)
 	{
 	    try { 

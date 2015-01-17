@@ -2,6 +2,7 @@ package com.xplosivesnet.explochem;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 
 import com.xplosivesnet.explochem.components.acetone;
 import com.xplosivesnet.explochem.components.ammonia;
@@ -15,6 +16,7 @@ import com.xplosivesnet.explochem.explosives.initial.acetonePeroxide;
 import com.xplosivesnet.explochem.explosives.initial.nitroGlycerine;
 import com.xplosivesnet.explochem.preComponents.genericComponent;
 import com.xplosivesnet.explochem.utilities.bottle;
+import com.xplosivesnet.explochem.utilities.genericArmor;
 import com.xplosivesnet.explochem.utilities.genericIngot;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -44,8 +46,23 @@ public class xplosivesnet_items
 		addGenericItem(new nitrate("bariumNitrate", xplosivesnet_tabs.components, 16));
 		addGenericItem(new nitrate("sodiumNitrate", xplosivesnet_tabs.components, 16));
 		addGenericItem(new genericComponent("potassiumCarbonate", xplosivesnet_tabs.components, 16));
+		addGenericIngot(new genericIngot("sulfurIngot"));
+		addGenericIngot(new genericIngot("nitratineIngot"));
+		addGenericIngot(new genericIngot("uraniniteIngot"));
 		addGenericIngot(new genericIngot("titaniumIngot"));
+		
+		addGenericArmor(new genericArmor("hazmaHelmet", ArmorMaterial.CLOTH, 0));
+		addGenericArmor(new genericArmor("hazmaChestplate", ArmorMaterial.CLOTH, 1));
+		addGenericArmor(new genericArmor("hazmaLeggins", ArmorMaterial.CLOTH, 2));
+		addGenericArmor(new genericArmor("hazmaBoots", ArmorMaterial.CLOTH, 3));
     	
+	}
+	
+	private static void addGenericArmor(Item item)
+	{
+		items[counter] = item;
+		counter++;
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
 	
 	private static void addGenericItem(Item item)
