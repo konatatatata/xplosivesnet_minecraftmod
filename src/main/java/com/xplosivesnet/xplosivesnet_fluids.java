@@ -1,17 +1,11 @@
 package com.xplosivesnet;
 
-import net.minecraft.block.material.Material;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-import com.xplosivesnet.fluids.fluid_acetone;
-import com.xplosivesnet.fluids.fluid_glycerine;
-import com.xplosivesnet.fluids.fluid_hydrochloricAcid;
-import com.xplosivesnet.fluids.fluid_hydrogenPeroxide;
-import com.xplosivesnet.fluids.fluid_nitricAcid;
-import com.xplosivesnet.fluids.fluid_nitroGlycerine;
-import com.xplosivesnet.fluids.fluid_sulfuricAcid;
+import com.xplosivesnet.fluids.genericFluid;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -22,59 +16,25 @@ public class xplosivesnet_fluids
 	
 	public static void loadFluids()
 	{
-		addFluid("acetone");
-		addFluid("glycerine");
-		addFluid("hydrochloricAcid");
-		addFluid("hydrogenPeroxide");
-		addFluid("nitricAcid");
-		addFluid("nitroGlycerine");
-		addFluid("sulfuricAcid");
+		//void addFluid(String fluidName, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)
+		addFluid("acetone", 300, 1, true, 0.5f, false, xplosivesnet_damageSource.poison);
+		addFluid("glycerine", 300, 0, false, 0.0f, false, null);
+		addFluid("hydrochloricAcid", 300, 2, true, 2f, true, xplosivesnet_damageSource.acid);
+		addFluid("hydrogenPeroxide", 300, 2, true, 3f, true, xplosivesnet_damageSource.acid);
+		addFluid("nitricAcid", 300, 2, true, 2f, true, xplosivesnet_damageSource.acid);
+		addFluid("nitroGlycerine", 300, 0, true, 1.5f, true, xplosivesnet_damageSource.acid);
+		addFluid("sulfuricAcid", 300, 2, true, 2f, true, xplosivesnet_damageSource.acid);
 	}
 	
-	public static void addFluid(String fluidName)
+	public static void addFluid(String fluidName, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)
 	{
 		Fluid fluid = new Fluid(fluidName);
 		xplosivesnet_fluids[counter] = fluid;
 		counter++;
 		FluidRegistry.registerFluid(fluid);
-		BlockFluidClassic fluid_x = getFluid(fluidName, fluid);
+		BlockFluidClassic fluid_x = new genericFluid(fluid, density, particleType, doDamage, damage, destroyItems, dmg);
 		fluid_x.setBlockName("fluid_" + fluidName);
 		GameRegistry.registerBlock(fluid_x, xplosivesnet.MODID + ":" + fluid_x.getUnlocalizedName().substring(5));
 		fluid.setUnlocalizedName(fluid_x.getUnlocalizedName());
-	}
-	
-	private static BlockFluidClassic getFluid(String fluidName, Fluid fluid)
-	{
-		if(fluidName == "acetone")
-		{
-			return new fluid_acetone(fluid, Material.water);
-		}
-		else if(fluidName == "glycerine")
-		{
-			return new fluid_glycerine(fluid, Material.water);
-		}
-		else if(fluidName == "hydrochloricAcid")
-		{
-			return new fluid_hydrochloricAcid(fluid, Material.water);
-		}
-		else if(fluidName == "hydrogenPeroxide")
-		{
-			return new fluid_hydrogenPeroxide(fluid, Material.water);
-		}
-		else if(fluidName == "nitricAcid")
-		{
-			return new fluid_nitricAcid(fluid, Material.water);
-		}
-		else if(fluidName == "nitroGlycerine")
-		{
-			return new fluid_nitroGlycerine(fluid, Material.water);
-		}
-		else if(fluidName == "sulfuricAcid")
-		{
-			return new fluid_sulfuricAcid(fluid, Material.water);
-		}
-		else {
-			return null;
-		}
 	}
 }

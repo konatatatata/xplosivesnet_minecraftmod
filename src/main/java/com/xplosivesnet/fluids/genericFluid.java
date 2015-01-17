@@ -2,15 +2,6 @@ package com.xplosivesnet.fluids;
 
 import java.util.Random;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
-
 import com.xplosivesnet.Helper;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xplosivesnet_damageSource;
@@ -18,20 +9,39 @@ import com.xplosivesnet.xplosivesnet_tabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
 
-public class fluid_nitricAcid extends BlockFluidClassic
+public class genericFluid  extends BlockFluidClassic
 {
-	
+
 	@SideOnly(Side.CLIENT)
     protected IIcon stillIcon;
     @SideOnly(Side.CLIENT)
     protected IIcon flowingIcon;
-
-	public fluid_nitricAcid(Fluid fluid, Material material)
+    private boolean doDamage;
+    private int particleType;
+    private DamageSource damageSource;
+    private boolean destroyItems;
+    private float damage;
+    
+	public genericFluid(Fluid fluid, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)
 	{
-		super(fluid, material);
+		super(fluid, Material.water);
 		this.setCreativeTab(xplosivesnet_tabs.components);
-		this.setDensity(500);
+		this.setDensity(density);
+		this.damageSource = dmg;
+		this.doDamage = doDamage;
+		this.particleType = particleType;
+		this.destroyItems = destroyItems;
+		this.damage = damage;
 	}
 	
 	@Override
@@ -60,11 +70,14 @@ public class fluid_nitricAcid extends BlockFluidClassic
     
     public void onEntityCollidedWithBlock(World a, int b, int c, int d, Entity player)
     {
-		if (Helper.isPlayer(player))
-		{
-			Helper.attack(player, xplosivesnet_damageSource.poison_heavy, 3.5f);
-		} else {
-			Helper.destroy(player);
+    	if(this.doDamage)
+    	{
+			if (Helper.isPlayer(player))
+			{
+				Helper.attack(player, this.damageSource, this.damage);
+			} else {
+				if(this.destroyItems) Helper.attack(player, xplosivesnet_damageSource.poison, 1f);
+			}
 		}
     }
     
@@ -77,6 +90,21 @@ public class fluid_nitricAcid extends BlockFluidClassic
    		float f4 = random.nextFloat() * 0.3F;
    		float f5 = random.nextFloat() * -0.6F - -0.3F;
    		
-   		world.spawnParticle("smoke", (double)(f1+f4), (double)f2, (double)(f3+f5), 0.0D, 0.0D, 0.0D);
+   		switch(particleType)
+   		{
+   		case 0:
+   			break;
+   		case 1:
+   			world.spawnParticle("splash", (double)(f1+f4), (double)f2, (double)(f3+f5), 0.0D, 0.0D, 0.0D);
+   			break;
+   		case 2:
+   			world.spawnParticle("smoke", (double)(f1+f4), (double)f2, (double)(f3+f5), 0.0D, 0.0D, 0.0D);
+   			break;
+   		default:
+   			break;
+   		}
+   		
+   		
    	}
+
 }
