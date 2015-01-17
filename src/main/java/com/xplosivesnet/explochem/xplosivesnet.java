@@ -1,5 +1,7 @@
 package com.xplosivesnet.explochem;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -21,6 +23,36 @@ public class xplosivesnet
     	xplosivesnet_fluids.loadFluids();
     	xplosivesnet_ores.loadOres();
     	xplosivesnet_recipes.loadRecipes();
+    	
+    	System.out.println("ID : ITEM");
+		int i = 0;
+		for (Item item : xplosivesnet_items.items)
+		{
+			try
+			{
+				System.out.println(i + " : " + item.getUnlocalizedName());
+				i++;
+		    }
+		    catch (NullPointerException e)
+			{
+		        
+		    }
+		}
+		
+		System.out.println("ID : BLOCK");
+		int j = 0;
+		for (Block block : xplosivesnet_ores.blocks)
+		{
+			try
+			{
+				System.out.println(j + " : " + block.getUnlocalizedName());
+				j++;
+		    }
+		    catch (NullPointerException e)
+			{
+		        
+		    }
+		}
     }
     
     @EventHandler

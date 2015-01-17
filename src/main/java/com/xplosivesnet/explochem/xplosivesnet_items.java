@@ -1,5 +1,6 @@
 package com.xplosivesnet.explochem;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
 import com.xplosivesnet.explochem.components.acetone;
@@ -44,13 +45,13 @@ public class xplosivesnet_items
 		addGenericItem(new nitrate("sodiumNitrate", xplosivesnet_tabs.components, 16));
 		addGenericItem(new genericComponent("potassiumCarbonate", xplosivesnet_tabs.components, 16));
 		addGenericIngot(new genericIngot("titaniumIngot"));
+    	
 	}
 	
 	private static void addGenericItem(Item item)
 	{
 		items[counter] = item;
 		if(counter != 0) item.setContainerItem(items[0]);
-		System.out.println(item.getUnlocalizedName() + " : " + counter);
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -59,7 +60,6 @@ public class xplosivesnet_items
 	{
 		items[counter] = item;
 		if(counter != 0) item.setContainerItem(items[0]);
-		System.out.println(item.getUnlocalizedName() + " : " + counter);
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -112,8 +112,7 @@ public class xplosivesnet_items
 			item = new bottle();
 		}
 		items[counter] = item;
-		//if(counter != 0) item.setContainerItem(items[0]);
-		System.out.println(item.getUnlocalizedName() + " : " + counter);
+		if(counter != 0) item.setContainerItem(items[0]);
 		counter++;
 		GameRegistry.registerItem(item, itemName);
 	}
