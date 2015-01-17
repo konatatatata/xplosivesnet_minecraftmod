@@ -33,8 +33,9 @@ public class genericExplosive extends Block
     private boolean explodeOnHit;
     private boolean needsIni;
     private float strength;
+    private boolean explodeOnPower;
     
-    public genericExplosive(String name, float hardness, boolean customTexture, boolean explodeOnHit, boolean needsIni, float strength)
+    public genericExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
     {
         super(Material.tnt);
         this.setCreativeTab(xplosivesnet_tabs.explosives);
@@ -42,6 +43,7 @@ public class genericExplosive extends Block
 		this.setHardness(hardness);
 		this.customTexture = customTexture;
 		this.explodeOnHit = explodeOnHit;
+		this.explodeOnPower = explodeOnPower;
 		this.needsIni = needsIni;
 		this.strength = strength;
     }
@@ -61,7 +63,7 @@ public class genericExplosive extends Block
     public void onBlockAdded(World world, int x, int y, int z)
     {
         super.onBlockAdded(world, x, y, z);
-        if(!needsIni)
+        if(explodeOnPower)
         {
 	        if (world.isBlockIndirectlyGettingPowered(x, y, z))
 	        {
@@ -77,7 +79,7 @@ public class genericExplosive extends Block
      */
     public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_)
     {
-    	if(!needsIni)
+    	if(explodeOnPower)
     	{
 	        if (world.isBlockIndirectlyGettingPowered(x, y, z))
 	        {
@@ -140,7 +142,7 @@ public class genericExplosive extends Block
     
     public void onBlockDestroyedByPlayer(World p_149664_1_, int p_149664_2_, int p_149664_3_, int p_149664_4_, int p_149664_5_)
     {
-    	if(!needsIni)
+    	if(explodeOnHit)
     	{
     		this.blow(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, p_149664_5_, (EntityLivingBase)null);
     	}
@@ -157,19 +159,13 @@ public class genericExplosive extends Block
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-        if (p_149727_5_.getCurrentEquippedItem() != null && p_149727_5_.getCurrentEquippedItem().getItem() == Items.flint_and_steel)
-        {
-            this.blow(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, 1, p_149727_5_);
-            p_149727_1_.setBlockToAir(p_149727_2_, p_149727_3_, p_149727_4_);
-            p_149727_5_.getCurrentEquippedItem().damageItem(1, p_149727_5_);
-            return true;
-        }
-        else
-        {
-            return super.onBlockActivated(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_, p_149727_6_, p_149727_7_, p_149727_8_, p_149727_9_);
-        }
+    	if(explodeOnHit)
+    	{
+    		this.blow(world, x, y, z, 0, (EntityLivingBase)null);
+    	}
+    	return false;
     }
 
     /**
