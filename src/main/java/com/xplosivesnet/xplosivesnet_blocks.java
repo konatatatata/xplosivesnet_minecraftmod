@@ -19,10 +19,10 @@ public class xplosivesnet_blocks
 		
 		addExplosive("detonatingCord", true, false, false, 0.5f, 0.1f);
 		
-		addExplosive("ANFO", false, false, true, 3.5f, 0.1f);
+		addExplosive("ANFO", false, false, true, 3.5f, 1f);
 		addExplosive("ANNM", false, false, true, 5f, 1f);
 		addExplosive("AMMONAL", false, false, true, 4f, 1f);
-		addExplosive("Dynamite", false, false, true, 3f, 0.1f);
+		addExplosive("Dynamite", false, false, true, 3f, 1f);
 		addExplosive("RDX", false, false, true, 5.5f, 2f);
 		
 		
