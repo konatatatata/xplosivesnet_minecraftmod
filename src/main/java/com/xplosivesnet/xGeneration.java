@@ -26,9 +26,9 @@ public class xGeneration implements IWorldGenerator
 	
 	public void generateSurface(World world, Random random, int x, int z)
 	{
-		for(int i = 0; i < xOres.blocks.length; i++)
+		for(int i = 0; i < xOres.getBlocks().length; i++)
 		{
-			this.addOreSpawn(xOres.blocks[i], world, random, x, z, 16, 16, 8, xOres.spawnrates[i], 0, 256);	
+			this.addOreSpawn(xOres.getBlocks()[i], world, random, x, z, 16, 16, 8, xOres.getSpawnrateById(i), 0, 256);	
 		}
 	}
 	

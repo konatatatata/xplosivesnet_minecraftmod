@@ -19,10 +19,10 @@ public class xRecipes
 		
 		
 		//smelting
-		GameRegistry.addSmelting(xOres.blocks[0], new ItemStack(xItems.items[15]), 0.5f);
-		GameRegistry.addSmelting(xOres.blocks[1], new ItemStack(xItems.items[16]), 0.5f);
-		GameRegistry.addSmelting(xOres.blocks[2], new ItemStack(xItems.items[17]), 0.5f);
-		GameRegistry.addSmelting(xOres.blocks[3], new ItemStack(xItems.items[18]), 0.5f); //ilmenite -> titaniumIngot
+		GameRegistry.addSmelting(xOres.getBlockById(0), new ItemStack(xItems.getItemById(15)), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockById(1), new ItemStack(xItems.getItemById(16)), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockById(2), new ItemStack(xItems.getItemById(17)), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockById(3), new ItemStack(xItems.getItemById(18)), 0.5f); //ilmenite -> titaniumIngot
 		
 	}
 }

@@ -11,7 +11,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xItems
 {
-	public static Item[] items = new Item[25];
+	private static Item[] items = new Item[25];
+	private static String[] itemNames = new String[25];
 	private static int counter = 0;
 	
 	public static void loadItems()
@@ -47,6 +48,7 @@ public class xItems
 	{
 		Item item = new genericArmor(itemName, ArmorMaterial.CLOTH, type);
 		items[counter] = item;
+		itemNames[counter] = itemName;
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -55,6 +57,7 @@ public class xItems
 	{
 		Item item = new genericComponent(itemName, inBottle, maxStack);
 		items[counter] = item;
+		itemNames[counter] = itemName;
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -63,8 +66,40 @@ public class xItems
 	{
 		Item item = new genericIngot(itemName);
 		items[counter] = item;
+		itemNames[counter] = itemName;
 		if(counter != 0) item.setContainerItem(items[0]);
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
+	}
+	
+	public static Item getItemByName(String itemName)
+	{
+		int counter = 0;
+		for (Item item : xItems.items)
+		{
+			try
+			{
+				if(itemNames[counter] == itemName)
+				{
+					return item;
+				}
+				counter++;
+		    }
+		    catch (NullPointerException e)
+			{
+		        return null;
+		    }
+		}
+		return null;
+	}
+	
+	public static Item getItemById(int itemId)
+	{
+		return xItems.items[itemId];
+	}
+	
+	public static Item[] getItems()
+	{
+		return xItems.items;
 	}
 }

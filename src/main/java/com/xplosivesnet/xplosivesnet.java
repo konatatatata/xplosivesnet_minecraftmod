@@ -18,6 +18,7 @@ public class xplosivesnet
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+    	//xPotions.loadPotions();
     	xTabs.loadTabs();
     	xItems.loadItems();
     	xBlocks.loadBlocks();
@@ -29,7 +30,7 @@ public class xplosivesnet
     	
     	System.out.println("ID : ITEM");
 		int i = 0;
-		for (Item item : xItems.items)
+		for (Item item : xItems.getItems())
 		{
 			try
 			{
@@ -44,7 +45,7 @@ public class xplosivesnet
 		
 		System.out.println("ID : BLOCK : ORE");
 		int j = 0;
-		for (Block block : xOres.blocks)
+		for (Block block : xOres.getBlocks())
 		{
 			try
 			{
@@ -59,7 +60,7 @@ public class xplosivesnet
 		
 		System.out.println("ID : BLOCK");
 		int k = 0;
-		for (Block block : xBlocks.blocks)
+		for (Block block : xBlocks.getBlocks())
 		{
 			try
 			{

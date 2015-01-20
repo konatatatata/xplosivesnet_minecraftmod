@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xTabs;
 import com.xplosivesnet.explosives.entities.genericExplosion;
-import com.xplosivesnet.models.tilegenericCustomModelExplosive;
+import com.xplosivesnet.models.tileGenericCustomModelExplosive;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -203,7 +203,7 @@ public class genericCustomModelExplosive extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		// TODO Auto-generated method stub
-		return new tilegenericCustomModelExplosive();
+		return new tileGenericCustomModelExplosive();
 	}
 	
 	@Override

@@ -14,10 +14,10 @@ public class xArmor
 		
 		if(helmet.getItem() == null) return false;
 		
-		if(helmet.getItem() != xItems.items[19]) return false;
-		if(chestplate.getItem() != xItems.items[20]) return false;
-		if(leggins.getItem() != xItems.items[21]) return false;
-		if(boots.getItem() != xItems.items[22]) return false;
+		if(helmet.getItem() != xItems.getItemById(19)) return false;
+		if(chestplate.getItem() != xItems.getItemById(20)) return false;
+		if(leggins.getItem() != xItems.getItemById(21)) return false;
+		if(boots.getItem() != xItems.getItemById(22)) return false;
         
 		return true;
 	}

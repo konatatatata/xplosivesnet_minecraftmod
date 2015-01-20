@@ -1,6 +1,7 @@
 package com.xplosivesnet;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
@@ -8,10 +9,12 @@ import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import com.xplosivesnet.models.tilegenericCustomModelExplosive;
+
+import com.xplosivesnet.models.tileGenericCustomModelExplosive;
 public class xBlocks
 {
-	public static Block[] blocks = new Block[25];
+	private static Block[] blocks = new Block[100];
+	private static String[] blockNames = new String[100];
 	private static int counter = 0;
 	
 	public static void loadBlocks()
@@ -38,6 +41,7 @@ public class xBlocks
 	{
 		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
 		blocks[counter] = block;
+		blockNames[counter] = name;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
 	}
@@ -46,9 +50,42 @@ public class xBlocks
 	{
 		Block block = new genericCustomModelExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
 		blocks[counter] = block;
+		blockNames[counter] = name;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
-		ClientRegistry.bindTileEntitySpecialRenderer(tilegenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
+		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
 	}
+	
+	public static Block getBlockByName(String blockName)
+	{
+		int counter = 0;
+		for (Block block: xBlocks.blocks)
+		{
+			try
+			{
+				if(blockNames[counter] == blockName)
+				{
+					return block;
+				}
+				counter++;
+		    }
+		    catch (NullPointerException e)
+			{
+		        return null;
+		    }
+		}
+		return null;
+	}
+	
+	public static Block getBlockById(int blockId)
+	{
+		return xBlocks.blocks[blockId];
+	}
+	
+	public static Block[] getBlocks()
+	{
+		return xBlocks.blocks;
+	}
+	
 }
 

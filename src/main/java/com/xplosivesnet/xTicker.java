@@ -21,9 +21,9 @@ public class xTicker
 		if(event.player.getCurrentEquippedItem() != null)
 	    {
 			ItemStack hand = event.player.getCurrentEquippedItem();
-	        if(hand.getItem() == xItems.items[17])
+	        if(hand.getItem() == xItems.getItemByName("uraniniteIngot")) //uraniniteIngot
 	        {
-	        	xHelper.addPotionEffect(event.player, Potion.weakness, 10);
+	        	xHelper.addPotionEffect(event.player, xPotions.radioactivity, 10);
         		xHelper.attack(event.player, xDamageSource.radiation, 0.5f);
 	         }
 	     }

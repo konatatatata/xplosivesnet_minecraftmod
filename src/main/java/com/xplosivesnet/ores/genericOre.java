@@ -25,9 +25,9 @@ public class genericOre extends BlockContainer
 	
 	private boolean customTexture = false;
 	
-	public genericOre(String name, float hardness, Material mat, boolean textureEachSide)
+	public genericOre(String name, float hardness, boolean textureEachSide)
 	{
-		super(mat);
+		super(Material.rock);
 		this.setCreativeTab(xTabs.ores);
 		this.setBlockName(name);
 		this.setHardness(hardness);
