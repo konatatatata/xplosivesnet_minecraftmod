@@ -3,6 +3,7 @@ package com.xplosivesnet.explosives;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -20,7 +21,7 @@ import com.xplosivesnet.explosives.entities.genericExplosion;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class genericExplosive extends Block
+public class genericExplosive extends BlockFalling
 {
 	public float sensitivity;
 	
@@ -37,7 +38,7 @@ public class genericExplosive extends Block
     
     public genericExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
     {
-        super(Material.tnt);
+        super(Material.sand);
         this.setCreativeTab(xTabs.explosives);
         this.setBlockName(name);
 		this.setHardness(hardness);
@@ -144,12 +145,13 @@ public class genericExplosive extends Block
     {
     	if(explodeOnHit)
     	{
-    		this.blow(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, p_149664_5_, (EntityLivingBase)null);
+    		this.blow(p_149664_1_, p_149664_2_, p_149664_3_, p_149664_4_, (EntityLivingBase)null);
     	}
     }
 
-    public void blow(World world, int x, int y, int z, int p_150114_5_, EntityLivingBase ent)
+    public void blow(World world, int x, int y, int z, EntityLivingBase ent)
     {
+    	world.setBlockToAir(x, y, z);
         if (!world.isRemote)
         {
                 explode(world, x, y, z, ent);
@@ -161,25 +163,23 @@ public class genericExplosive extends Block
      */
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-    	if(explodeOnHit)
-    	{
-    		this.blow(world, x, y, z, 0, (EntityLivingBase)null);
-    	}
     	return false;
+    }
+    
+    public void onEntityWalking(World world, int x, int y, int z, Entity entity)
+    {
+    	blow(world, x, y, z, (EntityLivingBase)entity);
     }
 
     /**
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
-    public void onEntityCollidedWithBlock(World p_149670_1_, int p_149670_2_, int p_149670_3_, int p_149670_4_, Entity entity)
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {
     	if(this.explodeOnHit)
     	{
-	        if (entity instanceof EntityPlayer && !p_149670_1_.isRemote)
-	        {
-	        	this.blow(p_149670_1_, p_149670_2_, p_149670_3_, p_149670_4_, 1, (EntityLivingBase)entity);
-	            p_149670_1_.setBlockToAir(p_149670_2_, p_149670_3_, p_149670_4_);
-	        }
+    		world.setBlockToAir(x, y, z);
+    		this.blow(world, x, y, z, (EntityLivingBase)null);
     	}
     }
 
@@ -196,7 +196,6 @@ public class genericExplosive extends Block
 	{
 		this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":explosives/" + this.getUnlocalizedName().substring(5));
 	}
-	
-	
+		
 	
 }

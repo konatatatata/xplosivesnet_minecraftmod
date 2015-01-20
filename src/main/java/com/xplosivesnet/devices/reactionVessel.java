@@ -4,14 +4,17 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.xHelper;
+import com.xplosivesnet.xItems;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xTabs;
+import com.xplosivesnet.models.tileGenericCustomModelExplosive;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,21 +34,55 @@ public class reactionVessel extends BlockContainer
 		this.setHardness(2f);
 	}
 
-	public TileEntity createNewTileEntity(World world)
+	@SideOnly(Side.CLIENT)
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
 	{
-		return new tile_reactionVessel();
+		//xHelper.sendMessage(player, "left clicked!");
+		
+		
 	}
 
-	public void onBlockClicked(World world, int x, int y, int z,
-			EntityPlayer player) {
-		xHelper.sendMessage(player, "left clicked!");
+	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)
+	{
+		if(player == null) return false;
+    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+    	xHelper.sendMessage(player, "consuming item");
+    	player.inventory.currentItem = 0;
+    	
+    	
+    	return false;
 	}
-
-	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world,
-			int x, int y, int z, int par7, float xFloat, float yFloat,
-			float zFloat) {
+	
+	@SideOnly(Side.CLIENT)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    {
+		if(player == null) return false;
+    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+    	
+    	if(player.getCurrentEquippedItem() == null) return false;
+    	Item item = player.getCurrentEquippedItem().getItem();
+    	if(item == null) return false;
+    	
+    	if(xItems.isComponentItem(item.getUnlocalizedName()))
+    	{
+    		if(tile.addItem(item, player))
+    		{
+    			xHelper.sendMessage(player, "item added");
+    			player.inventory.consumeInventoryItem(player.getCurrentEquippedItem().getItem());
+    			return true;
+    		}
+    		else
+    		{
+    			xHelper.sendMessage(player, "adding failed");
+    			return false;
+    		}
+    	} else {
+    		xHelper.sendMessage(player, "no valid item");
+    	}
+    	
 		return false;
-	}
+    }
+	
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta)
@@ -74,6 +111,6 @@ public class reactionVessel extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
 	{
-		return null;
+		return new reactionVesselTile() ;
 	}
 }

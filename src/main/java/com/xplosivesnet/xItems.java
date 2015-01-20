@@ -102,4 +102,25 @@ public class xItems
 	{
 		return xItems.items;
 	}
+	
+	public static boolean isComponentItem(String itemName)
+	{
+		int counter = 0;
+		for (Item item : xItems.items)
+		{
+			try
+			{
+				if(itemNames[counter].equals(itemName.substring(5)))
+				{
+					return true;
+				}
+				counter++;
+		    }
+		    catch (NullPointerException e)
+			{
+		    	
+		    }
+		}
+		return false;
+	}
 }

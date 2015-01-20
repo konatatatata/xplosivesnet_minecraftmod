@@ -9,9 +9,13 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
@@ -49,6 +53,7 @@ public class genericCustomModelExplosive extends BlockContainer
 		this.explodeOnPower = explodeOnPower;
 		this.needsIni = needsIni;
 		this.strength = strength;
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
     }
 
     /**
@@ -68,11 +73,19 @@ public class genericCustomModelExplosive extends BlockContainer
         super.onBlockAdded(world, x, y, z);
         if(explodeOnPower)
         {
-	        if (world.isBlockIndirectlyGettingPowered(x, y, z))
-	        {
-	            this.onBlockDestroyedByPlayer(world, x, y, z, 1);
-	            world.setBlockToAir(x, y, z);
-	        }
+        	try
+        	{
+        		if (world.isBlockIndirectlyGettingPowered(x, y, z))
+		        {
+		            this.onBlockDestroyedByPlayer(world, x, y, z, 1);
+		            world.setBlockToAir(x, y, z);
+		        }
+            }
+        	catch (Exception e)
+        	{
+                 
+            }
+	        
         }
     }
 
@@ -86,9 +99,17 @@ public class genericCustomModelExplosive extends BlockContainer
     	{
 	        if (world.isBlockIndirectlyGettingPowered(x, y, z))
 	        {
-	            this.onBlockDestroyedByPlayer(world, x, y, z, 1);
-	            world.setBlockToAir(x, y, z);
-	            explode(world, x, y, z);
+	            try
+	            {
+	            	this.onBlockDestroyedByPlayer(world, x, y, z, 1);
+	            	world.setBlockToAir(x, y, z);
+	            	explode(world, x, y, z);
+	            }
+	            catch(Exception e)
+	            {
+	            	
+	            }
+	            
 	        }
     	}
     }
@@ -222,6 +243,23 @@ public class genericCustomModelExplosive extends BlockContainer
             return false;
     }
 	
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemstack)
+    {
+    	if(entity == null) return;
+    	tileGenericCustomModelExplosive tile = (tileGenericCustomModelExplosive) world.getTileEntity(x, y, z);
+    	tile.direction = MathHelper.floor_double((double)(entity.rotationYaw * 4F / 360) + 0.5D) & 3;
+    	
+    }
+    
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
+    {
+        return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_) || p_149742_1_.getBlock(p_149742_2_, p_149742_3_ - 1, p_149742_4_) == Blocks.glowstone;
+    }
 	
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        return null;
+    }
 	
 }
