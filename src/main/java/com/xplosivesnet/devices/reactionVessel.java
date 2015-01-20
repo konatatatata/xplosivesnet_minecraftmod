@@ -9,9 +9,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import com.xplosivesnet.Helper;
+import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xTabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +26,7 @@ public class reactionVessel extends BlockContainer
 	public reactionVessel()
 	{
 		super(Material.rock);
-		this.setCreativeTab(xplosivesnet_tabs.machines);
+		this.setCreativeTab(xTabs.machines);
 		this.setBlockName("reactionVessel");
 		this.setHardness(2f);
 	}
@@ -38,7 +38,7 @@ public class reactionVessel extends BlockContainer
 
 	public void onBlockClicked(World world, int x, int y, int z,
 			EntityPlayer player) {
-		Helper.sendMessage(player, "left clicked!");
+		xHelper.sendMessage(player, "left clicked!");
 	}
 
 	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world,

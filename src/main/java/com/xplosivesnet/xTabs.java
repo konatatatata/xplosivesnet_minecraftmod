@@ -5,13 +5,13 @@ import net.minecraft.init.Items;
 
 import com.xplosivesnet.tabs.genericTab;
 
-public class xplosivesnet_tabs
+public class xTabs
 {
 	public static CreativeTabs components;
 	public static CreativeTabs explosives;
 	public static CreativeTabs machines;
 	public static CreativeTabs ores;
-		
+	
 	public static void loadTabs()
 	{
 		components = new genericTab("components", Items.apple);

@@ -1,7 +1,7 @@
 package com.xplosivesnet.ores;
 
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xTabs;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -28,7 +28,7 @@ public class genericOre extends BlockContainer
 	public genericOre(String name, float hardness, Material mat, boolean textureEachSide)
 	{
 		super(mat);
-		this.setCreativeTab(xplosivesnet_tabs.ores);
+		this.setCreativeTab(xTabs.ores);
 		this.setBlockName(name);
 		this.setHardness(hardness);
 		this.customTexture = textureEachSide;

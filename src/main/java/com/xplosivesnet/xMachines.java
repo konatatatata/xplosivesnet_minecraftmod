@@ -6,7 +6,7 @@ import com.xplosivesnet.devices.reactionVessel;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class xplosivesnet_machines
+public class xMachines
 {
 	public static Block reactionVessel;
 	
@@ -16,7 +16,7 @@ public class xplosivesnet_machines
 		GameRegistry.registerBlock(reactionVessel, "reactionVessel");
 		//GameRegistry.registerTileEntity(reactionVesselTile.class, "reactionVesselTile");
 	
-		xplosivesnet_generation ore_gen = new xplosivesnet_generation();
+		xGeneration ore_gen = new xGeneration();
 		GameRegistry.registerWorldGenerator(ore_gen, 0);
 	}
 }

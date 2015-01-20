@@ -2,14 +2,14 @@ package com.xplosivesnet;
 
 import net.minecraft.block.Block;
 
-import com.xplosivesnet.explosives.genericCustomExplosive;
+import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
-import com.xplosivesnet.models.genericCustomExplosiveRenderer;
+import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import com.xplosivesnet.models.tileGenericCustomExplosive;
-public class xplosivesnet_blocks
+import com.xplosivesnet.models.tilegenericCustomModelExplosive;
+public class xBlocks
 {
 	public static Block[] blocks = new Block[25];
 	private static int counter = 0;
@@ -44,11 +44,11 @@ public class xplosivesnet_blocks
 	
 	public static void addCustomExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)
 	{
-		Block block = new genericCustomExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
+		Block block = new genericCustomModelExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
 		blocks[counter] = block;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
-		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomExplosive.class, new genericCustomExplosiveRenderer(10f));
+		ClientRegistry.bindTileEntitySpecialRenderer(tilegenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
 	}
 }
 

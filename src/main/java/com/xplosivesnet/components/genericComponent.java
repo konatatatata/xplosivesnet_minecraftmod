@@ -1,8 +1,8 @@
 package com.xplosivesnet.components;
 
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_items;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xItems;
+import com.xplosivesnet.xTabs;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,7 +16,7 @@ public class genericComponent extends Item
 	public genericComponent(String name, boolean isInBottle, int maxStackSize)
 	{
 		setMaxStackSize(maxStackSize);
-		setCreativeTab(xplosivesnet_tabs.components);
+		setCreativeTab(xTabs.components);
 		setUnlocalizedName(name);
 		setTextureName(xplosivesnet.MODID + ":components/" + this.getUnlocalizedName().substring(5));
 	}
@@ -25,7 +25,7 @@ public class genericComponent extends Item
 	{
 		if(isInBottle)
 		{
-			return new ItemStack(xplosivesnet_items.items[0]);
+			return new ItemStack(xItems.items[0]);
 		}
 		return itemstack;
 	}

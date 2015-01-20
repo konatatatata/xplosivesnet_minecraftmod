@@ -2,10 +2,10 @@ package com.xplosivesnet.fluids;
 
 import java.util.Random;
 
-import com.xplosivesnet.Helper;
+import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_damageSource;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xDamageSource;
+import com.xplosivesnet.xTabs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,7 +35,7 @@ public class genericFluid  extends BlockFluidClassic
 	public genericFluid(Fluid fluid, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)
 	{
 		super(fluid, Material.water);
-		this.setCreativeTab(xplosivesnet_tabs.components);
+		this.setCreativeTab(xTabs.components);
 		this.setDensity(density);
 		this.damageSource = dmg;
 		this.doDamage = doDamage;
@@ -72,11 +72,11 @@ public class genericFluid  extends BlockFluidClassic
     {
     	if(this.doDamage)
     	{
-			if (Helper.isPlayer(player))
+			if (xHelper.isPlayer(player))
 			{
-				Helper.attack(player, this.damageSource, this.damage);
+				xHelper.attack(player, this.damageSource, this.damage);
 			} else {
-				if(this.destroyItems) Helper.attack(player, xplosivesnet_damageSource.poison, 1f);
+				if(this.destroyItems) xHelper.attack(player, xDamageSource.poison, 1f);
 			}
 		}
     }

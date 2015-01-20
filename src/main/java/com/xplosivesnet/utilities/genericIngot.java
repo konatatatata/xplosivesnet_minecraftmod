@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xTabs;
 
 public class genericIngot extends Item
 {
 	public genericIngot(String name)
 	{
 		setMaxStackSize(64);
-		setCreativeTab(xplosivesnet_tabs.components);
+		setCreativeTab(xTabs.components);
 		setUnlocalizedName(name);
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

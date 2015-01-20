@@ -1,9 +1,5 @@
 package com.xplosivesnet.models;
 
-import org.lwjgl.opengl.GL11;
-
-import com.xplosivesnet.xplosivesnet;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -14,14 +10,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import org.lwjgl.opengl.GL11;
 
-public class genericCustomExplosiveRenderer extends TileEntitySpecialRenderer
+import com.xplosivesnet.xplosivesnet;
+
+
+public class genericCustomModelExplosiveRenderer extends TileEntitySpecialRenderer
 {
     
     //The model of your block
     private final detonatingCord model;
    
-    public genericCustomExplosiveRenderer(float rotate)
+    public genericCustomModelExplosiveRenderer(float rotate)
     {
             this.model = new detonatingCord();
             this.model.setRotationAngles(rotate, 0, 0, 0, 0, 0);

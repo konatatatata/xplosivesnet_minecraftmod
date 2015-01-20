@@ -16,14 +16,14 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xTabs;
 import com.xplosivesnet.explosives.entities.genericExplosion;
-import com.xplosivesnet.models.tileGenericCustomExplosive;
+import com.xplosivesnet.models.tilegenericCustomModelExplosive;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class genericCustomExplosive extends BlockContainer
+public class genericCustomModelExplosive extends BlockContainer
 {
 	public float sensitivity;
 	
@@ -38,10 +38,10 @@ public class genericCustomExplosive extends BlockContainer
     private float strength;
     private boolean explodeOnPower;
     
-    public genericCustomExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
+    public genericCustomModelExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
     {
         super(Material.tnt);
-        this.setCreativeTab(xplosivesnet_tabs.explosives);
+        this.setCreativeTab(xTabs.explosives);
         this.setBlockName(name);
 		this.setHardness(hardness);
 		this.customTexture = customTexture;
@@ -203,7 +203,7 @@ public class genericCustomExplosive extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		// TODO Auto-generated method stub
-		return new tileGenericCustomExplosive();
+		return new tilegenericCustomModelExplosive();
 	}
 	
 	@Override

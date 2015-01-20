@@ -75,7 +75,7 @@ public class genericExplosion extends Entity
     }
 
     /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
+     * (abstract) Protected xHelper method to write subclass entity data to NBT.
      */
     protected void writeEntityToNBT(NBTTagCompound p_70014_1_)
     {
@@ -83,7 +83,7 @@ public class genericExplosion extends Entity
     }
 
     /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
+     * (abstract) Protected xHelper method to read subclass entity data from NBT.
      */
     protected void readEntityFromNBT(NBTTagCompound p_70037_1_)
     {

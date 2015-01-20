@@ -9,7 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 
-public class Helper
+public class xHelper
 {
 
 	public static void addPotionEffect(EntityPlayer player, Potion potion, int duration)

@@ -2,7 +2,7 @@ package com.xplosivesnet;
 
 import net.minecraft.util.DamageSource;
 
-public class xplosivesnet_damageSource extends DamageSource
+public class xDamageSource extends DamageSource
 {
 	public static DamageSource poison = new DamageSource("poison");
 	public static DamageSource poison_heavy = new DamageSource("poison_heavy");
@@ -10,7 +10,7 @@ public class xplosivesnet_damageSource extends DamageSource
 	public static DamageSource acid_heavy = new DamageSource("acid_heavy");
 	public static DamageSource radiation = new DamageSource("radiation");
 	
-	public xplosivesnet_damageSource(String name)
+	public xDamageSource(String name)
 	{
 		super(name);
 		this.damageType = name;

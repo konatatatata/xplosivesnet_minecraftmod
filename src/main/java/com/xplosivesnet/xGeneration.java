@@ -8,7 +8,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class xplosivesnet_generation implements IWorldGenerator
+public class xGeneration implements IWorldGenerator
 {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world,
@@ -26,9 +26,9 @@ public class xplosivesnet_generation implements IWorldGenerator
 	
 	public void generateSurface(World world, Random random, int x, int z)
 	{
-		for(int i = 0; i < xplosivesnet_ores.blocks.length; i++)
+		for(int i = 0; i < xOres.blocks.length; i++)
 		{
-			this.addOreSpawn(xplosivesnet_ores.blocks[i], world, random, x, z, 16, 16, 8, xplosivesnet_ores.spawnrates[i], 0, 256);	
+			this.addOreSpawn(xOres.blocks[i], world, random, x, z, 16, 16, 8, xOres.spawnrates[i], 0, 256);	
 		}
 	}
 	

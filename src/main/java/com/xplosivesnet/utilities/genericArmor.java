@@ -1,7 +1,7 @@
 package com.xplosivesnet.utilities;
 
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xTabs;
 
 import net.minecraft.item.ItemArmor;
 
@@ -13,7 +13,7 @@ public class genericArmor extends ItemArmor
 	{
 	    super(material, 0, type);
 	    this.textureName = unlocalizedName;
-	    setCreativeTab(xplosivesnet_tabs.components);
+	    setCreativeTab(xTabs.components);
 		setUnlocalizedName(unlocalizedName);
 		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
 	}

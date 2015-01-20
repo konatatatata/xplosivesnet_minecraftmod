@@ -3,7 +3,7 @@ package com.xplosivesnet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class xplosivesnet_armor
+public class xArmor
 {
 	public static boolean hasFullHazardArmor(EntityPlayer player)
 	{
@@ -14,10 +14,10 @@ public class xplosivesnet_armor
 		
 		if(helmet.getItem() == null) return false;
 		
-		if(helmet.getItem() != xplosivesnet_items.items[19]) return false;
-		if(chestplate.getItem() != xplosivesnet_items.items[20]) return false;
-		if(leggins.getItem() != xplosivesnet_items.items[21]) return false;
-		if(boots.getItem() != xplosivesnet_items.items[22]) return false;
+		if(helmet.getItem() != xItems.items[19]) return false;
+		if(chestplate.getItem() != xItems.items[20]) return false;
+		if(leggins.getItem() != xItems.items[21]) return false;
+		if(boots.getItem() != xItems.items[22]) return false;
         
 		return true;
 	}

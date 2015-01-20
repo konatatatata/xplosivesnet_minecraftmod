@@ -18,18 +18,18 @@ public class xplosivesnet
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-    	xplosivesnet_tabs.loadTabs();
-    	xplosivesnet_items.loadItems();
-    	xplosivesnet_blocks.loadBlocks();
-    	xplosivesnet_machines.loadMachines();
-    	xplosivesnet_fluids.loadFluids();
-    	xplosivesnet_ores.loadOres();
-    	xplosivesnet_recipes.loadRecipes();
+    	xTabs.loadTabs();
+    	xItems.loadItems();
+    	xBlocks.loadBlocks();
+    	xMachines.loadMachines();
+    	xFluids.loadFluids();
+    	xOres.loadOres();
+    	xRecipes.loadRecipes();
     	
     	
     	System.out.println("ID : ITEM");
 		int i = 0;
-		for (Item item : xplosivesnet_items.items)
+		for (Item item : xItems.items)
 		{
 			try
 			{
@@ -44,7 +44,7 @@ public class xplosivesnet
 		
 		System.out.println("ID : BLOCK : ORE");
 		int j = 0;
-		for (Block block : xplosivesnet_ores.blocks)
+		for (Block block : xOres.blocks)
 		{
 			try
 			{
@@ -59,7 +59,7 @@ public class xplosivesnet
 		
 		System.out.println("ID : BLOCK");
 		int k = 0;
-		for (Block block : xplosivesnet_blocks.blocks)
+		for (Block block : xBlocks.blocks)
 		{
 			try
 			{
@@ -74,7 +74,7 @@ public class xplosivesnet
 		
 		System.out.println("ID : BLOCK : FLUID");
 		int l = 0;
-		for (Fluid fluid : xplosivesnet_fluids.fluids)
+		for (Fluid fluid : xFluids.fluids)
 		{
 			try
 			{
@@ -88,7 +88,7 @@ public class xplosivesnet
 		}
 		
 		
-		FMLCommonHandler.instance().bus().register(new xplosivesnet_ticker());
+		FMLCommonHandler.instance().bus().register(new xTicker());
     }
     
     @EventHandler

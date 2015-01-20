@@ -9,7 +9,7 @@ import com.xplosivesnet.utilities.genericIngot;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class xplosivesnet_items
+public class xItems
 {
 	public static Item[] items = new Item[25];
 	private static int counter = 0;

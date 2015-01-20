@@ -7,7 +7,7 @@ import com.xplosivesnet.ores.genericOre;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class xplosivesnet_ores
+public class xOres
 {
 	public static Block[] blocks = new Block[10];
 	public static int[] spawnrates =  new int[blocks.length];

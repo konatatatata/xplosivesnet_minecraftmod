@@ -14,7 +14,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.xplosivesnet_tabs;
+import com.xplosivesnet.xTabs;
 import com.xplosivesnet.explosives.entities.genericExplosion;
 
 import cpw.mods.fml.relauncher.Side;
@@ -38,7 +38,7 @@ public class genericExplosive extends Block
     public genericExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
     {
         super(Material.tnt);
-        this.setCreativeTab(xplosivesnet_tabs.explosives);
+        this.setCreativeTab(xTabs.explosives);
         this.setBlockName(name);
 		this.setHardness(hardness);
 		this.customTexture = customTexture;
