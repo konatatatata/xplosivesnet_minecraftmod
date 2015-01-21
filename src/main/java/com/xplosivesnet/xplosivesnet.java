@@ -26,7 +26,7 @@ public class xplosivesnet
     	xFluids.loadFluids();
     	xOres.loadOres();
     	xRecipes.loadRecipes();
-    	
+    	xSynthesisHandler.loadSynthesis();
     	
     	System.out.println("ID : ITEM");
 		int i = 0;

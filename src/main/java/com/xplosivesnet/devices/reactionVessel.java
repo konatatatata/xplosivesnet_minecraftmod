@@ -38,48 +38,50 @@ public class reactionVessel extends BlockContainer
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
 	{
 		//xHelper.sendMessage(player, "left clicked!");
-		
-		
+		if (!world.isRemote)
+		{
+	    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+	    	tile.getInfo(player);
+		}
 	}
 
 	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)
 	{
-		if(player == null) return false;
-    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
-    	xHelper.sendMessage(player, "consuming item");
-    	player.inventory.currentItem = 0;
-    	
-    	
     	return false;
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-		if(player == null) return false;
-    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
-    	
-    	if(player.getCurrentEquippedItem() == null) return false;
-    	Item item = player.getCurrentEquippedItem().getItem();
-    	if(item == null) return false;
-    	
-    	if(xItems.isComponentItem(item.getUnlocalizedName()))
-    	{
-    		if(tile.addItem(item, player))
-    		{
-    			xHelper.sendMessage(player, "item added");
-    			player.inventory.consumeInventoryItem(player.getCurrentEquippedItem().getItem());
-    			return true;
-    		}
-    		else
-    		{
-    			xHelper.sendMessage(player, "adding failed");
-    			return false;
-    		}
-    	} else {
-    		xHelper.sendMessage(player, "no valid item");
-    	}
-    	
+		if (!world.isRemote)
+		{
+			if(player == null) return false;
+	    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+	    	
+	    	if(player.getCurrentEquippedItem() == null)
+	    	{
+	    		tile.getInfo(player);
+	    		return false;
+	    	}
+	    	Item item = player.getCurrentEquippedItem().getItem();
+	    	if(item == null) return false;
+	    	
+	    	if(xItems.isComponentItem(item.getUnlocalizedName()))
+	    	{
+	    		if(tile.addItem(item, player))
+	    		{
+	    			player.inventory.consumeInventoryItem(player.getCurrentEquippedItem().getItem());
+	    			return true;
+	    		}
+	    		else
+	    		{
+	    			xHelper.sendMessage(player, "adding failed");
+	    			return false;
+	    		}
+	    	} else {
+	    		xHelper.sendMessage(player, "no valid item");
+	    	}
+		}
 		return false;
     }
 	

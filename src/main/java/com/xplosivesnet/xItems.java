@@ -32,6 +32,7 @@ public class xItems
 		addGenericComponent("bariumNitrate", true, 16);
 		addGenericComponent("sodiumNitrate", true, 16);
 		addGenericComponent("potassiumCarbonate", true, 16);
+		addGenericComponent("distilledWater", true, 16);
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
 		addGenericIngot("uraniniteIngot");
