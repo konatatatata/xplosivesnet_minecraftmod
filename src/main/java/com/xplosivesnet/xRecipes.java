@@ -9,14 +9,22 @@ public class xRecipes
 	public static void loadRecipes()
 	{
 		//crafting
-		GameRegistry.addRecipe(new ItemStack(Items.apple), new Object[]
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("detonatingCord"), 6), new Object[]
 			{
-		    	"AAA",
-		    	"AAA",
-		    	"AAA",
-		    	'A', Items.cookie
+		    	"sss",
+		    	"xxx",
+		    	"sss",
+		    	's', Items.string,
+		    	'x', xBlocks.getBlockByName("PETN")
 			});
-		
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("quickFuse"), 16), new Object[]
+				{
+			    	"sss",
+			    	"xxx",
+			    	"sss",
+			    	's', Items.string,
+			    	'x', Items.gunpowder
+				});
 		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockById(0), new ItemStack(xItems.getItemById(15)), 0.5f);

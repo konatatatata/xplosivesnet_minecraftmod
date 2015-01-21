@@ -68,9 +68,32 @@ public class reactionVessel extends BlockContainer
 	    	
 	    	if(xItems.isComponentItem(item.getUnlocalizedName()))
 	    	{
+	    		if(item == xItems.getItemByName("bottle"))
+	    		{
+	    			if(tile.canFillBottle())
+	    			{
+	    				player.inventory.consumeInventoryItem(player.getCurrentEquippedItem().getItem());
+	    				Item ret = tile.fillBottle();
+	    				if(ret == null)
+	    				{
+	    					player.inventory.addItemStackToInventory(new ItemStack(xItems.getItemByName("bottle")));
+	    				}
+	    				else
+	    				{
+	    					player.inventory.addItemStackToInventory(new ItemStack(ret));
+	    				}
+	    				
+	    				player.inventory.inventoryChanged = true;
+	    				player.inventory.markDirty();
+	    				return true;
+	    			}
+	    			return false;
+	    		}
 	    		if(tile.addItem(item, player))
 	    		{
 	    			player.inventory.consumeInventoryItem(player.getCurrentEquippedItem().getItem());
+	    			player.inventory.addItemStackToInventory(new ItemStack(xItems.getItemByName("bottle")));
+	    			player.inventory.inventoryChanged = true;
 	    			return true;
 	    		}
 	    		else
@@ -81,6 +104,7 @@ public class reactionVessel extends BlockContainer
 	    	} else {
 	    		xHelper.sendMessage(player, "no valid item");
 	    	}
+	    	player.inventory.inventoryChanged = true;
 		}
 		return false;
     }

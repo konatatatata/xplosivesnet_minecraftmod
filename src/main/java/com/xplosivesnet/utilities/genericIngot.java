@@ -15,7 +15,7 @@ public class genericIngot extends Item
 		setMaxStackSize(64);
 		setCreativeTab(xTabs.components);
 		setUnlocalizedName(name);
-		setTextureName(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
+		setTextureName(xplosivesnet.MODID + ":ingots/" + this.getUnlocalizedName().substring(5));
 	}
 	
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entity)

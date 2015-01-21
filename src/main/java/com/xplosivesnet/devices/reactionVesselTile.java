@@ -1,25 +1,22 @@
 package com.xplosivesnet.devices;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
 import com.xplosivesnet.xSynthesisHandler;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class reactionVesselTile extends TileEntity
 {
 	private Item[] itemsHolding = new Item[xSynthesisHandler.arrayBounds];
 	private int counter = 0;
 	private boolean synthesisRunning = false;
-	private int synthesisRuntime = 15 * 20; //15 sec
+	protected int synthesisRuntime = 15 * 20; //15 sec
 	private int synthesisLeft = 0;
+	private boolean validSynthesis = false;
 	
 	reactionVesselTile()
 	{
@@ -36,13 +33,10 @@ public class reactionVesselTile extends TileEntity
 		{
 			xHelper.sendMessage(player, "Holding " + countItems() + "/" + itemsHolding.length);
 		}
-		if(xSynthesisHandler.validSynthesis(getItemsAsString()))
+		for(Item item : this.itemsHolding)
 		{
-			xHelper.sendMessage(player, "Synthesis valid");
-		}
-		else
-		{
-			xHelper.sendMessage(player, "Synthesis invalid");
+			if(item == null) break;
+			xHelper.sendMessage(player, ">" + item.getUnlocalizedName().substring(5));
 		}
 	}
 		
@@ -58,18 +52,25 @@ public class reactionVesselTile extends TileEntity
 			xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
 			return false;
 		}
+		
 		itemsHolding[counter] = item;
 		counter++;
 		
-		xHelper.sendMessage(player, "Holding " + countItems() + "/" + itemsHolding.length);
-
-		if(item.getUnlocalizedName().substring(5).equalsIgnoreCase("distilledWater"))
+		getInfo(player);
+		
+		if(item.getUnlocalizedName().substring(5).equals("distilledWater"))
 		{
 			startSynthesis();
 			xHelper.sendMessage(player, "----Synthesis started----");
 		}
 		
 		return true;
+	}
+	
+	private void addItem(Item item)
+	{
+		itemsHolding[counter] = item;
+		counter++;
 	}
 	
 	private void startSynthesis()
@@ -86,91 +87,58 @@ public class reactionVesselTile extends TileEntity
 			if(this.synthesisLeft <= 0)
 			{
 				this.synthesisRunning = false;
-				this.itemsHolding[0] = xItems.getItemByName("potassiumNitrate");
-				this.itemsHolding[1] = xItems.getItemByName("ammonia");
-				this.counter = 2;
+				this.clearItems();
+				if(this.validSynthesis == false)
+				{
+					this.addItem(xItems.getItemByName("toxicWaste"));
+				}
 			}
 			else
 			{
 				this.synthesisLeft--;
 			}
 		}
-		else
+	}
+	
+	public Item fillBottle()
+	{
+		if(countItems() >= 1)
 		{
-		
-			if(xSynthesisHandler.validSynthesis(getItemsAsString()))
-			{
-				this.synthesisRunning = true;
-				this.synthesisLeft = this.synthesisRuntime;
-			}
+			return this.removeLastItem();
 		}
+		return xItems.getItemByName("bottle");
+	}
+	
+	public boolean canFillBottle()
+	{
+		if(countItems() >= 1)
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	private void clearItems()
 	{
+		this.itemsHolding = new Item[xSynthesisHandler.arrayBounds];
 		int counter = 0;
-		for(Item item : itemsHolding)
-		{
-			if(item == null) break;
-			itemsHolding[counter] = null;
-			counter++;
-		}
+	}
+	
+	private Item removeLastItem()
+	{
+		Item toReturn = this.itemsHolding[this.counter - 1];
+		this.itemsHolding[this.countItems()-1] = null;
+		this.counter--;
+		return toReturn;
 	}
 	
 	private int countItems()
 	{
-		int counter = 0;
-		for(Item item : itemsHolding)
+		int c = 0;
+		for(Item item : this.itemsHolding)
 		{
-			if(item == null) break;
-			try
-			{
-				counter++;
-		    }
-		    catch (NullPointerException e)
-			{
-		       
-		    }
+			if(item != null) c++;
 		}
-		return counter;
-	}
-	
-	private String[] getItemsAsString_old()
-	{
-		String[] output = new String[xSynthesisHandler.arrayBounds];
-		int counter = 0;
-		for(Item item : itemsHolding)
-		{
-			if(item == null)
-			{
-				output[counter] = "";
-			}
-			else
-			{
-				output[counter] = item.getUnlocalizedName().substring(5);
-			}
-			counter++;
-		}
-		return output;
-	}
-	
-	private String getItemsAsString()
-	{
-		String holding = "";
-		int counter = 0;
-		for(Item item : itemsHolding)
-		{
-			if(item == null)
-			{
-				break;
-			}
-			else
-			{
-				holding = holding + "," + item.getUnlocalizedName().substring(5);
-			}
-		}
-		if(holding.length() >= 1) holding = holding.substring(1);
-		if(holding.equals("")) return "";
-		return holding;
+		return c;
 	}
 }

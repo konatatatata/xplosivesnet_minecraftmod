@@ -33,6 +33,7 @@ public class xItems
 		addGenericComponent("sodiumNitrate", true, 16);
 		addGenericComponent("potassiumCarbonate", true, 16);
 		addGenericComponent("distilledWater", true, 16);
+		addGenericComponent("toxicWaste", true, 16);
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
 		addGenericIngot("uraniniteIngot");
@@ -80,7 +81,7 @@ public class xItems
 		{
 			try
 			{
-				if(itemNames[counter] == itemName)
+				if(itemNames[counter].equals(itemName))
 				{
 					return item;
 				}
