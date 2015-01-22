@@ -11,6 +11,8 @@ public class xTabs
 	public static CreativeTabs explosives;
 	public static CreativeTabs machines;
 	public static CreativeTabs ores;
+	public static CreativeTabs building;
+	
 	
 	public static void loadTabs()
 	{
@@ -18,6 +20,8 @@ public class xTabs
 		explosives = new genericTab("explosives", Items.apple);
 		machines = new genericTab("machines", Items.apple);
 		ores = new genericTab("ores", Items.apple);
+		building = new genericTab("buildung", Items.apple);
+		
 	}
 }
 

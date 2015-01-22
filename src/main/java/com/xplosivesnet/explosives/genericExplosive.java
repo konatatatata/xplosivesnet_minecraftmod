@@ -41,7 +41,8 @@ public class genericExplosive extends BlockFalling
         super(Material.sand);
         this.setCreativeTab(xTabs.explosives);
         this.setBlockName(name);
-		this.setHardness(hardness);
+        this.setHardness(5f);
+		this.setResistance(hardness);
 		this.customTexture = customTexture;
 		this.explodeOnHit = explodeOnHit;
 		this.explodeOnPower = explodeOnPower;
@@ -168,7 +169,7 @@ public class genericExplosive extends BlockFalling
     
     public void onEntityWalking(World world, int x, int y, int z, Entity entity)
     {
-    	blow(world, x, y, z, (EntityLivingBase)entity);
+    	if(this.explodeOnHit) blow(world, x, y, z, (EntityLivingBase)entity);
     }
 
     /**

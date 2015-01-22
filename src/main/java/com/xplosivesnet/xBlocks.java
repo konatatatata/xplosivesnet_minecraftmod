@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
+import com.xplosivesnet.building.genericBuildingBlock;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
 import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
@@ -23,25 +24,42 @@ public class xBlocks
 	
 	public static void loadBlocks()
 	{
-		addExplosive("apex", true, true, false, 1.5f, 0.1f);
-		addExplosive("hmtd", true, false, false, 1.5f, 0.1f);
+		addExplosive("APEX", true, true, false, 1.5f, 0.1f);
+		addExplosive("HMTD", true, false, false, 1.5f, 0.1f);
 		addExplosive("leadAzide", true, false, false, 1.5f, 0.1f);
-		addExplosive("apan", false, true, true, 2.5f, 1f);
-		addCustomExplosive("detonatingCord", true, false, false, 2f, 0.1f);
+		addExplosive("APAN", false, true, true, 2.5f, 1f);
+		addCustomExplosive("detonatingCord", true, false, false, 2.5f, 2f);
 		addCustomExplosive("quickFuse", true, false, false, 0.5f, 0.1f);
 		addExplosive("ANFO", false, false, true, 3.5f, 5f);
 		addExplosive("ANNM", false, false, true, 5f, 2f);
 		addExplosive("AMMONAL", false, false, true, 4f, 5f);
-		addExplosive("Dynamite", false, false, true, 5f, 2f);
+		addExplosive("dynamite", false, false, true, 5f, 2f);
 		addExplosive("RDX", false, false, true, 7f, 2f);
 		addExplosive("CL20", false, false, true, 10f, 2f);
 		addExplosive("ONC", false, false, true, 12f, 2f);
-		addExplosive("AstroliteG", false, false, true, 8.5f, 4f);
+		addExplosive("astroliteG", false, false, true, 8.5f, 4f);
 		addExplosive("PETN", false, false, true, 7.5f, 2f);
+		addExplosive("ETN", false, false, true, 7.5f, 2f); //?
+		addExplosive("testExplosive", false, false, true, 50f, 10f); //?
+		
+		addBuildingBlock("concrete", 10f, 5f, false);
+		addBuildingBlock("hardenedConcrete", 20f, 7f, false);
+		addBuildingBlock("reinforcedConcrete", 30f, 14f, false);
+		addBuildingBlock("hardenedGlass", 30f, 14f, true);
+		addBuildingBlock("reinforcedGlass", 30f, 14f, true);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
 	}
 	
+	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy)
+	{
+		Block block = new genericBuildingBlock(name, hardness, resistance, glassy);
+		blocks[counter] = block;
+		blockNames[counter] = name;
+		counter++;
+		GameRegistry.registerBlock(block, block.getUnlocalizedName());	
+	}
+
 	public static void addExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)
 	{
 		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
