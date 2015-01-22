@@ -1,5 +1,6 @@
 package com.xplosivesnet;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -26,11 +27,40 @@ public class xRecipes
 			    	'x', Items.gunpowder
 				});
 		
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("concrete"), 16), new Object[]
+				{
+			    	"xcx",
+			    	"cxc",
+			    	"xcx",
+			    	'c', Items.clay_ball,
+			    	'x', Blocks.stone
+				});
+		
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("hardenedConcrete"), 8), new Object[]
+				{
+					"xxx",
+					"xix",
+					"xxx",
+			    	'i', Items.iron_ingot,
+			    	'x', xBlocks.getBlockByName("concrete")
+				});
+		
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("reinforcedConcrete"), 8), new Object[]
+				{
+					"xxx",
+					"xix",
+					"xxx",
+			    	'i', xItems.getItemByName("titaniumIngot"),
+			    	'x', xBlocks.getBlockByName("hardenedConcrete")
+				});
+		
+		
 		//smelting
-		GameRegistry.addSmelting(xOres.getBlockById(0), new ItemStack(xItems.getItemById(15)), 0.5f);
-		GameRegistry.addSmelting(xOres.getBlockById(1), new ItemStack(xItems.getItemById(16)), 0.5f);
-		GameRegistry.addSmelting(xOres.getBlockById(2), new ItemStack(xItems.getItemById(17)), 0.5f);
-		GameRegistry.addSmelting(xOres.getBlockById(3), new ItemStack(xItems.getItemById(18)), 0.5f); //ilmenite -> titaniumIngot
+		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockByName("nitratine"), new ItemStack(xItems.getItemByName("sodiumNitrate")), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockByName("uraninite"), new ItemStack(xItems.getItemByName("uraniumIngot")), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockByName("ilmenite"), new ItemStack(xItems.getItemByName("titaniumIngot")), 0.5f);
+		
 		
 	}
 }

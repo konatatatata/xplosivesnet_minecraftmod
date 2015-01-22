@@ -1,5 +1,6 @@
 package com.xplosivesnet;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 
@@ -36,7 +37,7 @@ public class xItems
 		addGenericComponent("toxicWaste", true, 16);
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
-		addGenericIngot("uraniniteIngot");
+		addGenericIngot("uraniumIngot");
 		addGenericIngot("titaniumIngot");
 		
 		addGenericArmor("hazmaHelmet", 0);
@@ -92,7 +93,7 @@ public class xItems
 		        return null;
 		    }
 		}
-		return null;
+		return Items.apple;
 	}
 	
 	public static Item getItemById(int itemId)

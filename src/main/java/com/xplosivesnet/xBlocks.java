@@ -1,11 +1,14 @@
 package com.xplosivesnet;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.building.genericBuildingBlock;
+import com.xplosivesnet.building.genericDoor;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
 import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
@@ -40,13 +43,16 @@ public class xBlocks
 		addExplosive("astroliteG", false, false, true, 8.5f, 4f);
 		addExplosive("PETN", false, false, true, 7.5f, 2f);
 		addExplosive("ETN", false, false, true, 7.5f, 2f); //?
-		addExplosive("testExplosive", false, false, true, 50f, 10f); //?
+		addExplosive("testExplosive", false, false, true, 20f, 10f); //?
 		
 		addBuildingBlock("concrete", 10f, 5f, false);
 		addBuildingBlock("hardenedConcrete", 20f, 7f, false);
 		addBuildingBlock("reinforcedConcrete", 30f, 14f, false);
-		addBuildingBlock("hardenedGlass", 30f, 14f, true);
-		addBuildingBlock("reinforcedGlass", 30f, 14f, true);
+		addBuildingBlock("hardenedGlass", 20f, 7f, false);
+		addBuildingBlock("reinforcedGlass", 30f, 14f, false);
+		addBuildingBlockDoor("hardenedDoor", 20f, 7f);
+		addBuildingBlockDoor("reinforcedDoor", 30f, 14f);
+		
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
 	}
@@ -54,6 +60,16 @@ public class xBlocks
 	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy)
 	{
 		Block block = new genericBuildingBlock(name, hardness, resistance, glassy);
+		blocks[counter] = block;
+		blockNames[counter] = name;
+		counter++;
+		GameRegistry.registerBlock(block, block.getUnlocalizedName());	
+	}
+	
+	private static void addBuildingBlockDoor(String name, float hardness, float resistance)
+	{
+		
+		Block block = new genericDoor(name, hardness, resistance);
 		blocks[counter] = block;
 		blockNames[counter] = name;
 		counter++;

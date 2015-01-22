@@ -14,11 +14,10 @@ public class genericBuildingBlock extends Block
 {
 	@SideOnly(Side.CLIENT)
 	private IIcon texture_generic;
-	
 	private boolean glassy = false;
 	public genericBuildingBlock(String name, float hardness, float resistance, boolean glassy)
 	{
-		super(getMaterial(glassy));
+		super(Material.rock);
 
 		this.setCreativeTab(xTabs.building);
 		this.setBlockName(name);
@@ -29,19 +28,23 @@ public class genericBuildingBlock extends Block
 
 	public boolean renderAsNormalBlock()
     {
-		//return true;
-        return this.glassy;
+        return true;
     }
 	
-	private static Material getMaterial(boolean glassy)
-	{
-		if(glassy) return Material.glass;
-		return Material.rock;
-	}
+	@SideOnly(Side.CLIENT)
+    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+    {
+        return this.texture_generic;
+    }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon)
 	{
 		this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":building/" + this.getUnlocalizedName().substring(5));
+	}
+	
+	public boolean isOpaqueCube()
+	{
+		return this.glassy;
 	}
 }
