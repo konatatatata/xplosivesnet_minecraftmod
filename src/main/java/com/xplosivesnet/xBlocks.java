@@ -50,8 +50,8 @@ public class xBlocks
 		addBuildingBlock("reinforcedConcrete", 50f, 14f, false);
 		addBuildingBlock("hardenedGlass", 30f, 7f, false);
 		addBuildingBlock("reinforcedGlass", 50f, 14f, false);
-		addBuildingBlockDoor("hardenedDoor", 30f, 7f);
-		addBuildingBlockDoor("reinforcedDoor", 50f, 14f);
+		//addBuildingBlockDoor("hardenedDoor", 30f, 7f);
+		//addBuildingBlockDoor("reinforcedDoor", 50f, 14f);
 		
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
