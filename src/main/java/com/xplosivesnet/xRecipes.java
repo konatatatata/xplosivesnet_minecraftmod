@@ -54,6 +54,29 @@ public class xRecipes
 			    	'x', xBlocks.getBlockByName("hardenedConcrete")
 				});
 		
+		GameRegistry.addRecipe(new ItemStack(xItems.getItemByName("bottle"), 1), new Object[]
+				{
+					"x",
+			    	'x', Items.glass_bottle
+				});
+		
+		GameRegistry.addRecipe(new ItemStack(Items.glass_bottle, 1), new Object[]
+				{
+					"x",
+			    	'x', xItems.getItemByName("bottle")
+				});
+		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("sulfur"), 1),
+		        xItems.getItemByName("bottle"),
+		        xItems.getItemByName("sulfurIngot")
+		        );
+		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("carbon"), 1),
+		        xItems.getItemByName("bottle"),
+		        Items.coal
+		        );
 		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);

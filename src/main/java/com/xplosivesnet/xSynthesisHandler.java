@@ -2,6 +2,7 @@ package com.xplosivesnet;
 
 import java.util.Arrays;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -32,5 +33,17 @@ public class xSynthesisHandler
 			if(syn == input) return true;
 		}
 		return false;
+	}
+	
+	public static ItemStack getSynthesisOutput(ItemStack input)
+	{
+		if(input == null) return new ItemStack(Items.apple);
+		int c = 0;
+		for(ItemStack syn : vesselSynthesisInput)
+		{
+			if(syn == input) return vesselSynthesisOutput[c];
+			c++;
+		}
+		return new ItemStack(Items.apple);
 	}
 }

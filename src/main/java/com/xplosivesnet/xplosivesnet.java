@@ -19,6 +19,7 @@ public class xplosivesnet
     public void init(FMLInitializationEvent event)
     {
     	//xPotions.loadPotions();
+    	
     	xTabs.loadTabs();
     	xItems.loadItems();
     	xBlocks.loadBlocks();

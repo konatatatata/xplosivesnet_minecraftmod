@@ -12,8 +12,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xItems
 {
-	private static Item[] items = new Item[25];
-	private static String[] itemNames = new String[25];
+	private static Item[] items = new Item[100];
+	private static String[] itemNames = new String[100];
 	private static int counter = 0;
 	
 	public static void loadItems()
@@ -35,6 +35,8 @@ public class xItems
 		addGenericComponent("potassiumCarbonate", true, 16);
 		addGenericComponent("distilledWater", true, 16);
 		addGenericComponent("toxicWaste", true, 16);
+		addGenericComponent("sulfur", true, 16);
+		addGenericComponent("carbon", true, 16);
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
 		addGenericIngot("uraniumIngot");

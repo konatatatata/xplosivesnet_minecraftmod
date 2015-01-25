@@ -2,6 +2,7 @@ package com.xplosivesnet;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 
 import com.xplosivesnet.tabs.genericTab;
 
@@ -23,5 +24,6 @@ public class xTabs
 		building = new genericTab("buildung", Items.apple);
 		
 	}
+
 }
 
