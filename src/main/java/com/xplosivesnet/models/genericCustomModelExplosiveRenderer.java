@@ -46,7 +46,7 @@ public class genericCustomModelExplosiveRenderer extends TileEntitySpecialRender
     //This is the texture of your block. It's pathed to be the same place as your other blocks here.
             //Outdated bindTextureByName("/mods/roads/textures/blocks/TrafficLightPoleRed.png");
    //Use in 1.6.2  this
-            ResourceLocation textures = (new ResourceLocation(xplosivesnet.MODID + ":explosives/detonatingCord"));
+            ResourceLocation textures = (new ResourceLocation(xplosivesnet.MODID + ":explosives/detonatingCord.png"));
     //the ':' is very important
     //binding the textures
             Minecraft.getMinecraft().renderEngine.bindTexture(textures);

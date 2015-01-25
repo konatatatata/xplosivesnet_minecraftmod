@@ -28,8 +28,8 @@ public class xBlocks
 	public static void loadBlocks()
 	{
 		addExplosive("APEX", true, true, false, 1.5f, 0.1f);
-		addExplosive("HMTD", true, false, false, 1.5f, 0.1f);
-		addExplosive("leadAzide", true, false, false, 1.5f, 0.1f);
+		addExplosive("HMTD", true, true, false, 1.5f, 0.1f);
+		addExplosive("leadAzide", true, true, false, 1.5f, 0.1f);
 		addExplosive("APAN", false, true, true, 2.5f, 1f);
 		addCustomExplosive("detonatingCord", true, false, false, 2.5f, 2f);
 		addCustomExplosive("quickFuse", true, false, false, 0.5f, 0.1f);
@@ -43,7 +43,6 @@ public class xBlocks
 		addExplosive("astroliteG", false, false, true, 8.5f, 4f);
 		addExplosive("PETN", false, false, true, 7.5f, 2f);
 		addExplosive("ETN", false, false, true, 7.5f, 2f); //?
-		addExplosive("testExplosive", false, false, true, 20f, 10f); //?
 		
 		addBuildingBlock("concrete", 10f, 5f, false);
 		addBuildingBlock("hardenedConcrete", 30f, 7f, false);
