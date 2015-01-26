@@ -14,7 +14,7 @@ public class reactionVesselTile extends TileEntity
 	private Item[] itemsHolding = new Item[xSynthesisHandler.arrayBounds];
 	private int counter = 0;
 	private boolean synthesisRunning = false;
-	protected int synthesisRuntime = 15 * 20; //15 sec
+	protected int synthesisRuntime = 2 * 20; //15 sec
 	private int synthesisLeft = 0;
 	private boolean validSynthesis = false;
 	
@@ -77,6 +77,14 @@ public class reactionVesselTile extends TileEntity
 	{
 		this.synthesisRunning = true;
 		this.synthesisLeft = this.synthesisRuntime;
+		
+		int c = 0;
+		for(Item in : this.itemsHolding)
+		{
+			
+			c++;
+		}
+		
 	}
 
 	@Override
@@ -91,6 +99,8 @@ public class reactionVesselTile extends TileEntity
 				if(this.validSynthesis == false)
 				{
 					this.addItem(xItems.getItemByName("toxicWaste"));
+				} else {
+					this.addItem(xItems.getItemByName("ammonia"));
 				}
 			}
 			else
