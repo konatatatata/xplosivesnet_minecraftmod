@@ -79,14 +79,15 @@ public class reactionVesselTile extends TileEntity
 		this.synthesisLeft = this.synthesisRuntime;
 		
 		int c = 0;
-		for(Item in : this.itemsHolding)
-		{
-			
-			c++;
-		}
 		
+		if(xSynthesisHandler.validSynthesis(itemsHolding[0], itemsHolding[1], itemsHolding[2], itemsHolding[3], itemsHolding[4]))
+		{
+			this.validSynthesis = true;
+		} else {
+			this.validSynthesis = false;
+		}
 	}
-
+	
 	@Override
 	public void updateEntity()
 	{
@@ -100,6 +101,8 @@ public class reactionVesselTile extends TileEntity
 				{
 					this.addItem(xItems.getItemByName("toxicWaste"));
 				} else {
+					this.addItem(xItems.getItemByName("ammonia"));
+					this.addItem(xItems.getItemByName("ammonia"));
 					this.addItem(xItems.getItemByName("ammonia"));
 				}
 			}
@@ -131,7 +134,7 @@ public class reactionVesselTile extends TileEntity
 	private void clearItems()
 	{
 		this.itemsHolding = new Item[xSynthesisHandler.arrayBounds];
-		int counter = 0;
+		this.counter = 0;
 	}
 	
 	private Item removeLastItem()
