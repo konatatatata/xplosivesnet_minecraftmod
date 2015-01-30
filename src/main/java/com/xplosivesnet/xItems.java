@@ -37,6 +37,11 @@ public class xItems
 		addGenericComponent("toxicWaste", true, 16);
 		addGenericComponent("sulfur", true, 16);
 		addGenericComponent("carbon", true, 16);
+		addGenericComponent("hexamine", true, 16);
+
+		
+		addGenericComponent("HMTD", true, 16);
+		
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
 		addGenericIngot("uraniumIngot");

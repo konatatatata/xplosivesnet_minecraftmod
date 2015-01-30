@@ -27,7 +27,7 @@ public class xRecipes
 			    	'x', Items.gunpowder
 				});
 		
-		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("concrete"), 16), new Object[]
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("concrete"), 8), new Object[]
 				{
 			    	"xcx",
 			    	"cxc",
@@ -66,6 +66,16 @@ public class xRecipes
 			    	'x', xItems.getItemByName("bottle")
 				});
 		
+		GameRegistry.addRecipe(new ItemStack(xMachines.reactionVessel, 1), new Object[]
+				{
+					"xix",
+					"oxo",
+					"xxx",
+			    	'x', xBlocks.getBlockByName("concrete"),
+			    	'o', xItems.getItemByName("titaniumIngot"),
+			    	'i', Items.blaze_rod
+				});
+		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("sulfur"), 1),
 		        xItems.getItemByName("bottle"),
@@ -83,7 +93,6 @@ public class xRecipes
 		GameRegistry.addSmelting(xOres.getBlockByName("nitratine"), new ItemStack(xItems.getItemByName("sodiumNitrate")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("uraninite"), new ItemStack(xItems.getItemByName("uraniumIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("ilmenite"), new ItemStack(xItems.getItemByName("titaniumIngot")), 0.5f);
-		
 		
 	}
 }

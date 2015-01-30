@@ -14,7 +14,7 @@ public class xMachines
 	{
 		reactionVessel = new reactionVessel();
 		GameRegistry.registerBlock(reactionVessel, "reactionVessel");
-		//GameRegistry.registerTileEntity(reactionVesselTile.class, "reactionVesselTile");
+		GameRegistry.registerTileEntity(com.xplosivesnet.devices.reactionVesselTile.class, "reactionVesselTile");
 	
 		xGeneration ore_gen = new xGeneration();
 		GameRegistry.registerWorldGenerator(ore_gen, 0);

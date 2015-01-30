@@ -1,6 +1,7 @@
 package com.xplosivesnet.devices;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +22,15 @@ public class reactionVesselTile extends TileEntity
 	reactionVesselTile()
 	{
 		
+	}
+	
+	private void reset()
+	{
+		itemsHolding = new Item[xSynthesisHandler.arrayBounds];
+		counter = 0;
+		synthesisRunning = false;
+		synthesisLeft = 0;
+		validSynthesis = false;
 	}
 	
 	public void getInfo(EntityPlayer player)
@@ -101,9 +111,19 @@ public class reactionVesselTile extends TileEntity
 				{
 					this.addItem(xItems.getItemByName("toxicWaste"));
 				} else {
-					this.addItem(xItems.getItemByName("ammonia"));
-					this.addItem(xItems.getItemByName("ammonia"));
-					this.addItem(xItems.getItemByName("ammonia"));
+					Item[] output = xSynthesisHandler.getSynthesisOutput(itemsHolding[0], itemsHolding[1], itemsHolding[2], itemsHolding[3], itemsHolding[4]);
+					if(output != null)
+					{
+						for(Item i : output)
+						{
+							this.addItem(i);
+						}
+					}
+					else
+					{
+						this.addItem(xItems.getItemByName("toxicWaste"));
+					}
+					this.reset();
 				}
 			}
 			else
