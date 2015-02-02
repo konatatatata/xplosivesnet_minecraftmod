@@ -23,7 +23,10 @@ public class xBlocks
 {
 	private static Block[] blocks = new Block[100];
 	private static String[] blockNames = new String[100];
+	public static String[] blockNamesExplosives = new String[100];
 	private static int counter = 0;
+	private static int explosivesCounter = 0;
+	
 	
 	public static void loadBlocks()
 	{
@@ -80,6 +83,8 @@ public class xBlocks
 		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength);
 		blocks[counter] = block;
 		blockNames[counter] = name;
+		blockNamesExplosives[explosivesCounter] = name;
+		explosivesCounter++;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
 	}
@@ -90,7 +95,7 @@ public class xBlocks
 		blocks[counter] = block;
 		blockNames[counter] = name;
 		counter++;
-		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+		GameRegistry.registerBlock(block, block.getUnlocalizedName());		
 	}
 	
 	public static Block getBlockByName(String blockName)

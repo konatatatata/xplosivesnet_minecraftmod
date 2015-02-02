@@ -20,7 +20,7 @@ public class xOres
 		addOre("nitratine", 20); //sodiumNitrate
 		addOre("uraninite", 5);
 		addOre("ilmenite", 5); //titan ore
-		
+		addOre("aluminosilicate", 20); //aluminium ore		
 	}
 	
 	public static void addOre(String name, int spawnRate)

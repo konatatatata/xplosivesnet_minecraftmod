@@ -21,8 +21,8 @@ public class xplosivesnet
     	//xPotions.loadPotions();
     	
     	xTabs.loadTabs();
-    	xItems.loadItems();
     	xBlocks.loadBlocks();
+    	xItems.loadItems();
     	xMachines.loadMachines();
     	xFluids.loadFluids();
     	xOres.loadOres();

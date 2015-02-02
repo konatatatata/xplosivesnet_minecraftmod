@@ -19,6 +19,7 @@ public class xItems
 	public static void loadItems()
 	{
 		addGenericComponent("bottle", false, 16);
+		addGenericComponent("shell", false, 64);
 		addGenericComponent("acetone", true, 16);
 		addGenericComponent("ammonia", true, 16);
 		addGenericComponent("glycerine", true, 16);
@@ -38,20 +39,26 @@ public class xItems
 		addGenericComponent("sulfur", true, 16);
 		addGenericComponent("carbon", true, 16);
 		addGenericComponent("hexamine", true, 16);
+		addGenericComponent("aluminium", true, 16);
+		
 
-		
-		addGenericComponent("HMTD", true, 16);
-		
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
 		addGenericIngot("uraniumIngot");
 		addGenericIngot("titaniumIngot");
+		addGenericIngot("aluminiumIngot");
 		
 		addGenericArmor("hazmaHelmet", 0);
 		addGenericArmor("hazmaChestplate", 1);
 		addGenericArmor("hazmaLeggins", 2);
 		addGenericArmor("hazmaBoots", 3);
     	
+		for(String name : xBlocks.blockNamesExplosives)
+		{
+			if(name == null) break;
+			addGenericComponent(name, true, 16);
+		}
+		
 	}
 	
 	private static void addGenericArmor(String itemName, int type)
