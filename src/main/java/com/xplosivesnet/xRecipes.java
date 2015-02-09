@@ -111,11 +111,14 @@ public class xRecipes
 		        new ItemStack(Items.coal, 1, 1)
 		        );
 		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("potassiumCarbonate"), 1),
-		        xItems.getItemByName("distilledWater"),
-		        xItems.getItemByName("carbon")
+				new ItemStack(xItems.getItemByName("sodiumNitrate"), 1),
+		        xItems.getItemByName("bottle"),
+		        xItems.getItemByName("nitratineIngot")
 		        );
-		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("water"), 1),
+		        new ItemStack(Items.potionitem, 1, 0)
+		        );
 		//just beta recipes! as long as synthesis dont work
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("APEX"), 2),
@@ -132,7 +135,13 @@ public class xRecipes
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("ammoniumNitrate"), 2),
 				xItems.getItemByName("sodiumNitrate"),
-				xItems.getItemByName("potassiumCarbonate")
+				xItems.getItemByName("potassiumCarbonate"),
+				xItems.getItemByName("distilledWater")
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("potassiumCarbonate"), 1),
+		        xItems.getItemByName("distilledWater"),
+		        xItems.getItemByName("carbon")
 		        );
 		
 		//crafting explosives
@@ -146,17 +155,18 @@ public class xRecipes
 				xItems.getItemByName("sodiumNitrate"),
 				xItems.getItemByName("sodiumNitrate"),
 				xItems.getItemByName("sodiumNitrate"),
-		        xItems.getItemByName("sulfurIngot"),
+		        xItems.getItemByName("sulfur"),
 		        xItems.getItemByName("carbon")
 		        );
 		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);
-		GameRegistry.addSmelting(xOres.getBlockByName("nitratine"), new ItemStack(xItems.getItemByName("sodiumNitrate")), 0.5f);
+		GameRegistry.addSmelting(xOres.getBlockByName("nitratine"), new ItemStack(xItems.getItemByName("nitratineIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("uraninite"), new ItemStack(xItems.getItemByName("uraniumIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("ilmenite"), new ItemStack(xItems.getItemByName("titaniumIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("aluminosilicate"), new ItemStack(xItems.getItemByName("aluminiumIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("magnesite"), new ItemStack(xItems.getItemByName("magnesiumIngot")), 0.5f);
+		GameRegistry.addSmelting(xItems.getItemByName("water"), new ItemStack(xItems.getItemByName("distilledWater")), 0.5f);
 		
 		for(String name : xBlocks.blockNamesExplosives)
 		{

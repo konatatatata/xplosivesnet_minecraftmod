@@ -27,6 +27,10 @@ public class genericComponent extends Item
 		{
 			//place
 			//return new ItemStack(xItems.getItemByName("bottle"));
+			if(this.getUnlocalizedName().substring(5).equals("water"))
+			{
+				
+			}
 		}
 		return itemstack;
 	}

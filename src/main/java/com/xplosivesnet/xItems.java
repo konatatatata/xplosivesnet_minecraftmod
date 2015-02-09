@@ -40,6 +40,7 @@ public class xItems
 		addGenericComponent("carbon", true, 16);
 		addGenericComponent("hexamine", true, 16);
 		addGenericComponent("aluminium", true, 16);
+		addGenericComponent("water", true, 16);
 		
 
 		addGenericIngot("sulfurIngot");

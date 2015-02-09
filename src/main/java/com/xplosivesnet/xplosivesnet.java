@@ -12,8 +12,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = xplosivesnet.MODID, version = xplosivesnet.VERSION)
 public class xplosivesnet
 {
-    public static final String MODID = "xplosivesnet";
-    public static final String VERSION = "0.1";
+    public static final String MODID = "realistic_explosives";
+    public static final String VERSION = "1.1";
     
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -33,10 +33,12 @@ public class xplosivesnet
 		int i = 0;
 		for (Item item : xItems.getItems())
 		{
+			if(item == null) break;
 			try
 			{
 				System.out.println(i + " : " + item.getUnlocalizedName());
 				i++;
+				
 		    }
 		    catch (NullPointerException e)
 			{
@@ -48,6 +50,7 @@ public class xplosivesnet
 		int j = 0;
 		for (Block block : xOres.getBlocks())
 		{
+			if(block == null) break;
 			try
 			{
 				System.out.println(j + " : " + block.getUnlocalizedName());
@@ -63,6 +66,7 @@ public class xplosivesnet
 		int k = 0;
 		for (Block block : xBlocks.getBlocks())
 		{
+			if(block == null) break;
 			try
 			{
 				System.out.println(k + " : " + block.getUnlocalizedName());
