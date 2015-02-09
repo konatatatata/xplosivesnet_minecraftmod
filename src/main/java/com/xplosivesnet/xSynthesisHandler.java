@@ -49,7 +49,7 @@ public class xSynthesisHandler
 		unsorted[2] = c;
 		unsorted[3] = d;
 		unsorted[4] = e;
-		Item[] sorted = sortItems(unsorted);
+		Item[] sorted = (unsorted);
 		
 		vesselSynthesisInput[counter][0] = sorted[0];
 		vesselSynthesisInput[counter][1] = sorted[1];

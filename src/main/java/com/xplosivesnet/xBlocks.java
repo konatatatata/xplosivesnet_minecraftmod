@@ -46,6 +46,7 @@ public class xBlocks
 		addExplosive("astroliteG", false, false, true, 8.5f, 4f);
 		addExplosive("PETN", false, false, true, 7.5f, 2f);
 		addExplosive("ETN", false, false, true, 7.5f, 2f); //?
+		addExplosive("FLASH", false, false, false, 3f, 0.5f); //?
 		
 		addBuildingBlock("concrete", 10f, 5f, false);
 		addBuildingBlock("hardenedConcrete", 30f, 7f, false);

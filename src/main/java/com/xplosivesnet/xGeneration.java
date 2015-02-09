@@ -28,7 +28,7 @@ public class xGeneration implements IWorldGenerator
 	{
 		for(int i = 0; i < xOres.getBlocks().length; i++)
 		{
-			this.addOreSpawn(xOres.getBlocks()[i], world, random, x, z, 16, 16, 8, xOres.getSpawnrateById(i), 0, 256);	
+			this.addOreSpawn(xOres.getBlocks()[i], world, random, x, z, 16, 16, 16, xOres.getSpawnrateById(i), 0, 256);	
 		}
 	}
 	

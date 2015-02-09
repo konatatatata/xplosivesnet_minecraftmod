@@ -26,7 +26,7 @@ public class genericComponent extends Item
 		if(isInBottle)
 		{
 			//place
-			return new ItemStack(xItems.getItemByName("bottle"));
+			//return new ItemStack(xItems.getItemByName("bottle"));
 		}
 		return itemstack;
 	}

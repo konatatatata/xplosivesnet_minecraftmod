@@ -16,11 +16,12 @@ public class xOres
 	
 	public static void loadOres()
 	{
-		addOre("sulfur", 20);
-		addOre("nitratine", 20); //sodiumNitrate
-		addOre("uraninite", 5);
-		addOre("ilmenite", 5); //titan ore
-		addOre("aluminosilicate", 20); //aluminium ore		
+		addOre("sulfur", 50);
+		addOre("nitratine", 50); //sodiumNitrate
+		addOre("uraninite", 15);
+		addOre("ilmenite", 15); //titan ore
+		addOre("aluminosilicate", 50); //aluminium ore
+		addOre("magnesite", 30); //aluminium ore
 	}
 	
 	public static void addOre(String name, int spawnRate)
