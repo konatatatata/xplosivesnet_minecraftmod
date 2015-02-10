@@ -41,13 +41,14 @@ public class genericExplosive extends BlockFalling
         super(Material.sand);
         this.setCreativeTab(xTabs.explosives);
         this.setBlockName(name);
-        this.setHardness(5f);
+        this.setHardness(2f);
 		this.setResistance(hardness);
 		this.customTexture = customTexture;
 		this.explodeOnHit = explodeOnHit;
 		this.explodeOnPower = explodeOnPower;
 		this.needsIni = needsIni;
 		this.strength = strength;
+		this.setHarvestLevel("shovel", 0);
     }
 
     /**

@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.building.genericBuildingBlock;
-import com.xplosivesnet.building.genericDoor;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
 import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
@@ -47,14 +46,13 @@ public class xBlocks
 		addExplosive("PETN", false, false, true, 7.5f, 2f);
 		addExplosive("ETN", false, false, true, 7.5f, 2f); //?
 		addExplosive("FLASH", false, false, false, 3f, 0.5f); //?
+		addExplosive("ATOMIC", false, false, false, 75f, 0.5f); //?
 		
 		addBuildingBlock("concrete", 10f, 5f, false);
 		addBuildingBlock("hardenedConcrete", 30f, 7f, false);
 		addBuildingBlock("reinforcedConcrete", 50f, 14f, false);
 		addBuildingBlock("hardenedGlass", 30f, 7f, false);
 		addBuildingBlock("reinforcedGlass", 50f, 14f, false);
-		//addBuildingBlockDoor("hardenedDoor", 30f, 7f);
-		//addBuildingBlockDoor("reinforcedDoor", 50f, 14f);
 		
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
@@ -63,16 +61,6 @@ public class xBlocks
 	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy)
 	{
 		Block block = new genericBuildingBlock(name, hardness, resistance, glassy);
-		blocks[counter] = block;
-		blockNames[counter] = name;
-		counter++;
-		GameRegistry.registerBlock(block, block.getUnlocalizedName());	
-	}
-	
-	private static void addBuildingBlockDoor(String name, float hardness, float resistance)
-	{
-		
-		Block block = new genericDoor(name, hardness, resistance);
 		blocks[counter] = block;
 		blockNames[counter] = name;
 		counter++;

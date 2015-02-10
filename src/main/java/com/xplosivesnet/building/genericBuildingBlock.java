@@ -24,6 +24,7 @@ public class genericBuildingBlock extends Block
 		this.setResistance(resistance);
 		this.setHardness(hardness);
 		this.glassy = glassy;
+		this.setHarvestLevel("pickaxe", 2);
 	}
 
 	public boolean renderAsNormalBlock()
