@@ -18,7 +18,7 @@ public class xItems
 	
 	public static void loadItems()
 	{
-		addGenericComponent("bottle", false, 16);
+		addGenericComponent("bottle", false, 64);
 		addGenericComponent("shell", false, 64);
 		addGenericComponent("acetone", true, 16);
 		addGenericComponent("ammonia", true, 16);
@@ -34,14 +34,14 @@ public class xItems
 		addGenericComponent("bariumNitrate", true, 16);
 		addGenericComponent("sodiumNitrate", true, 16);
 		addGenericComponent("potassiumCarbonate", true, 16);
-		addGenericComponent("distilledWater", true, 16);
+		addGenericComponent("distilledWater", true, 64);
 		addGenericComponent("toxicWaste", true, 16);
 		addGenericComponent("sulfur", true, 16);
 		addGenericComponent("carbon", true, 16);
 		addGenericComponent("hexamine", true, 16);
 		addGenericComponent("aluminium", true, 16);
-		addGenericComponent("water", true, 16);
-		
+		addGenericComponent("water", true, 64);
+		addGenericComponent("formaldehyde", true, 16);
 
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");

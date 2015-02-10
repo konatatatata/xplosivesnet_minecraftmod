@@ -143,11 +143,46 @@ public class xRecipes
 		        xItems.getItemByName("distilledWater"),
 		        xItems.getItemByName("carbon")
 		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("sulfuricAcid"), 1),
+		        xItems.getItemByName("distilledWater"),
+		        xItems.getItemByName("sulfur"),
+		        Items.glowstone_dust
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("hydrogenPeroxide"), 1),
+		        xItems.getItemByName("distilledWater"),
+		        xItems.getItemByName("sulfuricAcid"),
+		        Items.glowstone_dust
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("hexamine"), 1),
+		        xItems.getItemByName("distilledWater"),
+		        xItems.getItemByName("ammonia"),
+		        xItems.getItemByName("formaldehyde")
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("hydrochloricAcid"), 1),
+		        xItems.getItemByName("water"),
+		        Items.glowstone_dust
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("formaldehyde"), 1),
+		        xItems.getItemByName("distilledWater"),
+		        xItems.getItemByName("carbon"),
+		        Items.redstone
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("ammonia"), 2),
+		        xItems.getItemByName("distilledWater"),
+		        Items.rotten_flesh
+		        );
 		
 		//crafting explosives
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("AMMONAL"), 1),
-		        xItems.getItemByName("ammoniumNitrate"),
+				xItems.getItemByName("ammoniumNitrate"),
+				xItems.getItemByName("ammoniumNitrate"),
 		        xItems.getItemByName("aluminium")
 		        );
 		GameRegistry.addShapelessRecipe(
@@ -167,6 +202,8 @@ public class xRecipes
 		GameRegistry.addSmelting(xOres.getBlockByName("aluminosilicate"), new ItemStack(xItems.getItemByName("aluminiumIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("magnesite"), new ItemStack(xItems.getItemByName("magnesiumIngot")), 0.5f);
 		GameRegistry.addSmelting(xItems.getItemByName("water"), new ItemStack(xItems.getItemByName("distilledWater")), 0.5f);
+		GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(xItems.getItemByName("distilledWater")), 0.5f);
+		
 		
 		for(String name : xBlocks.blockNamesExplosives)
 		{
