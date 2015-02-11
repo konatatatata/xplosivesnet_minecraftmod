@@ -1,5 +1,6 @@
 package com.xplosivesnet.models;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 
@@ -10,5 +11,11 @@ public class tileGenericCustomModelExplosive extends TileEntity
 	{
 		
 	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound p_145841_1_)
+    {
+		
+    }
 }
 

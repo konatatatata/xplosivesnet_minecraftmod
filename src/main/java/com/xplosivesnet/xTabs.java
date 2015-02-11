@@ -24,7 +24,7 @@ public class xTabs
 		explosives = new genericTab("explosives", getIconItem("explosives"));
 		machines = new genericTab("machines", getIconItem("machines"));
 		ores = new genericTab("ores", getIconItem("ores"));
-		building = new genericTab("buildung", getIconItem("building"));
+		building = new genericTab("building", getIconItem("building"));
 		
 	}
 

@@ -1,11 +1,14 @@
 package com.xplosivesnet;
 
+import java.net.Proxy;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
@@ -13,7 +16,10 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class xplosivesnet
 {
     public static final String MODID = "realistic_explosives";
-    public static final String VERSION = "1.1";
+    public static final String VERSION = "1.2.1";
+    public static boolean isClient = false;
+    @SidedProxy(clientSide="com.xplosivesnet.xCommonClientProxy", serverSide="com.xplosivesnet.xCommonProxy")
+	public static xCommonProxy proxy;
     
     @EventHandler
     public void init(FMLInitializationEvent event)
@@ -93,6 +99,7 @@ public class xplosivesnet
 		    }
 		}
 		
+		this.proxy.init(event);
 		
 		FMLCommonHandler.instance().bus().register(new xTicker());
     }
@@ -100,7 +107,7 @@ public class xplosivesnet
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-    	
+    	this.proxy.preInit(event);
     }
     
     

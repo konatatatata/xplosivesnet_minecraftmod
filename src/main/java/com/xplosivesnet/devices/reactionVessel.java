@@ -2,6 +2,7 @@ package com.xplosivesnet.devices;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -55,6 +56,7 @@ public class reactionVessel extends BlockContainer
     {
 		if (!world.isRemote)
 		{
+			
 			if(player == null) return false;
 	    	reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
 	    	

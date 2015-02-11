@@ -1,0 +1,34 @@
+package com.xplosivesnet;
+
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
+
+import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
+import com.xplosivesnet.models.tileGenericCustomModelExplosive;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+
+public class xCommonClientProxy extends xCommonProxy
+{
+	
+	@Override
+	public void preInit(FMLPreInitializationEvent e)
+	{
+		MinecraftForge.EVENT_BUS.register(this);
+    }
+	
+	@Override
+    public void init(FMLInitializationEvent e)
+	{
+		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
+    }
+
+	@Override
+    public void postInit(FMLPostInitializationEvent e)
+	{
+		
+    }
+}

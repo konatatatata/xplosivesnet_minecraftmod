@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import com.xplosivesnet.building.genericBuildingBlock;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
+import com.xplosivesnet.explosives.timedCharge;
 import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -54,8 +55,7 @@ public class xBlocks
 		addBuildingBlock("hardenedGlass", 30f, 7f, false);
 		addBuildingBlock("reinforcedGlass", 50f, 14f, false);
 		
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
+		addTimedCharge("timedCharge", false, false, false, 5, 2);
 	}
 	
 	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy)
@@ -76,6 +76,16 @@ public class xBlocks
 		explosivesCounter++;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+	}
+	
+	public static void addTimedCharge(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)
+	{
+		Block block = new timedCharge(name);
+		blocks[counter] = block;
+		blockNames[counter] = name;
+		counter++;
+		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+		GameRegistry.registerTileEntity(com.xplosivesnet.explosives.entities.timedChargeTile.class, "timedChargeTile");
 	}
 	
 	public static void addCustomExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)
