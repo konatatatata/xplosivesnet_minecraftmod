@@ -1,0 +1,64 @@
+item.bottle.name=Bottle
+item.shell.name=Shell
+item.acetone.name=Acetone
+item.ammonia.name=Ammonia
+item.glycerine.name=Glycerine
+item.hydrochloricAcid.name=Hydrochloric Acid
+item.hydrogenPeroxide.name=Hydrogen Peroxide
+item.nitricAcid.name=Nitric Acid
+item.sulfuricAcid.name=Sulfuric Acid
+item.acetonePeroxide.name=Acetone Peroxide
+item.nitroGlycerine.name=Nitro Glycerine
+item.ammoniumNitrate.name=Ammonium Nitrate
+item.potassiumNitrate.name=Potassium Nitrate
+item.bariumNitrate.name=Barium Nitrate
+item.sodiumNitrate.name=Sodium Nitrate
+item.potassiumCarbonate.name=Potassium Carbonate (Potash)
+item.distilledWater.name=Distilled Water
+item.toxicWaste.name=Toxic Waste
+item.sulfur.name=Sulfur
+item.carbon.name=Carbon
+item.hexamine.name=Hexamine (Urotropine)
+item.aluminium.name=Aluminium
+item.water.name=Water
+item.formaldehyde.name=Formaldehyde
+
+tile.acetone.name=Acetone
+tile.glycerine.name=Glycerine
+tile.hydrochloricAcid.name=Hydrochloric Acid
+tile.hydrogenPeroxide.name=Hydrogen Peroxide
+tile.nitricAcid.name=Nitric Acid
+tile.nitroGlycerine.name=Nitro Glycerine
+tile.sulfuricAcid.name=Sulfuric Acid
+
+item.sulfurIngot.name=Sulfur Ingot
+item.nitratineIngot.name=Nitratine Ingot
+item.uraniumIngot.name=Uranium Ingot
+item.titaniumIngot.name=Titanium Ingot
+item.aluminiumIngot.name=Aluminium Ingot
+
+tile.sulfur.name=Sulfur (Ore)
+tile.nitratine.name=Nitratine (Ore)
+tile.uraninite.name=Uraninite (Ore)
+tile.ilmenite.name=Ilmenite (Ore)
+tile.aluminosilicate.name=Aluminosilicate (Ore)
+tile.magnesite.name=Magnesite (Ore)
+
+item.hazmaHelmet.name=Hazma Helmet
+item.hazmaChestplate.name=Hazma Chestplate
+item.hazmaLeggins.name=Hazma Leggins
+item.hazmaBoots.name=Hazma Boots
+
+tile.concrete.name=Concrete
+tile.hardenedConcrete.name=Concrete (Hardened)
+tile.reinforcedConcrete.name=Concrete (Reinforced)
+tile.hardenedGlass.name=Glass (Hardened)
+tile.reinforcedGlass.name=Glass (Reinforced)
+
+tile.reactionVessel.name=Reaction Vessel (deactivated)
+
+itemGroup.components.name=Components
+itemGroup.machines.name=Machines
+itemGroup.explosives.name=Explosives
+itemGroup.ores.name=Ores
+itemGroup.building.name=Building
