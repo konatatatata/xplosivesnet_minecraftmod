@@ -16,21 +16,33 @@ public class timedChargeTile extends TileEntity
 {
    private static boolean fused = false;
    private static float sec = 30;
+   
    private static World world;
    private static int posx, posy, posz;
    private static boolean locSet = false;
+   
    private static int tickCounter = 20;
    private static boolean blown = false;
-   private static guiTimedCharge gui;
    
-   public timedChargeTile()
+   private static double rnd;
+   
+   //private static guiTimedCharge gui;
+   
+   private static timedChargeTile tile;
+   
+   public timedChargeTile(int x, int y, int z)
    {
 	   fused = false;
 	   sec = 30;
 	   tickCounter = 20;
 	   blown = false;
 	   locSet = false;
-	   gui = new guiTimedCharge(this);
+	   this.posx = x;
+	   this.posy = y;
+	   this.posz = z;
+	   //this.gui = new guiTimedCharge(this);
+	   tile = (timedChargeTile)this;
+	   rnd = Math.random();
    }
    
    public static int getSecondsLeft()
@@ -38,21 +50,11 @@ public class timedChargeTile extends TileEntity
 	   return Math.round(sec);
    }
    
-   public static void setWorld(World w, int x, int y, int z)
+   public static void openGui()
    {
-	   if(!locSet)
-	   {
-		   world = w;
-		   posx = x;
-		   posy = y;
-		   posz = z;
-		   locSet = true;
-	   }
-   }
-   
-   public static void openGui(timedChargeTile tile)
-   {
-	   Minecraft.getMinecraft().displayGuiScreen(gui);
+	   guiTimedCharge gui = new guiTimedCharge();
+	   //gui.setTile(tile);
+	   gui.show();
    }
    
    public static void increaseTime()
@@ -113,18 +115,5 @@ public class timedChargeTile extends TileEntity
 		   
 	   }
    }
-   
-   @Override
-   public void writeToNBT(NBTTagCompound par1)
-   {
-      super.writeToNBT(par1);
-   }
-
-   @Override
-   public void readFromNBT(NBTTagCompound par1)
-   {
-      super.readFromNBT(par1);
-   }
-
    
 }

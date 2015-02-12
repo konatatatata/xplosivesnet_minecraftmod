@@ -24,11 +24,20 @@ public class guiTimedCharge extends GuiScreen
 	
 	timedChargeTile tile;
 	
-	public guiTimedCharge(timedChargeTile t)
+	public guiTimedCharge()
 	{
-		this.tile = t;
+		
 	}
 	
+	public void setTile(timedChargeTile tile)
+	{
+		this.tile = tile;
+	}
+	
+	public void show()
+	{
+		Minecraft.getMinecraft().displayGuiScreen(this);
+	}
 	
 	public void drawScreen(int x, int y, float ticks)
     {
@@ -46,7 +55,7 @@ public class guiTimedCharge extends GuiScreen
 		fontRendererObj.drawString("Q - decrease" , guiX + 15, guiY + 25, 0x404040);
 		fontRendererObj.drawString("w - fuse" , guiX + 15, guiY + 35, 0x404040);
 		
-		fontRendererObj.drawString("Time left: "+tile.getSecondsLeft() , guiX + 40, guiY + 45, 0x404040);
+		fontRendererObj.drawString("Time left: " + tile.getSecondsLeft(), guiX + 40, guiY + 45, 0x404040);
 		super.drawScreen(x, y, ticks);
 		
     }
