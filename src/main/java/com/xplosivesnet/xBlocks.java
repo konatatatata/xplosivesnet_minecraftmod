@@ -85,7 +85,6 @@ public class xBlocks
 		blockNames[counter] = name;
 		counter++;
 		GameRegistry.registerBlock(block, block.getUnlocalizedName());
-		GameRegistry.registerTileEntity(com.xplosivesnet.explosives.entities.timedChargeTile.class, "timedChargeTile");
 	}
 	
 	public static void addCustomExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)

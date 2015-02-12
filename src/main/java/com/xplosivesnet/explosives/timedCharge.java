@@ -83,13 +83,19 @@ public class timedCharge extends BlockContainer
     	world.removeTileEntity(x, y, z);
     }
 
-    
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    @SideOnly(Side.CLIENT)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-    	timedChargeTile tile = (timedChargeTile) world.getTileEntity(x, y, z);
-    	System.out.println("ID: " + id);
-    	tile.openGui();
-    	return true;
+    	if (!world.isRemote)
+		{
+			if(player == null) return false;
+			timedChargeTile tile = (timedChargeTile) world.getTileEntity(x, y, z);
+			
+	    	System.out.println("ID: " + id);
+	    	tile.openGui();
+	    	return true;
+		}
+    	return false;
     }
     
     
@@ -118,7 +124,6 @@ public class timedCharge extends BlockContainer
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
 	{
 		return new timedChargeTile(x, y, z);
-		//tile not recreated!!
 	}
 		
 	

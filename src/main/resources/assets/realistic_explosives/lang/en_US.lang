@@ -55,7 +55,7 @@ tile.reinforcedConcrete.name=Concrete (Reinforced)
 tile.hardenedGlass.name=Glass (Hardened)
 tile.reinforcedGlass.name=Glass (Reinforced)
 
-tile.reactionVessel.name=Reaction Vessel (deactivated)
+tile.reactionVessel.name=Reaction Vessel (DONT USE!)
 
 itemGroup.components=Components
 itemGroup.machines=Machines
@@ -98,3 +98,5 @@ tile.PETN.name=PETN
 tile.ETN.name=ETN
 tile.FLASH.name=Flash
 tile.ATOMIC.name=Atomic Bomb
+
+tile.timedCharge.name=Timed Charge (DONT USE!)

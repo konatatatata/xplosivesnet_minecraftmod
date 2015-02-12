@@ -86,6 +86,24 @@ public class xRecipes
 			    	'o', xItems.getItemByName("titaniumIngot"),
 			    	'i', Items.blaze_rod
 				});
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("timedCharge"), 2), new Object[]
+				{
+			    	"iii",
+			    	"c a",
+			    	"iii",
+			    	'c', Items.clock,
+			    	'a', xBlocks.getBlockByName("APEX"),
+			    	'i', Items.iron_ingot
+				});
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("timedCharge"), 2), new Object[]
+				{
+			    	"iii",
+			    	"c h",
+			    	"iii",
+			    	'c', Items.clock,
+			    	'h', xBlocks.getBlockByName("HMTD"),
+			    	'i', Items.iron_ingot
+				});
 		
 		//filling s.t. in bottle
 		GameRegistry.addShapelessRecipe(

@@ -24,12 +24,7 @@ public class guiTimedCharge extends GuiScreen
 	
 	timedChargeTile tile;
 	
-	public guiTimedCharge()
-	{
-		
-	}
-	
-	public void setTile(timedChargeTile tile)
+	public guiTimedCharge(timedChargeTile tile)
 	{
 		this.tile = tile;
 	}

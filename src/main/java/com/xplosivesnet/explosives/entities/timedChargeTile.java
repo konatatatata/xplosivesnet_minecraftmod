@@ -26,8 +26,6 @@ public class timedChargeTile extends TileEntity
    
    private static double rnd;
    
-   //private static guiTimedCharge gui;
-   
    private static timedChargeTile tile;
    
    public timedChargeTile(int x, int y, int z)
@@ -40,8 +38,7 @@ public class timedChargeTile extends TileEntity
 	   this.posx = x;
 	   this.posy = y;
 	   this.posz = z;
-	   //this.gui = new guiTimedCharge(this);
-	   tile = (timedChargeTile)this;
+	   tile = (timedChargeTile) this;
 	   rnd = Math.random();
    }
    
@@ -52,8 +49,8 @@ public class timedChargeTile extends TileEntity
    
    public static void openGui()
    {
-	   guiTimedCharge gui = new guiTimedCharge();
-	   //gui.setTile(tile);
+	   //guiTimedCharge gui = new guiTimedCharge(tile);
+	   guiTimedCharge gui = new guiTimedCharge(tile);
 	   gui.show();
    }
    
@@ -100,13 +97,13 @@ public class timedChargeTile extends TileEntity
 		   {
 			   if(!blown)
 			   {
-				   double dx = (double)Math.round(posx);
-				   double dy = (double)Math.round(posy);
-				   double dz = (double)Math.round(posz);
+				   blown = true;
+				   double dx = (double)(posx);
+				   double dy = (double)(posy);
+				   double dz = (double)(posz);
 				   genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, 1.5f, null);
 				   world.spawnEntityInWorld(genericExplosion);
-				   blown = true;
-				   world.removeTileEntity(posx, posy, posz);
+				   
 			   }
 		   }
 	   }
