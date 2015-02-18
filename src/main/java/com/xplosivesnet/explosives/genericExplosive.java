@@ -50,7 +50,7 @@ public class genericExplosive extends BlockFalling
 		this.strength = strength;
 		this.setHarvestLevel("shovel", 0);
     }
-
+    
     /**
      * Gets the block's texture. Args: side, meta
      */

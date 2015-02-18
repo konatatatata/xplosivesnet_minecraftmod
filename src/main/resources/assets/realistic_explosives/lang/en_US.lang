@@ -22,6 +22,7 @@ item.hexamine.name=Hexamine (Urotropine)
 item.aluminium.name=Aluminium
 item.water.name=Water
 item.formaldehyde.name=Formaldehyde
+item.magnesium.name=Magnesium
 
 tile.acetone.name=Acetone
 tile.glycerine.name=Glycerine
@@ -36,6 +37,7 @@ item.nitratineIngot.name=Nitratine Ingot
 item.uraniumIngot.name=Uranium Ingot
 item.titaniumIngot.name=Titanium Ingot
 item.aluminiumIngot.name=Aluminium Ingot
+item.magnesiumIngot.name=Magnesium Ingot
 
 tile.sulfur.name=Sulfur (Ore)
 tile.nitratine.name=Nitratine (Ore)

@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 
+import com.xplosivesnet.building.itemKey;
 import com.xplosivesnet.components.genericComponent;
 import com.xplosivesnet.utilities.genericArmor;
 import com.xplosivesnet.utilities.genericIngot;
@@ -20,34 +21,36 @@ public class xItems
 	{
 		addGenericComponent("bottle", false, 64);
 		addGenericComponent("shell", false, 64);
-		addGenericComponent("acetone", true, 16);
-		addGenericComponent("ammonia", true, 16);
-		addGenericComponent("glycerine", true, 16);
-		addGenericComponent("hydrochloricAcid", true, 16);
-		addGenericComponent("hydrogenPeroxide", true, 16);
-		addGenericComponent("nitricAcid", true, 16);
-		addGenericComponent("sulfuricAcid", true, 16);
-		addGenericComponent("acetonePeroxide", true, 16);
-		addGenericComponent("nitroGlycerine", true, 16);
-		addGenericComponent("ammoniumNitrate", true, 16);
-		addGenericComponent("potassiumNitrate", true, 16);
-		addGenericComponent("bariumNitrate", true, 16);
-		addGenericComponent("sodiumNitrate", true, 16);
-		addGenericComponent("potassiumCarbonate", true, 16);
+		addGenericComponent("acetone", true, 64);
+		addGenericComponent("ammonia", true, 64);
+		addGenericComponent("glycerine", true, 64);
+		addGenericComponent("hydrochloricAcid", true, 64);
+		addGenericComponent("hydrogenPeroxide", true, 64);
+		addGenericComponent("nitricAcid", true, 64);
+		addGenericComponent("sulfuricAcid", true, 64);
+		addGenericComponent("acetonePeroxide", true, 64);
+		addGenericComponent("nitroGlycerine", true, 64);
+		addGenericComponent("ammoniumNitrate", true, 64);
+		addGenericComponent("potassiumNitrate", true, 64);
+		addGenericComponent("bariumNitrate", true, 64);
+		addGenericComponent("sodiumNitrate", true, 64);
+		addGenericComponent("potassiumCarbonate", true, 64);
 		addGenericComponent("distilledWater", true, 64);
-		addGenericComponent("toxicWaste", true, 16);
-		addGenericComponent("sulfur", true, 16);
-		addGenericComponent("carbon", true, 16);
-		addGenericComponent("hexamine", true, 16);
-		addGenericComponent("aluminium", true, 16);
+		addGenericComponent("toxicWaste", true, 64);
+		addGenericComponent("sulfur", true, 64);
+		addGenericComponent("carbon", true, 64);
+		addGenericComponent("hexamine", true, 64);
+		addGenericComponent("aluminium", true, 64);
+		addGenericComponent("magnesium", true, 64);
 		addGenericComponent("water", true, 64);
-		addGenericComponent("formaldehyde", true, 16);
-
+		addGenericComponent("formaldehyde", true, 64);
+		
 		addGenericIngot("sulfurIngot");
 		addGenericIngot("nitratineIngot");
 		addGenericIngot("uraniumIngot");
 		addGenericIngot("titaniumIngot");
 		addGenericIngot("aluminiumIngot");
+		addGenericIngot("magnesiumIngot");
 		
 		addGenericArmor("hazmaHelmet", 0);
 		addGenericArmor("hazmaChestplate", 1);
@@ -57,9 +60,19 @@ public class xItems
 		for(String name : xBlocks.blockNamesExplosives)
 		{
 			if(name == null) break;
-			addGenericComponent(name, true, 16);
+			addGenericComponent(name, true, 64);
 		}
 		
+		addKey("itemKey");
+	}
+	
+	private static void addKey(String itemName)
+	{
+		Item item = new itemKey(itemName);
+		items[counter] = item;
+		itemNames[counter] = itemName;
+		counter++;
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
 	
 	private static void addGenericArmor(String itemName, int type)

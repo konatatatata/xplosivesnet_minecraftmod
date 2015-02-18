@@ -12,24 +12,26 @@ public class xOres
 	private static Block[] blocks = new Block[25];
 	private static String[] blockNames = new String[25];
 	private static int[] spawnrates =  new int[blocks.length];
+	private static int[] size =  new int[blocks.length];
 	private static int counter = 0;
 	
 	public static void loadOres()
 	{
-		addOre("sulfur", 50);
-		addOre("nitratine", 50); //sodiumNitrate
-		addOre("uraninite", 15);
-		addOre("ilmenite", 15); //titan ore
-		addOre("aluminosilicate", 50); //aluminium ore
-		addOre("magnesite", 30); //aluminium ore
+		addOre("sulfur", 25, 10);
+		addOre("nitratine", 25, 15); //sodiumNitrate
+		addOre("uraninite", 10, 3);
+		addOre("ilmenite", 10, 5); //titan ore
+		addOre("aluminosilicate", 25, 15); //aluminium ore
+		addOre("magnesite", 15, 10); //aluminium ore
 	}
 	
-	public static void addOre(String name, int spawnRate)
+	public static void addOre(String name, int spawnRate, int s)
 	{
 		Block ore = new genericOre(name, 1f, false);
 		blocks[counter] = ore;
 		blockNames[counter] = name;
 		spawnrates[counter] = spawnRate;
+		size[counter] = s;
 		counter++;
 		GameRegistry.registerBlock(ore, ore.getUnlocalizedName());
 	}
@@ -68,6 +70,11 @@ public class xOres
 	public static Block[] getBlocks()
 	{
 		return xOres.blocks;
+	}
+
+	public static int getSizeById(int blockId)
+	{
+		return xOres.size[blockId];
 	}
 	
 }

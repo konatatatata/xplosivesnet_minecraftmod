@@ -17,7 +17,7 @@ public class xTicker
 			xHelper.attack(event.player, explo_damageSource.acid, 0.5f);
 		}
 		*/
-		
+		/*
 		if(event.player.getCurrentEquippedItem() != null)
 	    {
 			ItemStack hand = event.player.getCurrentEquippedItem();
@@ -27,6 +27,7 @@ public class xTicker
         		xHelper.attack(event.player, xDamageSource.radiation, 0.5f);
 	         }
 	     }
+	     */
 	}
 	 
 	//Called when the client ticks. 

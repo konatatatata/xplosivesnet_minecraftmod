@@ -1,24 +1,14 @@
 package com.xplosivesnet.explosives.entities;
 
-import com.xplosivesnet.guis.guiTimedCharge;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import com.xplosivesnet.guis.guiTimedCharge;
 
 public class timedChargeTile extends TileEntity
 {
    private static boolean fused = false;
    private static float sec = 30;
    
-   private static World world;
-   private static int posx, posy, posz;
    private static boolean locSet = false;
    
    private static int tickCounter = 20;
@@ -28,16 +18,13 @@ public class timedChargeTile extends TileEntity
    
    private static timedChargeTile tile;
    
-   public timedChargeTile(int x, int y, int z)
+   public timedChargeTile()
    {
 	   fused = false;
 	   sec = 30;
 	   tickCounter = 20;
 	   blown = false;
 	   locSet = false;
-	   this.posx = x;
-	   this.posy = y;
-	   this.posz = z;
 	   tile = (timedChargeTile) this;
 	   rnd = Math.random();
    }
@@ -98,11 +85,11 @@ public class timedChargeTile extends TileEntity
 			   if(!blown)
 			   {
 				   blown = true;
-				   double dx = (double)(posx);
-				   double dy = (double)(posy);
-				   double dz = (double)(posz);
-				   genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, 1.5f, null);
-				   world.spawnEntityInWorld(genericExplosion);
+				   double dx = (double)(this.xCoord);
+				   double dy = (double)(this.yCoord);
+				   double dz = (double)(this.zCoord);
+				   genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, dx , dy, dz, 1.5f, null);
+				   this.worldObj.spawnEntityInWorld(genericExplosion);
 				   
 			   }
 		   }

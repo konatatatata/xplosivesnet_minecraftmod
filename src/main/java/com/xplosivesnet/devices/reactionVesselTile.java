@@ -1,9 +1,7 @@
 package com.xplosivesnet.devices;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -25,17 +23,17 @@ public class reactionVesselTile extends TileEntity
 		
 	}
 	
-	 @Override
-	   public void writeToNBT(NBTTagCompound par1)
-	   {
-	      super.writeToNBT(par1);
-	   }
+	@Override
+	public void writeToNBT(NBTTagCompound par1)
+	{
+		super.writeToNBT(par1);
+	}
 
-	   @Override
-	   public void readFromNBT(NBTTagCompound par1)
-	   {
-	      super.readFromNBT(par1);
-	   }
+	@Override
+	public void readFromNBT(NBTTagCompound par1)
+	{
+		super.readFromNBT(par1);
+	}
 	
 	private void reset()
 	{

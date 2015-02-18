@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class xplosivesnet
 {
     public static final String MODID = "realistic_explosives";
-    public static final String VERSION = "1.3";
+    public static final String VERSION = "1.3.1";
     public static boolean isClient = false;
     @SidedProxy(clientSide="com.xplosivesnet.xCommonClientProxy", serverSide="com.xplosivesnet.xCommonProxy")
 	public static xCommonProxy proxy;
@@ -34,6 +34,7 @@ public class xplosivesnet
     	xOres.loadOres();
     	xRecipes.loadRecipes();
     	xSynthesisHandler.loadSynthesis();
+    	//xWeapons.loadWeapons();
     	
     	System.out.println("ID : ITEM");
 		int i = 0;

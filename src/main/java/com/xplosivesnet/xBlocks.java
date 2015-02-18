@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.building.genericBuildingBlock;
+import com.xplosivesnet.building.lockedDoor;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
 import com.xplosivesnet.explosives.genericExplosive;
 import com.xplosivesnet.explosives.timedCharge;
@@ -27,7 +28,6 @@ public class xBlocks
 	private static int counter = 0;
 	private static int explosivesCounter = 0;
 	
-	
 	public static void loadBlocks()
 	{
 		addExplosive("APEX", true, true, false, 1.5f, 0.1f);
@@ -46,25 +46,42 @@ public class xBlocks
 		addExplosive("astroliteG", false, false, true, 8.5f, 4f);
 		addExplosive("PETN", false, false, true, 7.5f, 2f);
 		addExplosive("ETN", false, false, true, 7.5f, 2f); //?
-		addExplosive("FLASH", false, false, false, 3f, 0.5f); //?
-		addExplosive("ATOMIC", false, false, false, 75f, 0.5f); //?
+		addExplosive("FLASH", true, false, false, 2.5f, 0.5f);
+		addExplosive("ATOMIC", false, false, false, 75f, 10f); //?
 		
-		addBuildingBlock("concrete", 10f, 5f, false);
-		addBuildingBlock("hardenedConcrete", 30f, 7f, false);
-		addBuildingBlock("reinforcedConcrete", 50f, 14f, false);
-		addBuildingBlock("hardenedGlass", 30f, 7f, false);
-		addBuildingBlock("reinforcedGlass", 50f, 14f, false);
+		addBuildingBlock("concrete", 10f, 5f, false, 1);
+		addBuildingBlock("hardenedConcrete", 30f, 7f, false, 1);
+		addBuildingBlock("reinforcedConcrete", 50f, 14f, false, 1);
+		addBuildingBlock("hardenedGlass", 30f, 7f, true,1 );
+		addBuildingBlock("reinforcedGlass", 50f, 14f, true, 1);
+		addBuildingBlock("lockedDoor", 50f, 14f, true, 2);
 		
 		addTimedCharge("timedCharge", false, false, false, 5, 2);
 	}
 	
-	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy)
+	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy, int type)
 	{
-		Block block = new genericBuildingBlock(name, hardness, resistance, glassy);
-		blocks[counter] = block;
-		blockNames[counter] = name;
-		counter++;
-		GameRegistry.registerBlock(block, block.getUnlocalizedName());	
+		Block block;
+		switch(type)
+		{
+		case 1:
+			block = new genericBuildingBlock(name, hardness, resistance, glassy);
+			break;
+		case 2:
+			block = new lockedDoor();
+			break;
+		default:
+			block = null;
+			break;
+		
+		}
+		if(block != null)
+		{
+			blocks[counter] = block;
+			blockNames[counter] = name;
+			counter++;
+			GameRegistry.registerBlock(block, block.getUnlocalizedName());	
+		}
 	}
 
 	public static void addExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness)

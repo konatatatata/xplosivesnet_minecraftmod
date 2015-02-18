@@ -4,12 +4,9 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -18,22 +15,17 @@ import net.minecraft.world.World;
 
 import com.xplosivesnet.xTabs;
 import com.xplosivesnet.xplosivesnet;
-import com.xplosivesnet.devices.reactionVesselTile;
-import com.xplosivesnet.explosives.entities.genericExplosion;
-import com.xplosivesnet.explosives.entities.timedChargeTile;
-import com.xplosivesnet.guis.guiTimedCharge;
+import com.xplosivesnet.explosives.entities.timedChargeTileNoGui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class timedCharge extends BlockContainer
 {
-	@SideOnly(Side.CLIENT)
+	//@SideOnly(Side.CLIENT)
 	private IIcon texture_generic;
 
-    private static final String __OBFID = "CL_00000324";
-  
-    private static int x, y, z, id;
+   
     
     public timedCharge(String name)
     {
@@ -51,19 +43,12 @@ public class timedCharge extends BlockContainer
         return this.texture_generic;
     }
 
-    public void onBlockAdded(World world, int x, int y, int z)
-    {
-    	this.x = x;
-    	this.y = y;
-    	this.z = z;
-    	this.id++;
-    }
-
     public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_)
     {
     	if (world.isBlockIndirectlyGettingPowered(x, y, z))
         {
-    		timedChargeTile tile = (timedChargeTile) world.getTileEntity(x, y, z);
+    		timedChargeTileNoGui tile = (timedChargeTileNoGui) world.getTileEntity(x, y, z);
+    		//timedChargeTile tile = (timedChargeTile) world.getTileEntity(x, y, z);
     		tile.fuse();
         }
     }
@@ -89,10 +74,10 @@ public class timedCharge extends BlockContainer
     	if (!world.isRemote)
 		{
 			if(player == null) return false;
-			timedChargeTile tile = (timedChargeTile) world.getTileEntity(x, y, z);
-			
-	    	System.out.println("ID: " + id);
-	    	tile.openGui();
+			timedChargeTileNoGui tile = (timedChargeTileNoGui) world.getTileEntity(x, y, z);
+			//timedChargeTile tile = (timedChargeTile) world.getTileEntity(x, y, z);
+			tile.clicked(player);
+	    	//tile.openGui();
 	    	return true;
 		}
     	return false;
@@ -119,12 +104,18 @@ public class timedCharge extends BlockContainer
 	{
 		this.texture_generic = icon.registerIcon(xplosivesnet.MODID + ":explosives/" + this.getUnlocalizedName().substring(5));
 	}
-
+	
 	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
+	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new timedChargeTile(x, y, z);
+		return new timedChargeTileNoGui();
 	}
+	
+	@Override
+    public boolean hasTileEntity(int metadata) {
+ 
+        return true;
+    }
 		
 	
 }
