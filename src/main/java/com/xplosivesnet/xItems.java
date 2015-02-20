@@ -7,7 +7,6 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import com.xplosivesnet.building.itemKey;
 import com.xplosivesnet.components.genericComponent;
 import com.xplosivesnet.utilities.genericArmor;
-import com.xplosivesnet.utilities.genericIngot;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -42,15 +41,16 @@ public class xItems
 		addGenericComponent("hexamine", true, 64);
 		addGenericComponent("aluminium", true, 64);
 		addGenericComponent("magnesium", true, 64);
+		addGenericComponent("titanium", true, 64);
 		addGenericComponent("water", true, 64);
 		addGenericComponent("formaldehyde", true, 64);
 		
-		addGenericIngot("sulfurIngot");
-		addGenericIngot("nitratineIngot");
-		addGenericIngot("uraniumIngot");
-		addGenericIngot("titaniumIngot");
-		addGenericIngot("aluminiumIngot");
-		addGenericIngot("magnesiumIngot");
+		addGenericComponent("sulfurIngot", true, 64);
+		addGenericComponent("nitratineIngot", true, 64);
+		addGenericComponent("uraniumIngot", true, 64);
+		addGenericComponent("titaniumIngot", true, 64);
+		addGenericComponent("aluminiumIngot", true, 64);
+		addGenericComponent("magnesiumIngot", true, 64);
 		
 		addGenericArmor("hazmaHelmet", 0);
 		addGenericArmor("hazmaChestplate", 1);
@@ -89,16 +89,6 @@ public class xItems
 		Item item = new genericComponent(itemName, inBottle, maxStack);
 		items[counter] = item;
 		itemNames[counter] = itemName;
-		counter++;
-		GameRegistry.registerItem(item, item.getUnlocalizedName());
-	}
-	
-	private static void addGenericIngot(String itemName)
-	{
-		Item item = new genericIngot(itemName);
-		items[counter] = item;
-		itemNames[counter] = itemName;
-		if(counter != 0) item.setContainerItem(items[0]);
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}

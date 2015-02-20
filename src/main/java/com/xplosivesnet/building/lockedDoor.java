@@ -33,9 +33,7 @@ public class lockedDoor extends BlockContainer
     @SideOnly(Side.CLIENT)
     private IIcon icon_lower;
 
-    private boolean opened = false;
-    private boolean unlocked = true;
-    private int keyID = 0;
+    
     
 	public lockedDoor()
 	{
@@ -45,7 +43,7 @@ public class lockedDoor extends BlockContainer
 		this.setCreativeTab(xTabs.building);
 		this.setBlockName("lockedDoor");
 		
-		open();
+		//open();
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -82,17 +80,7 @@ public class lockedDoor extends BlockContainer
         return 0;
     }
     
-    private void open()
-    {
-    	this.setBlockBounds(0f, 0f, 0f, 0.2f, 2f, 1f);
-    	opened = true;
-    }
-
-    private void close()
-    {
-    	this.setBlockBounds(0f, 0f, 0f, 1f, 2f, 0.2f);
-    	opened = false;
-    }
+    
     
     public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)
 	{
@@ -103,40 +91,8 @@ public class lockedDoor extends BlockContainer
     {
     	if(world.isRemote)
     	{
-    		if(player.getCurrentEquippedItem() == null) return false;
-	    	if(player.getCurrentEquippedItem().getItem() == xItems.getItemByName("itemKey"))
-	    	{
-	    		xHelper.sendMessage(player, "key!");
-	    		if(this.opened)
-	    		{
-	    			if(world.isRemote) close();
-	    			world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
-	    		}
-	    		else
-	    		{
-	    			if(world.isRemote) open();
-	    			world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
-	    		}
-	    		return true;
-	    	}
-	    	xHelper.sendMessage(player, "wrong key!");
+    		//return tile:activated();
     	}
-    	/*
-    	if(this.unlocked)
-    	{
-    		if(this.opened)
-    		{
-    			if(world.isRemote) close();
-    			world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
-    		}
-    		else
-    		{
-    			if(world.isRemote) open();
-    			world.markBlockRangeForRenderUpdate(x, y, z, x, y, z);
-    		}
-    		return true;
-    	}
-    	*/
     	return false;
     }
 

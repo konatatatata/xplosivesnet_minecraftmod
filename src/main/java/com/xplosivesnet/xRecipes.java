@@ -1,16 +1,26 @@
 package com.xplosivesnet;
 
+import ic2.api.item.IC2Items;
+import ic2.api.recipe.IRecipeInput;
+import ic2.api.recipe.RecipeInputItemStack;
+import ic2.api.recipe.Recipes;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class xRecipes
 {
 	public static void loadRecipes()
 	{
+		//remove
+		//disable tnt
+		xHelper.removeRecipe(new ItemStack(Blocks.tnt));
+		
 		//crafting
 		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("detonatingCord"), 6), new Object[]
 			{
@@ -137,34 +147,30 @@ public class xRecipes
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("carbon"), 1),
 		        xItems.getItemByName("bottle"),
-		        Items.coal
+		        ic2.api.item.IC2Items.getItem("coalDust")
 		        );
-		
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("carbon"), 1),
-		        xItems.getItemByName("bottle"),
-		        new ItemStack(Items.coal, 1, 1)
-		        );
-		
+
+		/*
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("sodiumNitrate"), 1),
 		        xItems.getItemByName("bottle"),
 		        xItems.getItemByName("nitratineIngot")
 		        );
+		*/
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("magnesium"), 1),
 		        xItems.getItemByName("bottle"),
 		        xItems.getItemByName("magnesiumIngot")
 		        );
 		
-		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("water"), 1),
 		        new ItemStack(Items.potionitem, 1, 0)
 		        );
+		
 		//just beta recipes! as long as synthesis dont work
 		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("ammoniumNitrate"), 2),
+				new ItemStack(xItems.getItemByName("potassiumNitrate"), 2),
 				xItems.getItemByName("sodiumNitrate"),
 				xItems.getItemByName("potassiumCarbonate"),
 				xItems.getItemByName("distilledWater")
@@ -208,7 +214,21 @@ public class xRecipes
 		        xItems.getItemByName("distilledWater"),
 		        Items.rotten_flesh
 		        );
-		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("nitricAcid"), 2),
+		        xItems.getItemByName("sodiumNitrate"),
+		        xItems.getItemByName("sulfuricAcid")
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("nitricAcid"), 2),
+		        xItems.getItemByName("ammoniumNitrate"),
+		        xItems.getItemByName("sulfuricAcid")
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("nitricAcid"), 2),
+		        xItems.getItemByName("potassiumNitrate"),
+		        xItems.getItemByName("sulfuricAcid")
+		        );
 		//crafting explosives
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("AMMONAL"), 2),
@@ -221,12 +241,6 @@ public class xRecipes
 				xItems.getItemByName("ammoniumNitrate"),
 				xItems.getItemByName("ammoniumNitrate"),
 		        xItems.getItemByName("carbon")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("FLASH"), 2),
-				xItems.getItemByName("sodiumNitrate"),
-				xItems.getItemByName("sodiumNitrate"),
-				xItems.getItemByName("magnesium")
 		        );
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(Items.gunpowder, 5),
@@ -248,8 +262,20 @@ public class xRecipes
 		        xItems.getItemByName("hydrogenPeroxide"),
 		        xItems.getItemByName("hydrochloricAcid")
 		        );
-		
-		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("FLASH"), 2),
+				xItems.getItemByName("potassiumNitrate"),
+				xItems.getItemByName("potassiumNitrate"),
+				xItems.getItemByName("magnesium")
+		        );
+		//IC2 FLASH
+		addFLASH("bronzeDust");
+		addFLASH("copperDust");
+		addFLASH("goldDust");
+		addFLASH("ironDust");
+		addFLASH("silverDust");
+		addFLASH("leadDust");
+		addFLASH("lithiumDust");
 		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);
@@ -267,6 +293,26 @@ public class xRecipes
 			if(name == null) break;
 			addShellRecipe(name);
 		}
+		
+		addMaceratorRecipe("nitratineIngot", "sodiumNitrate");
+		addMaceratorRecipe("titaniumIngot", "titanium");
+		addMaceratorRecipe("aluminiumIngot", "aluminium");
+		addMaceratorRecipe("magnesiumIngot", "magnesium");
+	}
+	
+	static void addMaceratorRecipe(String input, String output)
+	{
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xItems.getItemByName(input))), null, new ItemStack(xItems.getItemByName(output)));
+	}
+	
+	static void addFLASH(String dust)
+	{
+		GameRegistry.addShapelessRecipe(
+			new ItemStack(xItems.getItemByName("FLASH"), 2),
+			xItems.getItemByName("sodiumNitrate"),
+			xItems.getItemByName("sodiumNitrate"),
+			IC2Items.getItem(dust)
+			);
 	}
 	
 	static void addShellRecipe(String n)
