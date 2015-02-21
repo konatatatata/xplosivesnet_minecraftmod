@@ -28,7 +28,7 @@ public class xFluids
 		addFluid("sulfuricAcid", 300, 2, true, 2f, true, xDamageSource.acid);
 		addFluid("nitroGlycerine", 300, 0, true, 1.0f, false, xDamageSource.poison);
 		addFluid("distilledWater", 300, 0, false, 0f, false, null);
-		addFluid("toxicWaste", 300, 1, true, 1.0f, true, xDamageSource.acid);		
+		addFluid("toxicWaste", 300, 2, true, 1.0f, true, xDamageSource.acid);		
 	}
 	
 	public static void addFluid(String fluidName, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)

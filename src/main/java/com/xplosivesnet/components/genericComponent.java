@@ -1,5 +1,6 @@
 package com.xplosivesnet.components;
 
+import com.xplosivesnet.xBlocks;
 import com.xplosivesnet.xFluids;
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xplosivesnet;
@@ -47,6 +48,7 @@ public class genericComponent extends Item
 			boolean disposed = false;
 			for(String fluidName : xFluids.fluidNames)
 			{
+				if(fluidName == null) break;
 				if(this.getUnlocalizedName().substring(5).equals(fluidName))
 				{
 					this.isFull = xFluids.getFluidByName(fluidName).getBlock();
@@ -113,14 +115,18 @@ public class genericComponent extends Item
                     }
 
                     Block toPickUp = p_77659_2_.getBlock(i, j, k);
-                    
-                    if(toPickUp == xFluids.getFluidByName("acetone").getBlock())
+                    if(toPickUp != null)
                     {
-                    	p_77659_2_.setBlockToAir(i, j, k);
-                    	return new ItemStack(xItems.getItemByName("acetone"));
+	                    for(String fluidName : xFluids.fluidNames)
+	                    {
+	                    	if(fluidName == null) break;
+	                    	if(toPickUp.equals(xFluids.getFluidByName(fluidName).getBlock()))
+	                        {
+	                        	p_77659_2_.setBlockToAir(i, j, k);
+	                        	return new ItemStack(xItems.getItemByName(fluidName));
+	                        }
+	                    }
                     }
-                    
-                    
                 }
                 else
                 {

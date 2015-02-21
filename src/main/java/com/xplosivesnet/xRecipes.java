@@ -167,7 +167,10 @@ public class xRecipes
 				new ItemStack(xItems.getItemByName("water"), 1),
 		        new ItemStack(Items.potionitem, 1, 0)
 		        );
-		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("water"), 1),
+		        ic2.api.item.IC2Items.getItem("waterCell")
+		        );
 		//just beta recipes! as long as synthesis dont work
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("potassiumNitrate"), 2),

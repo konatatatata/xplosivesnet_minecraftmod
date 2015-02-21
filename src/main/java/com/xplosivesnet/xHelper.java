@@ -1,6 +1,7 @@
 package com.xplosivesnet;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,15 @@ import net.minecraft.util.DamageSource;
 
 public class xHelper
 {
+	public static int randomInt(int min, int max)
+	{
+
+	    Random rand = new Random();
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+	    return randomNum;
+	}
+	
 	public static void removeRecipe(ItemStack resultItem)
 	{
 	ItemStack recipeResult = null;

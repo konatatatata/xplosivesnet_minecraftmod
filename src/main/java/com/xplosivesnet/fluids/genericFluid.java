@@ -76,9 +76,14 @@ public class genericFluid  extends BlockFluidClassic
 			if (xHelper.isPlayer(player))
 			{
 				xHelper.attack(player, this.damageSource, this.damage);
+				float vx, vy, vz;
+				vx = (xHelper.randomInt(1, 50) - 25) / 100f;
+				vy = (xHelper.randomInt(1, 50)) / 100f;
+				vz = (xHelper.randomInt(1, 50) - 25) / 100f;
+				player.setVelocity(vx, vy, vz);
 			} else {
 				if(this.destroyItems && player != null)
-				{
+				{					
 					xHelper.attack(player, xDamageSource.poison, 1f);
 					/*
 					double dx = (double)((float)b + 0.5F);
