@@ -27,30 +27,30 @@ public class xItems
 		addGenericComponent("hydrogenPeroxide", true, 64);
 		addGenericComponent("nitricAcid", true, 64);
 		addGenericComponent("sulfuricAcid", true, 64);
-		addGenericComponent("acetonePeroxide", true, 64);
+		addGenericComponent("acetonePeroxide", false, 64);
 		addGenericComponent("nitroGlycerine", true, 64);
-		addGenericComponent("ammoniumNitrate", true, 64);
-		addGenericComponent("potassiumNitrate", true, 64);
-		addGenericComponent("bariumNitrate", true, 64);
-		addGenericComponent("sodiumNitrate", true, 64);
-		addGenericComponent("potassiumCarbonate", true, 64);
+		addGenericComponent("ammoniumNitrate", false, 64);
+		addGenericComponent("potassiumNitrate", false, 64);
+		addGenericComponent("bariumNitrate", false, 64);
+		addGenericComponent("sodiumNitrate", false, 64);
+		addGenericComponent("potassiumCarbonate", false, 64);
 		addGenericComponent("distilledWater", true, 64);
 		addGenericComponent("toxicWaste", true, 64);
-		addGenericComponent("sulfur", true, 64);
-		addGenericComponent("carbon", true, 64);
-		addGenericComponent("hexamine", true, 64);
-		addGenericComponent("aluminium", true, 64);
-		addGenericComponent("magnesium", true, 64);
-		addGenericComponent("titanium", true, 64);
+		addGenericComponent("sulfur", false, 64);
+		addGenericComponent("carbon", false, 64);
+		addGenericComponent("hexamine", false, 64);
+		addGenericComponent("aluminium", false, 64);
+		addGenericComponent("magnesium", false, 64);
+		addGenericComponent("titanium", false, 64);
 		addGenericComponent("water", true, 64);
-		addGenericComponent("formaldehyde", true, 64);
+		addGenericComponent("formaldehyde", false, 64);
 		
-		addGenericComponent("sulfurIngot", true, 64);
-		addGenericComponent("nitratineIngot", true, 64);
-		addGenericComponent("uraniumIngot", true, 64);
-		addGenericComponent("titaniumIngot", true, 64);
-		addGenericComponent("aluminiumIngot", true, 64);
-		addGenericComponent("magnesiumIngot", true, 64);
+		addGenericComponent("sulfurIngot", false, 64);
+		addGenericComponent("nitratineIngot", false, 64);
+		addGenericComponent("uraniumIngot", false, 64);
+		addGenericComponent("titaniumIngot", false, 64);
+		addGenericComponent("aluminiumIngot", false, 64);
+		addGenericComponent("magnesiumIngot", false, 64);
 		
 		addGenericArmor("hazmaHelmet", 0);
 		addGenericArmor("hazmaChestplate", 1);
@@ -60,10 +60,10 @@ public class xItems
 		for(String name : xBlocks.blockNamesExplosives)
 		{
 			if(name == null) break;
-			addGenericComponent(name, true, 64);
+			addGenericComponent(name, false, 64);
 		}
 		
-		addKey("itemKey");
+		//addKey("itemKey");
 	}
 	
 	private static void addKey(String itemName)

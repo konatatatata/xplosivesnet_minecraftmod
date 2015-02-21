@@ -6,6 +6,7 @@ import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xDamageSource;
 import com.xplosivesnet.xTabs;
+import com.xplosivesnet.explosives.entities.genericExplosion;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -76,7 +77,17 @@ public class genericFluid  extends BlockFluidClassic
 			{
 				xHelper.attack(player, this.damageSource, this.damage);
 			} else {
-				if(this.destroyItems) xHelper.attack(player, xDamageSource.poison, 1f);
+				if(this.destroyItems && player != null)
+				{
+					xHelper.attack(player, xDamageSource.poison, 1f);
+					/*
+					double dx = (double)((float)b + 0.5F);
+			    	double dy = (double)((float)c + 0.5F);
+			    	double dz = (double)((float)d + 0.5F);
+			    	genericExplosion genericExplosion = new genericExplosion(a, 0, dx , dy, dz, 0.1f, null);
+			    	a.spawnEntityInWorld(genericExplosion);
+			    	*/
+				}
 			}
 		}
     }
