@@ -11,23 +11,18 @@ public class xTicker
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event)
 	{
-		/*
-		if(event.player.inventory.getCurrentItem() == new ItemStack(xItems.items[15]))
-		{
-			xHelper.attack(event.player, explo_damageSource.acid, 0.5f);
-		}
-		*/
-		/*
 		if(event.player.getCurrentEquippedItem() != null)
 	    {
 			ItemStack hand = event.player.getCurrentEquippedItem();
 	        if(hand.getItem() == xItems.getItemByName("uraniumIngot"))
 	        {
-	        	xHelper.addPotionEffect(event.player, xPotions.radioactivity, 10);
-        		xHelper.attack(event.player, xDamageSource.radiation, 0.5f);
+	        	if(!xArmor.hasFullHazardArmor(event.player))
+	        	{
+	        		//xHelper.addPotionEffect(event.player, xPotions.radioactivity, 10);
+	        		//xHelper.attack(event.player, xDamageSource.radiation, 0.5f);
+	        	}
 	         }
 	     }
-	     */
 	}
 	 
 	//Called when the client ticks. 
