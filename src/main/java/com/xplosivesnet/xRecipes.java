@@ -173,80 +173,23 @@ public class xRecipes
 				new ItemStack(xItems.getItemByName("water"), 1),
 		        ic2.api.item.IC2Items.getItem("waterCell")
 		        );
-		//just beta recipes! as long as synthesis dont work
 		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("potassiumNitrate"), 2),
-				xItems.getItemByName("sodiumNitrate"),
-				xItems.getItemByName("potassiumCarbonate"),
-				xItems.getItemByName("distilledWater")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("potassiumCarbonate"), 1),
-		        xItems.getItemByName("distilledWater"),
-		        xItems.getItemByName("carbon")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("sulfuricAcid"), 1),
-		        xItems.getItemByName("distilledWater"),
-		        xItems.getItemByName("sulfur"),
-		        Items.glowstone_dust
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("hydrogenPeroxide"), 1),
-		        xItems.getItemByName("distilledWater"),
-		        xItems.getItemByName("sulfuricAcid"),
-		        Items.glowstone_dust
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("hexamine"), 1),
-		        xItems.getItemByName("distilledWater"),
-		        xItems.getItemByName("ammonia"),
-		        xItems.getItemByName("formaldehyde")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("hydrochloricAcid"), 1),
-		        xItems.getItemByName("water"),
-		        Items.glowstone_dust
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("formaldehyde"), 1),
-		        xItems.getItemByName("distilledWater"),
-		        xItems.getItemByName("carbon"),
-		        Items.redstone
+				new ItemStack(xItems.getItemByName("electrolyzer"), 1),
+		        xItems.getItemByName("bottle"),
+		        ic2.api.item.IC2Items.getItem("suBattery")
 		        );
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("ammonia"), 2),
 		        xItems.getItemByName("distilledWater"),
 		        Items.rotten_flesh
 		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("nitricAcid"), 2),
-		        xItems.getItemByName("sodiumNitrate"),
-		        xItems.getItemByName("sulfuricAcid")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("nitricAcid"), 2),
-		        xItems.getItemByName("ammoniumNitrate"),
-		        xItems.getItemByName("sulfuricAcid")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("nitricAcid"), 2),
-		        xItems.getItemByName("potassiumNitrate"),
-		        xItems.getItemByName("sulfuricAcid")
-		        );
+		
+		//just beta recipes! as long as synthesis dont work
+
+		
+		
+		
 		//crafting explosives
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("AMMONAL"), 2),
-				xItems.getItemByName("ammoniumNitrate"),
-				xItems.getItemByName("ammoniumNitrate"),
-		        xItems.getItemByName("aluminium")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("AMMONAL"), 2),
-				xItems.getItemByName("ammoniumNitrate"),
-				xItems.getItemByName("ammoniumNitrate"),
-		        xItems.getItemByName("carbon")
-		        );
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(Items.gunpowder, 5),
 				xItems.getItemByName("sodiumNitrate"),
@@ -255,32 +198,9 @@ public class xRecipes
 		        xItems.getItemByName("sulfur"),
 		        xItems.getItemByName("carbon")
 		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("APEX"), 2),
-		        xItems.getItemByName("acetone"),
-		        xItems.getItemByName("hydrogenPeroxide"),
-		        xItems.getItemByName("hydrochloricAcid")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("HMTD"), 2),
-		        xItems.getItemByName("hexamine"),
-		        xItems.getItemByName("hydrogenPeroxide"),
-		        xItems.getItemByName("hydrochloricAcid")
-		        );
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("FLASH"), 2),
-				xItems.getItemByName("potassiumNitrate"),
-				xItems.getItemByName("potassiumNitrate"),
-				xItems.getItemByName("magnesium")
-		        );
+		
 		//IC2 FLASH
-		addFLASH("bronzeDust");
-		addFLASH("copperDust");
-		addFLASH("goldDust");
-		addFLASH("ironDust");
-		addFLASH("silverDust");
-		addFLASH("leadDust");
-		addFLASH("lithiumDust");
+		
 		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);

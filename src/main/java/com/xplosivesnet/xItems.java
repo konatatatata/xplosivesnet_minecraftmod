@@ -44,6 +44,8 @@ public class xItems
 		addGenericComponent("titanium", false, 64);
 		addGenericComponent("water", true, 64);
 		addGenericComponent("formaldehyde", false, 64);
+		addGenericComponent("electrolyzer", false, 64);
+		addGenericComponent("heater", false, 64);
 		
 		addGenericComponent("sulfurIngot", false, 64);
 		addGenericComponent("nitratineIngot", false, 64);

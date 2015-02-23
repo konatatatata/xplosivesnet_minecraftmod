@@ -96,6 +96,7 @@ public class reactionVessel extends BlockContainer
 	    			player.inventory.consumeInventoryItem(player.getCurrentEquippedItem().getItem());
 	    			player.inventory.addItemStackToInventory(new ItemStack(xItems.getItemByName("bottle")));
 	    			player.inventory.inventoryChanged = true;
+	    			player.inventory.markDirty();
 	    			return true;
 	    		}
 	    		else

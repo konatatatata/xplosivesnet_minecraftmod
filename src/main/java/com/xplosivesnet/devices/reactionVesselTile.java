@@ -11,12 +11,13 @@ import com.xplosivesnet.xSynthesisHandler;
 
 public class reactionVesselTile extends TileEntity
 {
-	private Item[] itemsHolding = new Item[xSynthesisHandler.arrayBounds];
+	private Item[] itemsHolding = new Item[xSynthesisHandler.itemBounds];
 	private int counter = 0;
 	private boolean synthesisRunning = false;
-	protected int synthesisRuntime = 1 * 20; //15 sec
+	protected int synthesisRuntime = 10 * 20; //10 sec
 	private int synthesisLeft = 0;
 	private boolean validSynthesis = false;
+	private Item[] synthesisOutput = new Item[xSynthesisHandler.itemBounds];
 	
 	reactionVesselTile()
 	{
@@ -37,8 +38,8 @@ public class reactionVesselTile extends TileEntity
 	
 	private void reset()
 	{
-		//itemsHolding = new Item[xSynthesisHandler.arrayBounds];
-		//counter = 0;
+		itemsHolding = new Item[xSynthesisHandler.arrayBounds];
+		counter = 0;
 		synthesisRunning = false;
 		synthesisLeft = 0;
 		validSynthesis = false;
@@ -79,12 +80,11 @@ public class reactionVesselTile extends TileEntity
 		
 		getInfo(player);
 		
-		if(item.getUnlocalizedName().substring(5).equals("distilledWater"))
+		if(xSynthesisHandler.validSynthesis(itemsHolding))
 		{
+			synthesisOutput = xSynthesisHandler.getSynthesisOutput(itemsHolding);
 			startSynthesis();
 			xHelper.sendMessage(player, "----Synthesis started----");
-			xHelper.sendMessage(player, xSynthesisHandler.getSynthesisOutput(itemsHolding[0], itemsHolding[1], itemsHolding[2], itemsHolding[3], itemsHolding[4]).toString());
-			
 		}
 		
 		return true;
@@ -100,15 +100,7 @@ public class reactionVesselTile extends TileEntity
 	{
 		this.synthesisRunning = true;
 		this.synthesisLeft = this.synthesisRuntime;
-		
-		int c = 0;
-		
-		if(xSynthesisHandler.validSynthesis(itemsHolding[0], itemsHolding[1], itemsHolding[2], itemsHolding[3], itemsHolding[4]))
-		{
-			this.validSynthesis = true;
-		} else {
-			this.validSynthesis = false;
-		}
+		this.validSynthesis = true;
 	}
 	
 	@Override
@@ -119,25 +111,16 @@ public class reactionVesselTile extends TileEntity
 			if(this.synthesisLeft <= 0)
 			{
 				this.synthesisRunning = false;
-				//this.clearItems();
 				if(this.validSynthesis == false)
 				{
 					this.addItem(xItems.getItemByName("toxicWaste"));
 				} else {
-					Item[] output = xSynthesisHandler.getSynthesisOutput(itemsHolding[0], itemsHolding[1], itemsHolding[2], itemsHolding[3], itemsHolding[4]);
-					if(output != null)
+					reset();
+					for(Item item : synthesisOutput)
 					{
-						for(Item i : output)
-						{
-							if( i != null)
-								this.addItem(i);
-						}
+						if(item == null) break;
+						this.addItem(item);
 					}
-					else
-					{
-						this.addItem(xItems.getItemByName("toxicWaste"));
-					}
-					//this.reset();
 				}
 			}
 			else
@@ -184,7 +167,14 @@ public class reactionVesselTile extends TileEntity
 		int c = 0;
 		for(Item item : this.itemsHolding)
 		{
-			if(item != null) c++;
+			if(item != null)
+			{
+				c++;
+			}
+			else
+			{
+				break;
+			}
 		}
 		return c;
 	}

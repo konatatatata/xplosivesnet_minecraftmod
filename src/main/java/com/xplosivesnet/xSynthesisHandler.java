@@ -1,145 +1,232 @@
 package com.xplosivesnet;
 
+import ic2.api.item.IC2Items;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class xSynthesisHandler
 {
-	public static int arrayBounds = 20;
-	public static int itemBounds = 5;
+	public static int arrayBounds = 100;
+	public static int itemBounds = 10;
 	private static Item[][] vesselSynthesisInput = new Item[arrayBounds][itemBounds];
 	private static Item[][] vesselSynthesisOutput = new Item[arrayBounds][itemBounds];
 	private static int counter = 0;
 	
 	static void loadSynthesis()
 	{
-		addSynthesis(xItems.getItemByName("ammoniumNitrate"), xItems.getItemByName("potassiumCarbonate"), xItems.getItemByName("distilledWater"), xItems.getItemByName("potassiumNitrate"));
-		addSynthesis(xItems.getItemByName("acetone"), xItems.getItemByName("hydrochloricAcid"), xItems.getItemByName("hydrogenPeroxide"), xItems.getItemByName("distilledWater"), xItems.getItemByName("acetonePeroxide"));
-		addSynthesis(xItems.getItemByName("hexamine"), xItems.getItemByName("hydrochloricAcid"), xItems.getItemByName("hydrogenPeroxide"), xItems.getItemByName("distilledWater"), xItems.getItemByName("HMTD"));
+		Item[] input, output;
 		
-	}
-	
-	public static void addSynthesis(Item a, Item oa)
-	{
-		addSynthesis(a, null, null, null, null, oa, null, null, null, null);
-	}
-	public static void addSynthesis(Item a, Item b, Item oa)
-	{
-		addSynthesis(a, b, null, null, null, oa, null, null, null, null);
-	}
-	public static void addSynthesis(Item a, Item b, Item c, Item oa)
-	{
-		addSynthesis(a, b, c, null, null, oa, null, null, null, null);
-	}
-	
-	public static void addSynthesis(Item a, Item b, Item c, Item d, Item oa)
-	{
-		addSynthesis(a, b, c, d, null, oa, null, null, null, null);
-	}
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("acetone");
+		input[1] = xItems.getItemByName("hydrochloricAcid");
+		input[2] = xItems.getItemByName("hydrogenPeroxide");
+		input[3] = xItems.getItemByName("distilledWater");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("APEX");
+		output[1] = xItems.getItemByName("toxicWaste");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("hexamine");
+		input[1] = xItems.getItemByName("hydrochloricAcid");
+		input[2] = xItems.getItemByName("hydrogenPeroxide");
+		input[3] = xItems.getItemByName("distilledWater");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("HMTD");
+		output[1] = xItems.getItemByName("toxicWaste");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("ammoniumNitrate");
+		input[1] = xItems.getItemByName("potassiumCarbonate");
+		input[2] = xItems.getItemByName("distilledWater");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("potassiumNitrate");
+		output[1] = xItems.getItemByName("potassiumNitrate");
+		output[2] = xItems.getItemByName("ammonia");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("carbon");
+		input[1] = xItems.getItemByName("distilledWater");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("potassiumCarbonate");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("electrolyzer");
+		input[1] = xItems.getItemByName("sulfur");
+		input[2] = xItems.getItemByName("distilledWater");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("sulfuricAcid");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("sodiumNitrate");
+		input[1] = xItems.getItemByName("sulfuricAcid");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("nitricAcid");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("ammoniumNitrate");
+		input[1] = xItems.getItemByName("sulfuricAcid");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("nitricAcid");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("potassiumNitrate");
+		input[1] = xItems.getItemByName("sulfuricAcid");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("nitricAcid");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("electrolyzer");
+		input[1] = xItems.getItemByName("water");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("hydrochloricAcid");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("distilledWater");
+		input[1] = xItems.getItemByName("ammonia");
+		input[2] = xItems.getItemByName("formaldehyde");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("hexamine");
+		output[1] = xItems.getItemByName("toxicWaste");
+		addSynthesis(input, output);
+		
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName("distilledWater");
+		input[1] = xItems.getItemByName("heater");
+		input[2] = xItems.getItemByName("carbon");
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName("formaldehyde");
+		addSynthesis(input, output);
 
-	public static void addSynthesis(Item a, Item b, Item c, Item d, Item e, Item oa, Item ob, Item oc, Item od, Item oe)
-	{
-		Item[] unsorted = new Item[itemBounds];
-		unsorted[0] = a;
-		unsorted[1] = b;
-		unsorted[2] = c;
-		unsorted[3] = d;
-		unsorted[4] = e;
-		Item[] sorted = (unsorted);
+		addExp("ammoniumNitrate", "aluminium", "AMMONAL");
+		addExp("ammoniumNitrate", "magnesium", "AMMONAL");
+		addExp("ammoniumNitrate", "titanium", "AMMONAL");
+		addExp("ammoniumNitrate", "carbon", "ANFO");
 		
-		vesselSynthesisInput[counter][0] = sorted[0];
-		vesselSynthesisInput[counter][1] = sorted[1];
-		vesselSynthesisInput[counter][2] = sorted[2];
-		vesselSynthesisInput[counter][3] = sorted[3];
-		vesselSynthesisInput[counter][4] = sorted[4];
-		vesselSynthesisOutput[counter][0] = oa;
-		vesselSynthesisOutput[counter][1] = ob;
-		vesselSynthesisOutput[counter][2] = oc;
-		vesselSynthesisOutput[counter][3] = od;
-		vesselSynthesisOutput[counter][4] = oe;
+		addExp("potassiumNitrate", "magnesium", "FLASH");
+		addExp("potassiumNitrate", "aluminium", "FLASH");
+		addExp("potassiumNitrate", "titanium", "FLASH");
+		addExpIC2("potassiumNitrate", "bronzeDust", "FLASH");
+		addExpIC2("potassiumNitrate", "copperDust", "FLASH");
+		addExpIC2("potassiumNitrate", "goldDust", "FLASH");
+		addExpIC2("potassiumNitrate", "ironDust", "FLASH");
+		addExpIC2("potassiumNitrate", "silverDust", "FLASH");
+		addExpIC2("potassiumNitrate", "leadDust", "FLASH");
+		addExpIC2("potassiumNitrate", "lithiumDust", "FLASH");
+
+	}
+	
+	private static void addExp(String oxi, String metal, String out)
+	{
+		Item[] input, output;
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName(oxi);
+		input[1] = xItems.getItemByName(oxi);
+		input[2] = xItems.getItemByName(metal);
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName(out);
+		output[1] = xItems.getItemByName(out);
+		addSynthesis(input, output);
+	}
+	
+	private static void addExpIC2(String oxi, String metal, String out)
+	{
+		Item[] input, output;
+		input = new Item[itemBounds];
+		input[0] = xItems.getItemByName(oxi);
+		input[1] = xItems.getItemByName(oxi);
+		input[2] = IC2Items.getItem(metal).getItem();
+		output = new Item[itemBounds];
+		output[0] = xItems.getItemByName(out);
+		output[1] = xItems.getItemByName(out);
+		addSynthesis(input, output);
+	}
+	
+	public static void addSynthesis(Item[] input, Item[] output)
+	{
+		vesselSynthesisInput[counter] = input;
+		vesselSynthesisOutput[counter] = output;
 		counter++;
 	}
 	
-	private static Item[] sortItems(Item[] unsorted)
+	public static Item[] getSynthesisOutput(Item[] input)
 	{
-		Item[] sorted = new Item[itemBounds];
+		Item[] output = new Item[itemBounds];
+		
+		int vsc = 0;
+		boolean valid = false;
+		boolean found = false;
+		for(Item[] vsi : vesselSynthesisInput)
+		{
+			if(vsi == null || found) break;
+			valid = true;
+			for(Item i : vsi)
+			{
+				if(i == null) break;
+				if(!inArray(i, input))
+				{
+					valid = false;
+				}
+			}
+			if(valid)
+			{
+				output = vesselSynthesisOutput[vsc];
+				found = true;
+				break;
+			}
+			vsc++;
+		}
 		
 		
-		//sorting cycle
-		
-		
-		return unsorted;
+		return output;
 	}
 	
-	public static boolean inArray(int[] arr, int x)
+	private static int countItems(Item[] items)
 	{
-		if(arr == null) return true;
-		for(int ar : arr)
+		int i = 0;
+		for(Item item : items)
 		{
-			if(ar == x) return true;
+			if(item == null) break;
+			i++;
 		}
-		return false;
+		return i;
+	}
+	
+	private static boolean inArray(Item a, Item[] b)
+	{
+		boolean contains = false;
+		for(Item it : b)
+		{
+			if(it == null) break;
+			if(it.getUnlocalizedName().substring(5).equals(a.getUnlocalizedName().substring(5)))
+			{
+				contains = true;
+				break;
+			}
+		}
+		return contains;
 	}
 
-	public static boolean validSynthesis(Item a, Item b, Item c, Item d, Item e)
+	public static boolean validSynthesis(Item[] input)
 	{
-		Item[] unsorted = new Item[itemBounds];
-		unsorted[0] = a;
-		unsorted[1] = b;
-		unsorted[2] = c;
-		unsorted[3] = d;
-		unsorted[4] = e;
-		Item[] sorted = sortItems(unsorted);
-		
-		for(Item[] input : vesselSynthesisInput)
+		if(countItems(getSynthesisOutput(input)) > 0)
 		{
-			if(input[0] == sorted[0])
-			{
-				if(input[1] == sorted[1])
-				{
-					if(input[2] == sorted[2])
-					{
-						if(input[3] == sorted[3])
-						{
-							if(input[4] == sorted[4])
-							{
-								return true;
-							}
-						}
-					}
-				}
-			}
+			return true;
 		}
 		return false;
-	}
-	
-	public static Item[] getSynthesisOutput(Item a, Item b, Item c, Item d, Item e)
-	{
-		int count = 0;
-		for(Item[] input : vesselSynthesisInput)
-		{
-			if(input[0] == a)
-			{
-				if(input[1] == b)
-				{
-					if(input[2] == c)
-					{
-						if(input[3] == d)
-						{
-							if(input[4] == e)
-							{
-								return vesselSynthesisOutput[counter];
-							}
-						}
-					}
-				}
-			}
-			counter++;
-		}
-		return null;
 	}
 }
