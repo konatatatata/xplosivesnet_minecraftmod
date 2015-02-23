@@ -29,6 +29,7 @@ public class genericBuildingBlock extends Block
 
 	public boolean renderAsNormalBlock()
     {
+		if(this.glassy) return false;
         return true;
     }
 	
@@ -46,6 +47,6 @@ public class genericBuildingBlock extends Block
 	
 	public boolean isOpaqueCube()
 	{
-		return this.glassy;
+		return !this.glassy;
 	}
 }

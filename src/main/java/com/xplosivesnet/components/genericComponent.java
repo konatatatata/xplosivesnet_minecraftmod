@@ -239,7 +239,8 @@ public class genericComponent extends Item
                         p_77875_1_.func_147480_a(p_77875_2_, p_77875_3_, p_77875_4_, true);
                     }
 
-                    p_77875_1_.setBlock(p_77875_2_, p_77875_3_, p_77875_4_, this.isFull, 0, 3);
+                    if(this.isFull != null)
+                    	p_77875_1_.setBlock(p_77875_2_, p_77875_3_, p_77875_4_, this.isFull, 0, 3);
                 }
 
                 return true;
