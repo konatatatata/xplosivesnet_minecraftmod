@@ -19,7 +19,7 @@ public class xOres
 	{
 		addOre("sulfur", 25, 10);
 		addOre("nitratine", 25, 15); //sodiumNitrate
-		addOre("uraninite", 10, 3);
+		addOre("uraninite", 3, 3);
 		addOre("ilmenite", 10, 5); //titan ore
 		addOre("aluminosilicate", 25, 15); //aluminium ore
 		addOre("magnesite", 15, 10); //aluminium ore

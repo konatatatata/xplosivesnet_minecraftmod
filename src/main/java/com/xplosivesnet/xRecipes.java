@@ -20,6 +20,8 @@ public class xRecipes
 		//remove
 		//disable tnt
 		xHelper.removeRecipe(new ItemStack(Blocks.tnt));
+		xHelper.removeRecipe(ic2.api.item.IC2Items.getItem("industrialTnt"));
+		
 		
 		//crafting
 		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("detonatingCord"), 6), new Object[]

@@ -7,8 +7,8 @@
   "mcversion": "1.7.10",
   "url": "",
   "updateUrl": "",
-  "authorList": ["konatatatata"],
-  "credits": "Created by konatatatata for the xplosives.net",
+  "authorList": ["konatatatata", "Nitrosparki"],
+  "credits": "Created by konatatatata and Nitrosparki",
   "logoFile": "logo.png",
   "screenshots": [],
   "dependencies": []
