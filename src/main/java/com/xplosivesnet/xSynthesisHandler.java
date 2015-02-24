@@ -23,26 +23,30 @@ public class xSynthesisHandler
 	{
 		Item[] input, output;
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("acetone");
-		input[1] = xItems.getItemByName("hydrochloricAcid");
-		input[2] = xItems.getItemByName("hydrogenPeroxide");
-		input[3] = xItems.getItemByName("distilledWater");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("APEX");
-		output[1] = xItems.getItemByName("toxicWaste");
-		addSynthesis(input, output);
-		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("hexamine");
-		input[1] = xItems.getItemByName("hydrochloricAcid");
-		input[2] = xItems.getItemByName("hydrogenPeroxide");
-		input[3] = xItems.getItemByName("distilledWater");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("HMTD");
-		output[1] = xItems.getItemByName("toxicWaste");
-		addSynthesis(input, output);
-		
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("acetone"), 
+					xItems.getItemByName("hydrochloricAcid"),
+					xItems.getItemByName("hydrogenPeroxide"),
+					xItems.getItemByName("distilledWater")
+				}, new Item[] 
+				{
+					xItems.getItemByName("APEX"),
+					xItems.getItemByName("toxicWaste")
+				});
+	
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("hexamine"), 
+					xItems.getItemByName("hydrochloricAcid"),
+					xItems.getItemByName("hydrogenPeroxide"),
+					xItems.getItemByName("distilledWater")
+				}, new Item[] 
+				{
+					xItems.getItemByName("HMTD"),
+					xItems.getItemByName("toxicWaste")
+				});
+
 		input = new Item[itemBounds];
 		input[0] = xItems.getItemByName("ammoniumNitrate");
 		input[1] = xItems.getItemByName("potassiumCarbonate");
@@ -121,13 +125,6 @@ public class xSynthesisHandler
 		addExp("potassiumNitrate", "magnesium", "FLASH");
 		addExp("potassiumNitrate", "aluminium", "FLASH");
 		addExp("potassiumNitrate", "titanium", "FLASH");
-		addExpIC2("potassiumNitrate", "bronzeDust", "FLASH");
-		addExpIC2("potassiumNitrate", "copperDust", "FLASH");
-		addExpIC2("potassiumNitrate", "goldDust", "FLASH");
-		addExpIC2("potassiumNitrate", "ironDust", "FLASH");
-		addExpIC2("potassiumNitrate", "silverDust", "FLASH");
-		addExpIC2("potassiumNitrate", "leadDust", "FLASH");
-		addExpIC2("potassiumNitrate", "lithiumDust", "FLASH");
 
 		printSynthesis();
 	}
@@ -166,19 +163,6 @@ public class xSynthesisHandler
 		input[0] = xItems.getItemByName(oxi);
 		input[1] = xItems.getItemByName(oxi);
 		input[2] = xItems.getItemByName(metal);
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName(out);
-		output[1] = xItems.getItemByName(out);
-		addSynthesis(input, output);
-	}
-	
-	private static void addExpIC2(String oxi, String metal, String out)
-	{
-		Item[] input, output;
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName(oxi);
-		input[1] = xItems.getItemByName(oxi);
-		input[2] = IC2Items.getItem(metal).getItem();
 		output = new Item[itemBounds];
 		output[0] = xItems.getItemByName(out);
 		output[1] = xItems.getItemByName(out);

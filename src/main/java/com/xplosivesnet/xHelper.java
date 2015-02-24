@@ -12,6 +12,7 @@ import java.util.Random;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -32,6 +33,26 @@ public class xHelper
 	    int randomNum = rand.nextInt((max - min) + 1) + min;
 
 	    return randomNum;
+	}
+	
+	public static void giveItem(EntityPlayer player, Item item)
+	{
+		if (!player.inventory.addItemStackToInventory(new ItemStack(item)))
+        {
+			player.dropPlayerItemWithRandomChoice(new ItemStack(item), false);
+        }
+		player.inventory.markDirty();
+		player.inventory.inventoryChanged = true;
+	}
+	
+	public static void giveItem(EntityPlayer player, ItemStack item)
+	{
+		if (!player.inventory.addItemStackToInventory(item))
+        {
+			player.dropPlayerItemWithRandomChoice(item, false);
+        }
+		player.inventory.markDirty();
+		player.inventory.inventoryChanged = true;
 	}
 	
 	public static void removeRecipe(ItemStack resultItem)

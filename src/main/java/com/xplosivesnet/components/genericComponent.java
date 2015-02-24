@@ -38,7 +38,7 @@ public class genericComponent extends Item
      */
     public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_)
     {
-    	if(p_77659_1_.stackSize != 1)
+    	if(p_77659_1_.stackSize < 1)
     	{
     		if(p_77659_2_.isRemote) xHelper.sendMessage(p_77659_3_, "Can only fill/dispose single bottle stack!");
     		return p_77659_1_;
@@ -54,11 +54,17 @@ public class genericComponent extends Item
 					this.isFull = xFluids.getFluidByName(fluidName).getBlock();
 				}
 			}
+			/*
 			if(this.getUnlocalizedName().substring(5).equals("water"))
 			{
 				this.isFull = Blocks.water;
 			}
+			*/
 		}
+    	else
+    	{
+    		if(!this.getUnlocalizedName().substring(5).equals("bottle")) return p_77659_1_;
+    	}
     	//
         boolean flag = this.isFull == Blocks.air;
         if(this.getUnlocalizedName().substring(5).equals("bottle")) flag = true;
@@ -89,10 +95,7 @@ public class genericComponent extends Item
                     return event.result;
                 }
 
-                if (!p_77659_3_.inventory.addItemStackToInventory(event.result))
-                {
-                    p_77659_3_.dropPlayerItemWithRandomChoice(event.result, false);
-                }
+                xHelper.giveItem(p_77659_3_, event.result);
 
                 return p_77659_1_;
             }
@@ -123,18 +126,17 @@ public class genericComponent extends Item
 	                    	if(toPickUp.equals(xFluids.getFluidByName(fluidName).getBlock()))
 	                        {
 	                        	p_77659_2_.setBlockToAir(i, j, k);
-	                        	return new ItemStack(xItems.getItemByName(fluidName));
+	                        	xHelper.giveItem(p_77659_3_, xItems.getItemByName(fluidName));
+	                        	p_77659_1_.stackSize--;
+	                        	return p_77659_1_;
 	                        }
 	                    }
+	                    return p_77659_1_;
                     }
                 }
                 else
                 {
-                    if (this.isFull == Blocks.air)
-                    {
-                        return new ItemStack(Items.bucket);
-                    }
-
+                    
                     if (movingobjectposition.sideHit == 0)
                     {
                         --j;
@@ -172,7 +174,13 @@ public class genericComponent extends Item
 
                     if (this.tryPlaceContainedLiquid(p_77659_2_, i, j, k) && !p_77659_3_.capabilities.isCreativeMode)
                     {
-                        return new ItemStack(xItems.getItemByName("bottle"));
+                    	p_77659_1_.stackSize--;
+                    	xHelper.giveItem(p_77659_3_, xItems.getItemByName("bottle"));
+                        return p_77659_1_;
+                    }
+                    else
+                    {
+                    	return p_77659_1_;
                     }
                 }
             }
