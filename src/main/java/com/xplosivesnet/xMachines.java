@@ -16,7 +16,5 @@ public class xMachines
 		reactionVessel = new reactionVessel();
 		GameRegistry.registerBlock(reactionVessel, "reactionVessel");
 		
-		xGeneration ore_gen = new xGeneration();
-		GameRegistry.registerWorldGenerator(ore_gen, 0);
 	}
 }

@@ -23,6 +23,9 @@ public class xOres
 		addOre("ilmenite", 10, 5); //titan ore
 		addOre("aluminosilicate", 25, 15); //aluminium ore
 		addOre("magnesite", 15, 10); //aluminium ore
+		
+		xGeneration ore_gen = new xGeneration();
+		GameRegistry.registerWorldGenerator(ore_gen, 0);
 	}
 	
 	public static void addOre(String name, int spawnRate, int s)

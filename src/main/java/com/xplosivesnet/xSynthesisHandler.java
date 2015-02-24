@@ -2,6 +2,7 @@ package com.xplosivesnet;
 
 import ic2.api.item.IC2Items;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -128,6 +129,34 @@ public class xSynthesisHandler
 		addExpIC2("potassiumNitrate", "leadDust", "FLASH");
 		addExpIC2("potassiumNitrate", "lithiumDust", "FLASH");
 
+		printSynthesis();
+	}
+	
+	static private void printSynthesis()
+	{
+		int c = 0;
+		String file = "synthesis.txt";
+		xHelper.writeFile("Synthesis mapping starting...", file, false);
+		for(Item[] vsi : vesselSynthesisInput)
+		{
+			if(countItems(vsi) == 0) break;
+			xHelper.writeFile("Input:", file, true);
+			for(Item i : vsi)
+			{
+				if(i == null) break;
+				xHelper.writeFile("<" + i.getUnlocalizedName().substring(5), file, true);
+			}
+			xHelper.writeFile("Output:", file, true);
+
+			for(Item i : vesselSynthesisOutput[c])
+			{
+				if(i == null) break;
+				xHelper.writeFile(">" + i.getUnlocalizedName().substring(5), file, true);
+			}
+			xHelper.writeFile("", file, true);
+			c++;
+		}
+		xHelper.writeFile("...Synthesis mapping ended", file, true);
 	}
 	
 	private static void addExp(String oxi, String metal, String out)
@@ -195,6 +224,38 @@ public class xSynthesisHandler
 		return output;
 	}
 	
+	public static Item[] getSynthesisInput(Item[] input)
+	{
+		Item[] output = new Item[itemBounds];
+		
+		int vsc = 0;
+		boolean valid = false;
+		boolean found = false;
+		for(Item[] vsi : vesselSynthesisInput)
+		{
+			if(vsi == null || found) break;
+			valid = true;
+			for(Item i : vsi)
+			{
+				if(i == null) break;
+				if(!inArray(i, input))
+				{
+					valid = false;
+				}
+			}
+			if(valid)
+			{
+				output = vesselSynthesisInput[vsc];
+				found = true;
+				break;
+			}
+			vsc++;
+		}
+		
+		
+		return output;
+	}
+	
 	private static int countItems(Item[] items)
 	{
 		int i = 0;
@@ -223,7 +284,7 @@ public class xSynthesisHandler
 
 	public static boolean validSynthesis(Item[] input)
 	{
-		if(countItems(getSynthesisOutput(input)) > 0)
+		if(countItems(getSynthesisOutput(input)) > 0 && countItems(input) == countItems(getSynthesisInput(input)))
 		{
 			return true;
 		}

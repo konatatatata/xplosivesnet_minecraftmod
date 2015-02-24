@@ -109,7 +109,7 @@ public class reactionVessel extends BlockContainer
 	    	}
 	    	player.inventory.inventoryChanged = true;
 		}
-		return false;
+		return true;
     }
 	
 

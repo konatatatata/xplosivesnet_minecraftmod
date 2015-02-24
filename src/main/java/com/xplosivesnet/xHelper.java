@@ -1,5 +1,11 @@
 package com.xplosivesnet;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -183,6 +189,21 @@ public class xHelper
 	public static int getDimension(ICommandSender sender)
 	{
 		return getPlayer(sender).dimension;
+	}
+	
+	public static void writeFile(String text, String fileName, boolean append)
+	{
+		try
+		{
+			PrintWriter pw = new PrintWriter(new BufferedWriter( new FileWriter(fileName, append)));
+			pw.write(text);
+			pw.println();
+			pw.close();
+		}
+		catch (IOException e)
+		{
+			
+		}
 	}
 	
 }

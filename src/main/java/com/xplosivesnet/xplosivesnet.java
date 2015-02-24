@@ -16,7 +16,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class xplosivesnet
 {
     public static final String MODID = "realistic_explosives";
-    public static final String VERSION = "1.4";
+    public static final String VERSION = "1.5";
     public static boolean isClient = false;
     @SidedProxy(clientSide="com.xplosivesnet.xCommonClientProxy", serverSide="com.xplosivesnet.xCommonProxy")
 	public static xCommonProxy proxy;
@@ -25,7 +25,6 @@ public class xplosivesnet
     public void init(FMLInitializationEvent event)
     {
     	//xPotions.loadPotions();
-    	
     	xTabs.loadTabs();
     	xBlocks.loadBlocks();
     	xItems.loadItems();
@@ -36,70 +35,6 @@ public class xplosivesnet
     	xSynthesisHandler.loadSynthesis();
     	//xWeapons.loadWeapons();
     	
-    	System.out.println("ID : ITEM");
-		int i = 0;
-		for (Item item : xItems.getItems())
-		{
-			if(item == null) break;
-			try
-			{
-				System.out.println(i + " : " + item.getUnlocalizedName());
-				i++;
-				
-		    }
-		    catch (NullPointerException e)
-			{
-		        
-		    }
-		}
-		
-		System.out.println("ID : BLOCK : ORE");
-		int j = 0;
-		for (Block block : xOres.getBlocks())
-		{
-			if(block == null) break;
-			try
-			{
-				System.out.println(j + " : " + block.getUnlocalizedName());
-				j++;
-		    }
-		    catch (NullPointerException e)
-			{
-		        
-		    }
-		}
-		
-		System.out.println("ID : BLOCK");
-		int k = 0;
-		for (Block block : xBlocks.getBlocks())
-		{
-			if(block == null) break;
-			try
-			{
-				System.out.println(k + " : " + block.getUnlocalizedName());
-				k++;
-		    }
-		    catch (NullPointerException e)
-			{
-		        
-		    }
-		}
-		
-		System.out.println("ID : BLOCK : FLUID");
-		int l = 0;
-		for (Fluid fluid : xFluids.fluids)
-		{
-			try
-			{
-				System.out.println(l + " : " + fluid.getUnlocalizedName());
-				l++;
-		    }
-		    catch (NullPointerException e)
-			{
-		        
-		    }
-		}
-		
 		this.proxy.init(event);
 		
 		FMLCommonHandler.instance().bus().register(new xTicker());
