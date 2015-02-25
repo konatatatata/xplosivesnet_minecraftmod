@@ -49,7 +49,7 @@ public class reactionVessel extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-		if (!world.isRemote)
+		if (true)
 		{
 			if(player == null) return false;
 			reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
@@ -73,10 +73,13 @@ public class reactionVessel extends BlockContainer
 	    		else
 	    		{
 	    			//empty bottle
-	    			tile.addItem(tool.getItem(), player);
-	    			tool.stackSize--;
-	    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
+	    			if(tile.addItem(tool.getItem(), player))
+	    			{
+	    				tool.stackSize--;
+		    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
+	    			}
 	    		}
+	    		player.inventoryContainer.detectAndSendChanges();
 	    	}
 	    	else
 	    	{

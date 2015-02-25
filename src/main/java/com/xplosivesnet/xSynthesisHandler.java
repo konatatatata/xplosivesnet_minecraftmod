@@ -47,75 +47,100 @@ public class xSynthesisHandler
 					xItems.getItemByName("toxicWaste")
 				});
 
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("ammoniumNitrate");
-		input[1] = xItems.getItemByName("potassiumCarbonate");
-		input[2] = xItems.getItemByName("distilledWater");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("potassiumNitrate");
-		output[1] = xItems.getItemByName("potassiumNitrate");
-		output[2] = xItems.getItemByName("ammonia");
-		addSynthesis(input, output);
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("carbon");
-		input[1] = xItems.getItemByName("distilledWater");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("potassiumCarbonate");
-		addSynthesis(input, output);
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("ammoniumNitrate"), 
+					xItems.getItemByName("potassiumCarbonate"),
+					xItems.getItemByName("distilledWater")
+				}, new Item[] 
+				{
+					xItems.getItemByName("potassiumNitrate"),
+					xItems.getItemByName("potassiumNitrate"),
+					xItems.getItemByName("ammonia")
+				});
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("electrolyzer");
-		input[1] = xItems.getItemByName("sulfur");
-		input[2] = xItems.getItemByName("distilledWater");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("sulfuricAcid");
-		addSynthesis(input, output);
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("carbon"), 
+					xItems.getItemByName("distilledWater")
+				}, new Item[] 
+				{
+					xItems.getItemByName("potassiumCarbonate"),
+					xItems.getItemByName("potassiumCarbonate"),
+					xItems.getItemByName("water")
+				});
+
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("electrolyzer"), 
+					xItems.getItemByName("sulfur"),
+					xItems.getItemByName("distilledWater")
+				}, new Item[] 
+				{
+					xItems.getItemByName("sulfuricAcid")
+				});
+
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("sodiumNitrate"), 
+					xItems.getItemByName("sulfuricAcid")
+				}, new Item[] 
+				{
+					xItems.getItemByName("nitricAcid")
+				});
+
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("ammoniumNitrate"), 
+					xItems.getItemByName("sulfuricAcid")
+				}, new Item[] 
+				{
+					xItems.getItemByName("nitricAcid")
+				});
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("sodiumNitrate");
-		input[1] = xItems.getItemByName("sulfuricAcid");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("nitricAcid");
-		addSynthesis(input, output);
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("potassiumNitrate"), 
+					xItems.getItemByName("sulfuricAcid")
+				}, new Item[] 
+				{
+					xItems.getItemByName("nitricAcid")
+				});
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("ammoniumNitrate");
-		input[1] = xItems.getItemByName("sulfuricAcid");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("nitricAcid");
-		addSynthesis(input, output);
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("electrolyzer"), 
+					xItems.getItemByName("water")
+				}, new Item[] 
+				{
+					xItems.getItemByName("hydrochloricAcid")
+				});
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("potassiumNitrate");
-		input[1] = xItems.getItemByName("sulfuricAcid");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("nitricAcid");
-		addSynthesis(input, output);
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("distilledWater"), 
+					xItems.getItemByName("ammonia"),
+					xItems.getItemByName("formaldehyde")
+				}, new Item[] 
+				{
+					xItems.getItemByName("hexamine"),
+					xItems.getItemByName("hexamine"),
+					xItems.getItemByName("toxicWaste")
+				});
 		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("electrolyzer");
-		input[1] = xItems.getItemByName("water");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("hydrochloricAcid");
-		addSynthesis(input, output);
-		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("distilledWater");
-		input[1] = xItems.getItemByName("ammonia");
-		input[2] = xItems.getItemByName("formaldehyde");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("hexamine");
-		output[1] = xItems.getItemByName("toxicWaste");
-		addSynthesis(input, output);
-		
-		input = new Item[itemBounds];
-		input[0] = xItems.getItemByName("distilledWater");
-		input[1] = xItems.getItemByName("heater");
-		input[2] = xItems.getItemByName("carbon");
-		output = new Item[itemBounds];
-		output[0] = xItems.getItemByName("formaldehyde");
-		addSynthesis(input, output);
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("distilledWater"), 
+					xItems.getItemByName("heater"),
+					xItems.getItemByName("carbon"),
+					
+				}, new Item[] 
+				{
+					xItems.getItemByName("formaldehyde"),
+					xItems.getItemByName("formaldehyde"),
+					xItems.getItemByName("toxicWaste")
+				});
 
 		addExp("ammoniumNitrate", "aluminium", "AMMONAL");
 		addExp("ammoniumNitrate", "magnesium", "AMMONAL");

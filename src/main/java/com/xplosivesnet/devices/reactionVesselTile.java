@@ -1,23 +1,32 @@
 package com.xplosivesnet.devices;
 
+import ic2.api.network.INetworkDataProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
 import com.xplosivesnet.xSynthesisHandler;
 
-public class reactionVesselTile extends TileEntity
+import cpw.mods.fml.common.network.ByteBufUtils;
+
+public class reactionVesselTile extends TileEntity 
 {
 	private Item[] itemsHolding = new Item[xSynthesisHandler.itemBounds];
+	private Item[] synthesisOutput = new Item[xSynthesisHandler.itemBounds];
+	
 	private int counter = 0;
 	private boolean synthesisRunning = false;
 	protected int synthesisRuntime = 10 * 20; //10 sec
 	private int synthesisLeft = 0;
 	private boolean validSynthesis = false;
-	private Item[] synthesisOutput = new Item[xSynthesisHandler.itemBounds];
 	
 	reactionVesselTile()
 	{
@@ -25,15 +34,60 @@ public class reactionVesselTile extends TileEntity
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound par1)
-	{
-		super.writeToNBT(par1);
-	}
-
-	@Override
 	public void readFromNBT(NBTTagCompound par1)
 	{
+		
+		this.counter = par1.getInteger("counter");
+		this.synthesisRunning = par1.getBoolean("synthesisRunning");
+		this.synthesisRuntime = par1.getInteger("synthesisRuntime");
+		this.synthesisLeft = par1.getInteger("synthesisLeft");
+		this.validSynthesis = par1.getBoolean("validSynthesis");
+		
+		NBTTagList nbttaglist = par1.getTagList("Items", xSynthesisHandler.itemBounds);
+		this.itemsHolding = new Item[xSynthesisHandler.itemBounds];
+
+		for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            //this.itemsHolding[i] = ItemStack.loadItemStackFromNBT(nbttagcompound1).getItem();
+            
+            int j = nbttagcompound1.getByte("Slot") & 255;
+
+            if (j >= 0 && j < this.itemsHolding.length)
+            {
+                this.itemsHolding[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1).getItem();
+            }
+            
+        }
+		System.out.println("nbt read");
 		super.readFromNBT(par1);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound par1)
+	{
+		
+		par1.setInteger("counter", this.counter);
+		par1.setBoolean("synthesisRunning", this.synthesisRunning);
+		par1.setInteger("synthesisRuntime", this.synthesisRuntime);
+		par1.setInteger("synthesisLeft", this.synthesisLeft);
+		par1.setBoolean("validSynthesis", this.validSynthesis);
+		
+		NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.itemsHolding.length; ++i)
+        {
+        	NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+            nbttagcompound1.setByte("Slot", (byte)i);
+            new ItemStack(this.itemsHolding[i]).writeToNBT(nbttagcompound1);
+            nbttaglist.appendTag(nbttagcompound1);
+        }
+        par1.setTag("Items", nbttaglist);
+        
+        
+        System.out.println("nbt write");
+        
+        super.writeToNBT(par1);
 	}
 	
 	private void reset()
@@ -106,6 +160,7 @@ public class reactionVesselTile extends TileEntity
 	@Override
 	public void updateEntity()
 	{
+		super.updateEntity();
 		if(this.synthesisRunning)
 		{
 			if(this.synthesisLeft <= 0)
@@ -128,6 +183,7 @@ public class reactionVesselTile extends TileEntity
 				this.synthesisLeft--;
 			}
 		}
+		this.getWorldObj().notifyBlockChange(xCoord, yCoord, zCoord, this.getBlockType());
 	}
 	
 	public Item fillBottle()

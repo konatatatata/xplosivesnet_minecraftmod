@@ -3,10 +3,14 @@ package com.xplosivesnet;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 
 import com.xplosivesnet.building.itemKey;
 import com.xplosivesnet.components.genericComponent;
 import com.xplosivesnet.utilities.genericArmor;
+import com.xplosivesnet.utilities.genericBook;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -66,6 +70,18 @@ public class xItems
 		}
 		
 		//addKey("itemKey");
+		
+		//addBook("testBook");
+		
+	}
+	
+	private static void addBook(String itemName)
+	{
+		Item item = new genericBook(itemName);
+		items[counter] = item;
+		itemNames[counter] = itemName;
+		counter++;
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
 	
 	private static void addKey(String itemName)

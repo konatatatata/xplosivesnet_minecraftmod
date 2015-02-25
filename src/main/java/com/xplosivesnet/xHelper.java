@@ -43,6 +43,7 @@ public class xHelper
         }
 		player.inventory.markDirty();
 		player.inventory.inventoryChanged = true;
+		player.inventoryContainer.detectAndSendChanges();
 	}
 	
 	public static void giveItem(EntityPlayer player, ItemStack item)
@@ -171,7 +172,7 @@ public class xHelper
 	
 	public static void sendMessage(ICommandSender sender, String msg)
 	{
-		if(isPlayer(sender))
+		if(isPlayer(sender) && !getPlayer(sender).worldObj.isRemote)
 		{
 			getPlayer(sender).addChatMessage(new ChatComponentTranslation(msg));
 		} else {
@@ -181,7 +182,7 @@ public class xHelper
 	
 	public static void sendMessage(EntityPlayer sender, String msg)
 	{
-		if(isPlayer(sender))
+		if(isPlayer(sender) && !sender.worldObj.isRemote)
 		{
 			getPlayer(sender).addChatMessage(new ChatComponentTranslation(msg));
 		} else {

@@ -23,6 +23,9 @@ item.aluminium.name=Aluminium
 item.water.name=Water
 item.formaldehyde.name=Formaldehyde
 item.magnesium.name=Magnesium
+item.titanium.name=Titanium
+item.heater.name=Heater
+item.electrolyzer.name=Electrolyzer
 
 tile.acetone.name=Acetone
 tile.glycerine.name=Glycerine
@@ -31,6 +34,9 @@ tile.hydrogenPeroxide.name=Hydrogen Peroxide
 tile.nitricAcid.name=Nitric Acid
 tile.nitroGlycerine.name=Nitro Glycerine
 tile.sulfuricAcid.name=Sulfuric Acid
+tile.distilledWater.name=Distilled Water
+tile.ammonia.name=Ammonia
+tile.toxicWaste.name=Toxic Waste
 
 item.sulfurIngot.name=Sulfur Ingot
 item.nitratineIngot.name=Nitratine Ingot
@@ -56,8 +62,9 @@ tile.hardenedConcrete.name=Concrete (Hardened)
 tile.reinforcedConcrete.name=Concrete (Reinforced)
 tile.hardenedGlass.name=Glass (Hardened)
 tile.reinforcedGlass.name=Glass (Reinforced)
+tile.lockedDoor.name=Lockable Door
 
-tile.reactionVessel.name=Reaction Vessel (DONT USE!)
+tile.reactionVessel.name=Reaction Vessel (Items dont save!)
 
 itemGroup.components=Components
 itemGroup.machines=Machines
