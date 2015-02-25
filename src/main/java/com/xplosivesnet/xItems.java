@@ -145,20 +145,15 @@ public class xItems
 	public static boolean isComponentItem(String itemName)
 	{
 		int counter = 0;
+		if(itemName == null) return false;
 		for (Item item : xItems.items)
 		{
-			try
+			if(item == null) break;
+			if(itemNames[counter].equals(itemName))
 			{
-				if(itemNames[counter].equals(itemName.substring(5)))
-				{
-					return true;
-				}
-				counter++;
-		    }
-		    catch (NullPointerException e)
-			{
-		    	
-		    }
+				return true;
+			}
+			counter++;
 		}
 		return false;
 	}

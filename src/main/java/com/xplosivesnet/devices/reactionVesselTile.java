@@ -103,16 +103,16 @@ public class reactionVesselTile extends TileEntity
 	{
 		if(this.synthesisRunning)
 		{
-			xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
 		}
 		else
 		{
-			xHelper.sendMessage(player, "Holding " + countItems() + "/" + itemsHolding.length);
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "Holding " + countItems() + "/" + itemsHolding.length);
 		}
 		for(Item item : this.itemsHolding)
 		{
 			if(item == null) break;
-			xHelper.sendMessage(player, ">" + item.getUnlocalizedName().substring(5));
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, ">" + item.getUnlocalizedName().substring(5));
 		}
 	}
 		
@@ -120,25 +120,25 @@ public class reactionVesselTile extends TileEntity
 	{
 		if(itemsHolding.length == countItems())
 		{
-			xHelper.sendMessage(player, "-----Vessel full-----");
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-----Vessel full-----");
 			return false;
 		}
 		if(this.synthesisRunning)
 		{
-			xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
 			return false;
 		}
 		
 		itemsHolding[counter] = item;
 		counter++;
 		
-		getInfo(player);
+		//getInfo(player);
 		
 		if(xSynthesisHandler.validSynthesis(itemsHolding))
 		{
 			synthesisOutput = xSynthesisHandler.getSynthesisOutput(itemsHolding);
 			startSynthesis();
-			xHelper.sendMessage(player, "----Synthesis started----");
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "----Synthesis started----");
 		}
 		
 		return true;

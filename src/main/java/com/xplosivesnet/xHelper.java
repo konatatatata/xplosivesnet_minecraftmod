@@ -35,6 +35,17 @@ public class xHelper
 	    return randomNum;
 	}
 	
+	public static int countItems(Item[] items)
+	{
+		int i = 0;
+		for(Item item : items)
+		{
+			if(item == null) break;
+			i++;
+		}
+		return i;
+	}
+	
 	public static void giveItem(EntityPlayer player, Item item)
 	{
 		if (!player.inventory.addItemStackToInventory(new ItemStack(item)))

@@ -86,16 +86,6 @@ public class xRecipes
 			    	'x', xBlocks.getBlockByName("hardenedGlass")
 				});
 		
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("bottle"), 1),
-		        Items.glass_bottle
-		        );
-		
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(Items.glass_bottle, 1),
-				xItems.getItemByName("bottle")
-		        );
-		
 		GameRegistry.addRecipe(new ItemStack(xItems.getItemByName("shell"), 16), new Object[]
 				{
 					"xcx",
@@ -168,15 +158,25 @@ public class xRecipes
 		        ic2.api.item.IC2Items.getItem("coalDust")
 		        );
 		
-		//water
-		GameRegistry.addShapelessRecipe(
-				new ItemStack(xItems.getItemByName("water"), 1),
-		        new ItemStack(Items.potionitem, 1, 0)
-		        );
+		//bottle<>cell
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("water"), 1),
 		        ic2.api.item.IC2Items.getItem("waterCell")
 		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(ic2.api.item.IC2Items.getItem("waterCell").getItem(), 1),
+				xItems.getItemByName("water")
+		        );
+		
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(ic2.api.item.IC2Items.getItem("cell").getItem(), 1),
+				xItems.getItemByName("bottle")
+		        );
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("bottle"), 1),
+				ic2.api.item.IC2Items.getItem("cell").getItem()
+		        );
+		
 		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("electrolyzer"), 1),
@@ -195,8 +195,6 @@ public class xRecipes
 		        Items.rotten_flesh
 		        );
 		
-		
-		
 		//crafting explosives
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(Items.gunpowder, 5),
@@ -207,6 +205,12 @@ public class xRecipes
 		        xItems.getItemByName("carbon")
 		        );
 
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("dynamite"), 1),
+				xItems.getItemByName("nitroGlycerine"),
+				Blocks.sand
+		        );
+		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);
 		GameRegistry.addSmelting(xOres.getBlockByName("nitratine"), new ItemStack(xItems.getItemByName("nitratineIngot")), 0.5f);

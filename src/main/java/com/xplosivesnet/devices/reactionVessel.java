@@ -49,46 +49,42 @@ public class reactionVessel extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
-		if (true)
-		{
-			if(player == null) return false;
-			reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
-	    	tile.getInfo(player);
-			if(player.inventory.getCurrentItem() == null) return false;
-			ItemStack tool = player.inventory.getCurrentItem();
-			if(tool.getItem() == null) return false;
-			if(tool.stackSize == 0) return false;
-	    	
-	    	if(xItems.isComponentItem(tool.getItem().getUnlocalizedName()))
+		if(player == null) return false;
+		reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+		if(player.inventory.getCurrentItem() == null) return false;
+		ItemStack tool = player.inventory.getCurrentItem();
+		if(tool.getItem() == null) return false;
+		if(tool.stackSize == 0) return false;
+	    
+	    if(xItems.isComponentItem(tool.getItem().getUnlocalizedName().substring(5)))
+	    {
+	    	if(tool.getItem() == xItems.getItemByName("bottle"))
 	    	{
-	    		if(tool.getItem() == xItems.getItemByName("bottle"))
+	    		//fill bottle
+	    		if(tile.canFillBottle())
 	    		{
-	    			//fill bottle
-	    			if(tile.canFillBottle())
-	    			{
-	    				xHelper.giveItem(player, tile.fillBottle());
-	    				tool.stackSize--;
-	    			}
+	    			xHelper.giveItem(player, tile.fillBottle());
+	    			tool.stackSize--;
 	    		}
-	    		else
-	    		{
-	    			//empty bottle
-	    			if(tile.addItem(tool.getItem(), player))
-	    			{
-	    				tool.stackSize--;
-		    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
-	    			}
-	    		}
-	    		player.inventoryContainer.detectAndSendChanges();
 	    	}
 	    	else
 	    	{
-	    		xHelper.sendMessage(player, "This is not valid item");
+	    		//empty bottle
+	    		if(tile.addItem(tool.getItem(), player))
+	    		{
+	    			tool.stackSize--;
+	    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
+	    		}
 	    	}
-		}
-		
-		
-		return true;
+	    player.inventoryContainer.detectAndSendChanges();
+	    }
+	    else
+	    {
+	    	xHelper.sendMessage(player, "This is not a valid item");
+	    }
+	    if(world.isRemote) tile.getInfo(player);
+				
+	    return true;
     }
 	
 

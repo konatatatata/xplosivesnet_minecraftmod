@@ -47,7 +47,6 @@ public class xSynthesisHandler
 					xItems.getItemByName("toxicWaste")
 				});
 
-		
 		addSynthesis(new Item[] 
 				{
 					xItems.getItemByName("ammoniumNitrate"), 
@@ -60,7 +59,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("ammonia")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(new Item[]
 				{
 					xItems.getItemByName("carbon"), 
 					xItems.getItemByName("distilledWater")
@@ -119,6 +118,17 @@ public class xSynthesisHandler
 		
 		addSynthesis(new Item[] 
 				{
+					xItems.getItemByName("ammonia"),
+					xItems.getItemByName("nitricAcid")
+				}, new Item[] 
+				{
+					xItems.getItemByName("ammoniumNitrate"),
+					xItems.getItemByName("ammoniumNitrate")
+				});
+		
+		
+		addSynthesis(new Item[] 
+				{
 					xItems.getItemByName("distilledWater"), 
 					xItems.getItemByName("ammonia"),
 					xItems.getItemByName("formaldehyde")
@@ -135,13 +145,34 @@ public class xSynthesisHandler
 					xItems.getItemByName("heater"),
 					xItems.getItemByName("carbon"),
 					
-				}, new Item[] 
+				}, new Item[]
 				{
 					xItems.getItemByName("formaldehyde"),
 					xItems.getItemByName("formaldehyde"),
 					xItems.getItemByName("toxicWaste")
 				});
 
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("nitricAcid"), 
+					xItems.getItemByName("glycerine")
+					
+				}, new Item[]
+				{
+					xItems.getItemByName("nitroGlycerine")
+				});
+		
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("nitricAcid"), 
+					xItems.getItemByName("hexamine")
+				}, new Item[]
+				{
+					xItems.getItemByName("RDX"),
+					xItems.getItemByName("RDX")
+				});
+		
+		
 		addExp("ammoniumNitrate", "aluminium", "AMMONAL");
 		addExp("ammoniumNitrate", "magnesium", "AMMONAL");
 		addExp("ammoniumNitrate", "titanium", "AMMONAL");
@@ -161,7 +192,7 @@ public class xSynthesisHandler
 		xHelper.writeFile("Synthesis mapping starting...", file, false);
 		for(Item[] vsi : vesselSynthesisInput)
 		{
-			if(countItems(vsi) == 0) break;
+			if(xHelper.countItems(vsi) == 0) break;
 			xHelper.writeFile("Input:", file, true);
 			for(Item i : vsi)
 			{
@@ -186,8 +217,7 @@ public class xSynthesisHandler
 		Item[] input, output;
 		input = new Item[itemBounds];
 		input[0] = xItems.getItemByName(oxi);
-		input[1] = xItems.getItemByName(oxi);
-		input[2] = xItems.getItemByName(metal);
+		input[1] = xItems.getItemByName(metal);
 		output = new Item[itemBounds];
 		output[0] = xItems.getItemByName(out);
 		output[1] = xItems.getItemByName(out);
@@ -265,17 +295,6 @@ public class xSynthesisHandler
 		return output;
 	}
 	
-	private static int countItems(Item[] items)
-	{
-		int i = 0;
-		for(Item item : items)
-		{
-			if(item == null) break;
-			i++;
-		}
-		return i;
-	}
-	
 	private static boolean inArray(Item a, Item[] b)
 	{
 		boolean contains = false;
@@ -293,10 +312,29 @@ public class xSynthesisHandler
 
 	public static boolean validSynthesis(Item[] input)
 	{
-		if(countItems(getSynthesisOutput(input)) > 0 && countItems(input) == countItems(getSynthesisInput(input)))
+		if(xHelper.countItems(getSynthesisOutput(input)) > 0 && xHelper.countItems(input) == xHelper.countItems(getSynthesisInput(input)))
 		{
 			return true;
 		}
 		return false;
+	}
+	
+	public static Item[][] getSynthesisBySingleItem(Item item)
+	{
+		Item[][] items = new Item[arrayBounds][itemBounds];
+		int c = 0;
+		int i = 0;
+		for(Item[] vso : vesselSynthesisOutput)
+		{
+			if(xHelper.countItems(vso) == 0) break;
+			if(inArray(item, vso))
+			{
+				items[c] = vesselSynthesisInput[i];
+				c++;
+				break;
+			}
+			i++;
+		}
+		return items;
 	}
 }
