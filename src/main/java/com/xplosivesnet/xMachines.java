@@ -15,6 +15,6 @@ public class xMachines
 	{
 		reactionVessel = new reactionVessel();
 		GameRegistry.registerBlock(reactionVessel, "reactionVessel");
-		
+		GameRegistry.registerTileEntity(com.xplosivesnet.devices.reactionVesselTile.class, "reactionVesselTile");
 	}
 }

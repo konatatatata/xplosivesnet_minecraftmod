@@ -3,13 +3,17 @@ package com.xplosivesnet.devices;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
@@ -17,8 +21,10 @@ import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xTabs;
 import com.xplosivesnet.models.tileGenericCustomModelExplosive;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import cpw.mods.fml.server.FMLServerHandler;
 
 public class reactionVessel extends BlockContainer
 {
@@ -51,9 +57,17 @@ public class reactionVessel extends BlockContainer
     {
 		if(player == null) return false;
 		reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
-		if(player.inventory.getCurrentItem() == null) return false;
+		if(player.inventory.getCurrentItem() == null)
+		{
+			if(world.isRemote) tile.getInfo(player);
+			return false;
+		}
 		ItemStack tool = player.inventory.getCurrentItem();
-		if(tool.getItem() == null) return false;
+		if(tool.getItem() == null)
+		{
+			if(world.isRemote) tile.getInfo(player);
+			return false;
+		}
 		if(tool.stackSize == 0) return false;
 	    
 	    if(xItems.isComponentItem(tool.getItem().getUnlocalizedName().substring(5)))
@@ -65,6 +79,7 @@ public class reactionVessel extends BlockContainer
 	    		{
 	    			xHelper.giveItem(player, tile.fillBottle());
 	    			tool.stackSize--;
+	    			player.inventoryContainer.detectAndSendChanges();
 	    		}
 	    	}
 	    	else
@@ -72,11 +87,11 @@ public class reactionVessel extends BlockContainer
 	    		//empty bottle
 	    		if(tile.addItem(tool.getItem(), player))
 	    		{
-	    			tool.stackSize--;
 	    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
+	    			tool.stackSize--;
+	    			player.inventoryContainer.detectAndSendChanges();
 	    		}
 	    	}
-	    player.inventoryContainer.detectAndSendChanges();
 	    }
 	    else
 	    {

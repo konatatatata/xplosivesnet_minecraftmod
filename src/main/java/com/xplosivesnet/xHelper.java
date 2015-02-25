@@ -1,8 +1,6 @@
 package com.xplosivesnet;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +10,7 @@ import java.util.Random;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -46,6 +45,24 @@ public class xHelper
 		return i;
 	}
 	
+	public static void removeItem(EntityPlayer ep, ItemStack removeitem)
+	{
+		IInventory inv = ep.inventory;
+		for(int i=0; i < inv.getSizeInventory(); i++)
+		{
+			if(inv.getStackInSlot(i) != null)
+			{
+				ItemStack j = inv.getStackInSlot(i);
+				if(j.getItem() != null && j.getItem() == removeitem.getItem())
+				{
+					inv.setInventorySlotContents(i, null);
+				}
+				
+				
+			}
+		}
+	}
+	
 	public static void giveItem(EntityPlayer player, Item item)
 	{
 		if (!player.inventory.addItemStackToInventory(new ItemStack(item)))
@@ -56,7 +73,7 @@ public class xHelper
 		player.inventory.inventoryChanged = true;
 		player.inventoryContainer.detectAndSendChanges();
 	}
-	
+
 	public static void giveItem(EntityPlayer player, ItemStack item)
 	{
 		if (!player.inventory.addItemStackToInventory(item))

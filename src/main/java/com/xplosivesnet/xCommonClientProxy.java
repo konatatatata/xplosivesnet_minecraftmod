@@ -30,7 +30,6 @@ public class xCommonClientProxy extends xCommonProxy
 		//ClientRegistry.bindTileEntitySpecialRenderer(com.xplosivesnet.models.tileMine.class, new mineRenderer(10f));
 		
 		GameRegistry.registerTileEntity(com.xplosivesnet.explosives.entities.timedChargeTileNoGui.class, "timedChargeTileNoGui");
-		GameRegistry.registerTileEntity(com.xplosivesnet.devices.reactionVesselTile.class, "reactionVesselTile");
     }
 
 	@Override
