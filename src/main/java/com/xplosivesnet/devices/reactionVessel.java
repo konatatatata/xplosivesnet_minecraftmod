@@ -52,7 +52,7 @@ public class reactionVessel extends BlockContainer
 		return false;
 	}
 	
-	@SideOnly(Side.CLIENT)
+	//@SideOnly(Side.CLIENT)
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
 		if(player == null) return false;
@@ -75,21 +75,27 @@ public class reactionVessel extends BlockContainer
 	    	if(tool.getItem() == xItems.getItemByName("bottle"))
 	    	{
 	    		//fill bottle
-	    		if(tile.canFillBottle())
+	    		if(true)
 	    		{
-	    			xHelper.giveItem(player, tile.fillBottle());
-	    			tool.stackSize--;
-	    			player.inventoryContainer.detectAndSendChanges();
+		    		if(tile.canFillBottle())
+		    		{
+		    			xHelper.giveItem(player, tile.fillBottle());
+		    			tool.stackSize--;
+		    			player.inventoryContainer.detectAndSendChanges();
+		    		}
 	    		}
 	    	}
 	    	else
 	    	{
 	    		//empty bottle
-	    		if(tile.addItem(tool.getItem(), player))
+	    		if(true)
 	    		{
-	    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
-	    			tool.stackSize--;
-	    			player.inventoryContainer.detectAndSendChanges();
+		    		if(tile.addItem(tool.getItem(), player))
+		    		{
+		    			xHelper.giveItem(player, xItems.getItemByName("bottle"));
+		    			tool.stackSize--;
+		    			player.inventoryContainer.detectAndSendChanges();
+		    		}
 	    		}
 	    	}
 	    }
