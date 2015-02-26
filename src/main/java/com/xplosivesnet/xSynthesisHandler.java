@@ -34,7 +34,16 @@ public class xSynthesisHandler
 					xItems.getItemByName("APEX"),
 					xItems.getItemByName("toxicWaste")
 				});
-	
+		
+		addSynthesis(new Item[] 
+				{
+					xItems.getItemByName("electrolyzer"), 
+					xItems.getItemByName("sulfuricAcid")
+				}, new Item[] 
+				{
+					xItems.getItemByName("hydrogenPeroxide")
+				});
+		
 		addSynthesis(new Item[] 
 				{
 					xItems.getItemByName("hexamine"), 
