@@ -14,10 +14,11 @@ public class timedChargeTileNoGui extends TileEntity
 	private static float timeLeft = timeDef;
 	private static float maxTime = 30 * 10;
 	private static boolean fused = false;
+	private float chance;
 	
-	public timedChargeTileNoGui()
+	public timedChargeTileNoGui(float chance)
 	{
-		
+		this.chance = chance;
 	}
 	
 	@Override
@@ -64,7 +65,7 @@ public class timedChargeTileNoGui extends TileEntity
 			double dz = (double)(this.zCoord);
 			if(timeLeft < 0)
 			{
-				genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, dx , dy, dz, 1.5f, null);
+				genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, dx , dy, dz, 1.5f, null, this.chance);
 				this.worldObj.spawnEntityInWorld(genericExplosion);
 			}
 			this.worldObj.spawnParticle("splash", dx, dy, dz+0.5, 0.0D, 0.0D, 0.0D);

@@ -16,9 +16,11 @@ public class timedChargeTile extends TileEntity
    
    private static double rnd;
    
+   private float chance;
+   
    private static timedChargeTile tile;
    
-   public timedChargeTile()
+   public timedChargeTile(float chance)
    {
 	   fused = false;
 	   sec = 30;
@@ -27,6 +29,7 @@ public class timedChargeTile extends TileEntity
 	   locSet = false;
 	   tile = (timedChargeTile) this;
 	   rnd = Math.random();
+	   this.chance = chance;
    }
    
    public static int getSecondsLeft()
@@ -88,7 +91,7 @@ public class timedChargeTile extends TileEntity
 				   double dx = (double)(this.xCoord);
 				   double dy = (double)(this.yCoord);
 				   double dz = (double)(this.zCoord);
-				   genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, dx , dy, dz, 1.5f, null);
+				   genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, dx , dy, dz, 1.5f, null, this.chance);
 				   this.worldObj.spawnEntityInWorld(genericExplosion);
 				   
 			   }

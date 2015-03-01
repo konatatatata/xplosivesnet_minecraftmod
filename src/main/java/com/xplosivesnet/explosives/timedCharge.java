@@ -25,9 +25,9 @@ public class timedCharge extends BlockContainer
 	//@SideOnly(Side.CLIENT)
 	private IIcon texture_generic;
 
-   
+   private float chance;
     
-    public timedCharge(String name)
+    public timedCharge(String name, float chance)
     {
         super(Material.rock);
         this.setCreativeTab(xTabs.explosives);
@@ -35,6 +35,7 @@ public class timedCharge extends BlockContainer
         this.setHardness(2f);
 		this.setResistance(2f);
 		this.setHarvestLevel("pickaxe", 0);
+		this.chance = chance;
     }
 
     @SideOnly(Side.CLIENT)
@@ -108,7 +109,7 @@ public class timedCharge extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta)
 	{
-		return new timedChargeTileNoGui();
+		return new timedChargeTileNoGui(this.chance);
 	}
 	
 	@Override

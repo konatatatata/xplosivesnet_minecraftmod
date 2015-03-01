@@ -2,29 +2,21 @@ package com.xplosivesnet.devices;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
-import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xTabs;
-import com.xplosivesnet.models.tileGenericCustomModelExplosive;
+import com.xplosivesnet.xplosivesnet;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import cpw.mods.fml.server.FMLServerHandler;
 
 public class reactionVessel extends BlockContainer
 {
@@ -63,7 +55,7 @@ public class reactionVessel extends BlockContainer
 			return false;
 		}
 		ItemStack tool = player.inventory.getCurrentItem();
-		if(tool.getItem() == null)
+		if(tool.getItem() == null || tile.synthesisRunning)
 		{
 			if(world.isRemote) tile.getInfo(player);
 			return false;
@@ -101,7 +93,7 @@ public class reactionVessel extends BlockContainer
 	    }
 	    else
 	    {
-	    	xHelper.sendMessage(player, "This is not a valid item");
+	    	//xHelper.sendMessage(player, "This is not a valid item");
 	    }
 	    if(world.isRemote) tile.getInfo(player);
 				
@@ -138,4 +130,5 @@ public class reactionVessel extends BlockContainer
 	{
 		return new reactionVesselTile();
 	}
+
 }

@@ -41,8 +41,9 @@ public class genericCustomModelExplosive extends BlockContainer
     private boolean needsIni;
     private float strength;
     private boolean explodeOnPower;
+    private float chance;
     
-    public genericCustomModelExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength)
+    public genericCustomModelExplosive(String name, float hardness, boolean customTexture, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float chance)
     {
         super(Material.tnt);
         this.setCreativeTab(xTabs.explosives);
@@ -54,6 +55,7 @@ public class genericCustomModelExplosive extends BlockContainer
 		this.needsIni = needsIni;
 		this.strength = strength;
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+		this.chance = chance;
     }
 
     /**
@@ -142,7 +144,7 @@ public class genericCustomModelExplosive extends BlockContainer
     	double dx = (double)((float)x + 0.5F);
     	double dy = (double)((float)y + 0.5F);
     	double dz = (double)((float)z + 0.5F);
-    	genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, this.strength, explo.getExplosivePlacedBy());
+    	genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, this.strength, explo.getExplosivePlacedBy(), this.chance);
     	world.spawnEntityInWorld(genericExplosion);
     }
     
@@ -151,7 +153,7 @@ public class genericCustomModelExplosive extends BlockContainer
     	double dx = (double)((float)x + 0.5F);
     	double dy = (double)((float)y + 0.5F);
     	double dz = (double)((float)z + 0.5F);
-    	genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, this.strength, ent);
+    	genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, this.strength, ent, this.chance);
     	world.spawnEntityInWorld(genericExplosion);
     }
     
@@ -160,7 +162,7 @@ public class genericCustomModelExplosive extends BlockContainer
     	double dx = (double)((float)x + 0.5F);
     	double dy = (double)((float)y + 0.5F);
     	double dz = (double)((float)z + 0.5F);
-    	genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, this.strength, null);
+    	genericExplosion genericExplosion = new genericExplosion(world, 0, dx , dy, dz, this.strength, null, this.chance);
     	world.spawnEntityInWorld(genericExplosion);
     }
     
