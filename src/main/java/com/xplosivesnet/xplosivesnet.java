@@ -9,6 +9,7 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.fluids.Fluid;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -17,12 +18,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = xplosivesnet.MODID, version = xplosivesnet.VERSION)
 public class xplosivesnet
 {
     public static final String MODID = "realistic_explosives";
-    public static final String VERSION = "1.5.2.3";
+    public static final String VERSION = "1.5.2.4";
     @SidedProxy(clientSide="com.xplosivesnet.xCommonClientProxy", serverSide="com.xplosivesnet.xCommonProxy")
 	public static xCommonProxy proxy;
     
@@ -39,6 +41,7 @@ public class xplosivesnet
     	xRecipes.loadRecipes();
     	xSynthesisHandler.loadSynthesis();
     	//xWeapons.loadWeapons();
+    	xAchievements.loadAchivements();
     	
 		this.proxy.init(event);
 		FMLCommonHandler.instance().bus().register(new xTicker());

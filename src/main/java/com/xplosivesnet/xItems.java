@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagString;
 
 import com.xplosivesnet.building.itemKey;
 import com.xplosivesnet.components.genericComponent;
+import com.xplosivesnet.components.testItem;
 import com.xplosivesnet.utilities.genericArmor;
 import com.xplosivesnet.utilities.genericBook;
 
@@ -71,15 +72,12 @@ public class xItems
 		
 		//addKey("itemKey");
 		
-		//addBook("testBook");
-		
-	}
-	
-	private static void addBook(String itemName)
-	{
-		Item item = new genericBook(itemName);
+		//test item
+		Item item = new testItem();
+		item.setUnlocalizedName("itemTest");
+		item.setCreativeTab(xTabs.machines);
 		items[counter] = item;
-		itemNames[counter] = itemName;
+		itemNames[counter] = "testItem";
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}

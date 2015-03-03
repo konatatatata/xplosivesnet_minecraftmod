@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
+import com.xplosivesnet.xAchievements;
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
 import com.xplosivesnet.xSynthesisHandler;
@@ -180,11 +181,17 @@ public class reactionVesselTile extends TileEntity
 		this.getWorldObj().notifyBlockChange(xCoord, yCoord, zCoord, this.getBlockType());
 	}
 	
-	public Item fillBottle()
+	public Item fillBottle(EntityPlayer player)
 	{
 		if(countItems() >= 1)
 		{
-			return this.removeLastItem();
+			Item lastItem = removeLastItem();
+			if(lastItem.getUnlocalizedName().substring(5).equals("ammoniumNitrate")) player.addStat(xAchievements.getByName("craftAN"), 1);
+			if(lastItem.getUnlocalizedName().substring(5).equals("AMMONAL")) player.addStat(xAchievements.getByName("craftAMMONAL"), 1);
+			if(lastItem.getUnlocalizedName().substring(5).equals("APEX")) player.addStat(xAchievements.getByName("craftINI"), 1);
+			if(lastItem.getUnlocalizedName().substring(5).equals("HMTD")) player.addStat(xAchievements.getByName("craftINI"), 1);
+			
+			return lastItem;
 		}
 		return xItems.getItemByName("bottle");
 	}

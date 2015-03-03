@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
+import com.xplosivesnet.building.cannon;
 import com.xplosivesnet.building.genericBuildingBlock;
 import com.xplosivesnet.building.lockedDoor;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
@@ -56,6 +57,17 @@ public class xBlocks
 		addBuildingBlock("hardenedGlass", 30f, 7f, true,1 );
 		addBuildingBlock("reinforcedGlass", 50f, 14f, true, 1);
 		addBuildingBlock("lockedDoor", 50f, 14f, true, 2);
+		
+		
+		Block block = new cannon();
+		block.setBlockName("cannon");
+		blocks[counter] = block;
+		blockNames[counter] = "cannon";
+		blockNamesExplosives[explosivesCounter] = "cannon";
+		explosivesCounter++;
+		counter++;
+		GameRegistry.registerBlock(block, block.getUnlocalizedName());
+		
 	}
 	
 	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy, int type)

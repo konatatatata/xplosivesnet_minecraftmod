@@ -71,7 +71,7 @@ public class reactionVessel extends BlockContainer
 	    		{
 		    		if(tile.canFillBottle())
 		    		{
-		    			xHelper.giveItem(player, tile.fillBottle());
+		    			xHelper.giveItem(player, tile.fillBottle(player));
 		    			tool.stackSize--;
 		    			player.inventoryContainer.detectAndSendChanges();
 		    		}

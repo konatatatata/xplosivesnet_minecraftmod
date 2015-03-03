@@ -1,5 +1,7 @@
 package com.xplosivesnet.components;
 
+import java.util.Random;
+
 import com.xplosivesnet.xBlocks;
 import com.xplosivesnet.xFluids;
 import com.xplosivesnet.xHelper;
@@ -8,7 +10,9 @@ import com.xplosivesnet.xItems;
 import com.xplosivesnet.xTabs;
 
 import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -18,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 
 public class genericComponent extends Item
@@ -38,6 +43,15 @@ public class genericComponent extends Item
      */
     public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_)
     {
+    	/*
+    	if(p_77659_1_.getItem().getUnlocalizedName().substring(5).equals("ammoniumNitrate"))
+    	{
+    		if(useFertilizer(p_77659_3_, p_77659_2_))
+    		{
+    			p_77659_1_.stackSize--;
+    		}
+    	}
+    	*/
     	if(p_77659_1_.stackSize < 1)
     	{
     		if(p_77659_2_.isRemote) xHelper.sendMessage(p_77659_3_, "Can only fill/dispose single bottle stack!");
@@ -189,7 +203,30 @@ public class genericComponent extends Item
         }
     }
 
-    private ItemStack func_150910_a(ItemStack p_150910_1_, EntityPlayer p_150910_2_, Item p_150910_3_)
+    private boolean useFertilizer(EntityPlayer player, World world)
+    {
+    	MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, false);
+    	int x = movingobjectposition.blockX;
+    	int y = movingobjectposition.blockY;
+    	int z = movingobjectposition.blockZ;
+    	
+    	Block block = world.getBlock(x, y, z);
+    	
+    	if(block != Blocks.air || block != null)
+    	{
+    		if(block == Blocks.sapling)
+    		{
+    			BonemealEvent event = new BonemealEvent(player, world, block, x, y, y);
+        		event.setResult(Result.ALLOW);
+        		Random rnd = new Random();
+        		((BlockSapling)block).func_149879_c(world, x, y, z, rnd);
+        		return true;
+    		}
+    	}
+    	return false;
+	}
+
+	private ItemStack func_150910_a(ItemStack p_150910_1_, EntityPlayer p_150910_2_, Item p_150910_3_)
     {
         if (p_150910_2_.capabilities.isCreativeMode)
         {
