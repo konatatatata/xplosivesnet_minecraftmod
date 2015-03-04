@@ -1,5 +1,6 @@
 package com.xplosivesnet.components;
 
+import com.xplosivesnet.xTabs;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.explosives.entities.rocketEntity;
 
@@ -33,12 +34,12 @@ public class testItem extends Item
     {
         this.maxStackSize = 1;
         this.setMaxDamage(384);
-        this.setCreativeTab(CreativeTabs.tabCombat);
+        this.setCreativeTab(xTabs.weapons);
     }
 
     public ItemStack onItemRightClick(ItemStack p_77659_1_, World world, EntityPlayer player)
     {
-    	rocketEntity rocketEntity = new rocketEntity(world, player, 1.0F);
+    	rocketEntity rocketEntity = new rocketEntity(world, player.posX, player.posY, player.posZ, 10, 0, 20f);
         if (!world.isRemote)
         {
         	world.spawnEntityInWorld(rocketEntity);

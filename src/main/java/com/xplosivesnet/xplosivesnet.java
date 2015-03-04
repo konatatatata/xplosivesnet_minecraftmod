@@ -40,7 +40,7 @@ public class xplosivesnet
     	xOres.loadOres();
     	xRecipes.loadRecipes();
     	xSynthesisHandler.loadSynthesis();
-    	//xWeapons.loadWeapons();
+    	xWeapons.loadWeapons();
     	xAchievements.loadAchivements();
     	
 		this.proxy.init(event);

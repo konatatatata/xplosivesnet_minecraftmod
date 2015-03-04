@@ -15,6 +15,8 @@ public class xTabs
 	public static CreativeTabs machines;
 	public static CreativeTabs ores;
 	public static CreativeTabs building;
+	public static CreativeTabs weapons;
+	
 	
 	
 	public static void loadTabs()
@@ -25,9 +27,8 @@ public class xTabs
 		machines = new genericTab("machines", getIconItem("machines"));
 		ores = new genericTab("ores", getIconItem("ores"));
 		building = new genericTab("building", getIconItem("building"));
-		
+		weapons = new genericTab("weapons", getIconItem("weapons"));
 	}
-
 	
 	private static Item getIconItem(String name)
 	{

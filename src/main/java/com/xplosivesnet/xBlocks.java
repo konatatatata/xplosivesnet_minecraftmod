@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
-import com.xplosivesnet.building.cannon;
 import com.xplosivesnet.building.genericBuildingBlock;
 import com.xplosivesnet.building.lockedDoor;
 import com.xplosivesnet.explosives.genericCustomModelExplosive;
@@ -21,6 +20,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import com.xplosivesnet.models.tileGenericCustomModelExplosive;
+import com.xplosivesnet.weapons.cannon;
 public class xBlocks
 {
 	private static Block[] blocks = new Block[100];
@@ -57,16 +57,6 @@ public class xBlocks
 		addBuildingBlock("hardenedGlass", 30f, 7f, true,1 );
 		addBuildingBlock("reinforcedGlass", 50f, 14f, true, 1);
 		addBuildingBlock("lockedDoor", 50f, 14f, true, 2);
-		
-		
-		Block block = new cannon();
-		block.setBlockName("cannon");
-		blocks[counter] = block;
-		blockNames[counter] = "cannon";
-		blockNamesExplosives[explosivesCounter] = "cannon";
-		explosivesCounter++;
-		counter++;
-		GameRegistry.registerBlock(block, block.getUnlocalizedName());
 		
 	}
 	

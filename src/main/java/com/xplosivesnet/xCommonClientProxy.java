@@ -1,12 +1,11 @@
 package com.xplosivesnet;
 
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.xplosivesnet.explosives.entities.rocketEntity;
 import com.xplosivesnet.models.genericCustomModelExplosiveRenderer;
-import com.xplosivesnet.models.mineRenderer;
 import com.xplosivesnet.models.tileGenericCustomModelExplosive;
-import com.xplosivesnet.models.tileMine;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -27,6 +26,7 @@ public class xCommonClientProxy extends xCommonProxy
     public void init(FMLInitializationEvent e)
 	{
 		ClientRegistry.bindTileEntitySpecialRenderer(tileGenericCustomModelExplosive.class, new genericCustomModelExplosiveRenderer(10f));
+		
 		//ClientRegistry.bindTileEntitySpecialRenderer(com.xplosivesnet.models.tileMine.class, new mineRenderer(10f));
 		
 		GameRegistry.registerTileEntity(com.xplosivesnet.explosives.entities.timedChargeTileNoGui.class, "timedChargeTileNoGui");

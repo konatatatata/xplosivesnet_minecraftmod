@@ -1,0 +1,4 @@
+{
+  "burning": {"category": "master","sounds": [{"name": "burning","stream": false}]},
+  "explode": {"category": "master","sounds": [{"name": "explode","stream": false}]}
+}

@@ -178,8 +178,18 @@ public class worldExplosion extends Explosion
      */
     public void doExplosionB(boolean p_77279_1_)
     {
-        this.worldObj.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "random.explode", 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
-
+        //this.worldObj.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "random.explode", 4.0F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);
+    	
+    	
+    	if(explosionSize < 2f)
+    	{
+    		this.worldObj.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "realistic_explosives:explode", 1f, 1.5f);
+    	}
+    	else
+    	{
+    		this.worldObj.playSoundEffect(this.explosionX, this.explosionY, this.explosionZ, "realistic_explosives:explode", 1f, 1f);
+    	}
+    	
         if (this.explosionSize >= 2.0F && this.isSmoking)
         {
             this.worldObj.spawnParticle("hugeexplosion", this.explosionX, this.explosionY, this.explosionZ, 1.0D, 0.0D, 0.0D);
