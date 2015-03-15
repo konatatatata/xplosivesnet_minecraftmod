@@ -25,13 +25,14 @@ public class genericOre extends BlockContainer
 	
 	private boolean customTexture = false;
 	
-	public genericOre(String name, float hardness, boolean textureEachSide)
+	public genericOre(String name, float hardness, boolean textureEachSide, int l)
 	{
 		super(Material.rock);
 		this.setCreativeTab(xTabs.ores);
 		this.setBlockName(name);
 		this.setHardness(hardness);
 		this.customTexture = textureEachSide;
+		this.setHarvestLevel("pickaxe", l);
 	}
 
 	public TileEntity createNewTileEntity(World world)

@@ -19,20 +19,27 @@ public class xOres
 	
 	public static void loadOres()
 	{
-		addOre("sulfur", 25, 10);
-		addOre("nitratine", 25, 15); //sodiumNitrate
-		addOre("uraninite", 3, 3);
-		addOre("ilmenite", 10, 5); //titan ore
-		addOre("aluminosilicate", 25, 15); //aluminium ore
-		addOre("magnesite", 15, 10); //aluminium ore
+		addOre("sulfur", 25, 10, 1);
+		addOre("nitratine", 25, 15, 1); //sodiumNitrate
+		addOre("uraninite", 3, 3, 2);
+		addOre("ilmenite", 10, 5, 2); //titan ore
+		addOre("aluminosilicate", 25, 15, 1); //aluminium ore
+		addOre("magnesite", 15, 10, 1); //aluminium ore
+		
+		OreDictionary.registerOre("oreSulfur", xOres.getBlockByName("sulfur"));
+		OreDictionary.registerOre("oreUranium", xOres.getBlockByName("uraninite"));
+		OreDictionary.registerOre("oreTitanium", xOres.getBlockByName("ilmenite"));
+		OreDictionary.registerOre("oreAluminium", xOres.getBlockByName("aluminosilicate"));
+		OreDictionary.registerOre("oreMagnesium", xOres.getBlockByName("magnesite"));
+		
 		
 		xGeneration ore_gen = new xGeneration();
 		GameRegistry.registerWorldGenerator(ore_gen, 0);
 	}
 	
-	public static void addOre(String name, int spawnRate, int s)
+	public static void addOre(String name, int spawnRate, int s, int l)
 	{
-		Block ore = new genericOre(name, 1f, false);
+		Block ore = new genericOre(name, 1.5f, false, l);
 		blocks[counter] = ore;
 		blockNames[counter] = name;
 		spawnrates[counter] = spawnRate;

@@ -52,6 +52,7 @@ public class xItems
 		addGenericComponent("formaldehyde", false, 64);
 		addGenericComponent("electrolyzer", false, 64);
 		addGenericComponent("heater", false, 64);
+		addGenericComponent("uranium", false, 64);
 		
 		addGenericComponent("sulfurIngot", false, 64);
 		addGenericComponent("nitratineIngot", false, 64);
@@ -60,20 +61,42 @@ public class xItems
 		addGenericComponent("aluminiumIngot", false, 64);
 		addGenericComponent("magnesiumIngot", false, 64);
 		
+		addGenericComponent("sulfurDust", false, 64);
+		//addGenericComponent("uraniumDust", false, 64);
+		addGenericComponent("titaniumDust", false, 64);
+		addGenericComponent("aluminiumDust", false, 64);
+		addGenericComponent("magnesiumDust", false, 64);
+		addGenericComponent("nitratineDust", false, 64);
+		
 		addGenericArmor("hazmaHelmet", 0);
 		addGenericArmor("hazmaChestplate", 1);
 		addGenericArmor("hazmaLeggins", 2);
 		addGenericArmor("hazmaBoots", 3);
     	
-		OreDictionary.registerOre("ingotAluminium", xItems.getItemByName("aluminiumIngot"));
-		OreDictionary.registerOre("dustAluminium", xItems.getItemByName("aluminium"));
+		OreDictionary.registerOre("ingotSulfur", xItems.getItemByName("sulfurIngot"));
+		OreDictionary.registerOre("dustSulfur", xItems.getItemByName("sulfurDust"));
 		
+		OreDictionary.registerOre("ingotUranium", xItems.getItemByName("uraniumIngot"));
+		//OreDictionary.registerOre("dustUranium", xItems.getItemByName("uraniumDust"));
+		
+		OreDictionary.registerOre("ingotTitanium", xItems.getItemByName("titaniumIngot"));
+		OreDictionary.registerOre("dustTitanium", xItems.getItemByName("titaniumDust"));
+		
+		OreDictionary.registerOre("ingotAluminium", xItems.getItemByName("aluminiumIngot"));
+		OreDictionary.registerOre("dustAluminium", xItems.getItemByName("aluminiumDust"));
+		
+		OreDictionary.registerOre("ingotMagnesium", xItems.getItemByName("magnesiumIngot"));
+		OreDictionary.registerOre("dustMagnesium", xItems.getItemByName("magnesiumDust"));
+		
+		OreDictionary.registerOre("ingotSaltpeter", xItems.getItemByName("nitratineIngot"));
+		OreDictionary.registerOre("itemDustSaltpeter", xItems.getItemByName("nitratineDust"));
 		
 		for(String name : xBlocks.blockNamesExplosives)
 		{
 			if(name == null) break;
 			addGenericComponent(name, false, 64);
 		}
+		
 		
 		//addKey("itemKey");
 		

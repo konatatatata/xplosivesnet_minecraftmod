@@ -49,6 +49,7 @@ public class xBlocks
 		addExplosive("ETN", false, false, true, 7.5f, 2f, 40f);
 		addExplosive("FLASH", true, false, false, 2.5f, 0.5f, 90f); //
 		addExplosive("ATOMIC", false, false, false, 75f, 10f, 1f);
+		
 		addTimedCharge("timedCharge", false, false, false, 5, 2, 40f);
 		
 		addBuildingBlock("concrete", 10f, 5f, false, 1);
