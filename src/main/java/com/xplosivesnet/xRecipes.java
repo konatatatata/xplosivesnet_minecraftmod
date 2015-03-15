@@ -257,6 +257,13 @@ public class xRecipes
 		addMaceratorRecipe("aluminiumIngot", "aluminiumDust");
 		addMaceratorRecipe("magnesiumIngot", "magnesiumDust");
 		addMaceratorRecipe("nitratineIngot", "nitratineDust");
+		
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("sulfur"))), null, new ItemStack(xItems.getItemByName("sulfurDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("nitratine"))), null, new ItemStack(xItems.getItemByName("nitratineDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("ilmenite"))), null, new ItemStack(xItems.getItemByName("titaniumDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("aluminosilicate"))), null, new ItemStack(xItems.getItemByName("aluminiumDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("magnesite"))), null, new ItemStack(xItems.getItemByName("magnesiumDust"), 2));
+
 		addMaceratorRecipe("uraniumIngot", ic2.api.item.IC2Items.getItem("crushedUraniumOre").getItem(), 4);
 	}
 	
