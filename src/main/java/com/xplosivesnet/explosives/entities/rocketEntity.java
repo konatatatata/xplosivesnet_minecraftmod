@@ -2,6 +2,8 @@ package com.xplosivesnet.explosives.entities;
 
 import java.util.List;
 
+import com.xplosivesnet.xHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -11,6 +13,7 @@ import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -52,7 +55,7 @@ public class rocketEntity extends Entity
     @Override
     public void onUpdate()
     {
-        super.onUpdate();
+        //super.onUpdate();
         this.soundCounter++;
         if(this.soundCounter >= 20)
         {
@@ -61,7 +64,7 @@ public class rocketEntity extends Entity
         }
         
     	this.worldObj.spawnParticle("smoke", (double)posX, (double)posY+1, (double)posZ, 0.0D, 0.0D, 0.0D);
-    	if((height >= 200 || this.posY >= 230) && this.goDown == false)
+    	if(this.posY >= 230 && this.goDown == false)
     	{
     		goDown = true;
     		this.posX = this.hitX;
@@ -70,15 +73,13 @@ public class rocketEntity extends Entity
     	if(goDown)
     	{
     		this.posY = this.posY - stepSize;
-    		this.height = this.height - stepSize;
+    		//this.height = this.height - stepSize;
     	}
     	else
     	{
     		this.posY = this.posY + stepSize;
-    		this.height = this.height + stepSize;
+    		//this.height = this.height + stepSize;
     	}
-    	
-    	System.out.println(this.posX + " - " + this.posY);
     	
     	if(this.posY <= 5) explode();
     	if(didCollide()) explode();
@@ -93,7 +94,7 @@ public class rocketEntity extends Entity
 
     private void explode()
     {
-    	genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, this.posX, this.posY, this.posZ, this.strength, null, 0.3f);
+    	genericExplosion genericExplosion = new genericExplosion(this.worldObj, 0, this.posX, this.posY+5, this.posZ, this.strength, null, 0.3f);
     	this.worldObj.spawnEntityInWorld(genericExplosion);
     	this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 1.0D, 0.0D, 0.0D);
     	this.setDead();
@@ -107,14 +108,30 @@ public class rocketEntity extends Entity
 	}
 
 	@Override
-	protected void readEntityFromNBT(NBTTagCompound p_70037_1_)
-	{
+	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void writeEntityToNBT(NBTTagCompound p_70014_1_)
-	{
+	protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
+		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound nbt)
+    {
+		this.posX = nbt.getDouble("posX");
+		this.posY = nbt.getDouble("posY");
+		this.posZ = nbt.getDouble("posZ");
+    }
+
+	@Override
+    public void writeToNBT(NBTTagCompound nbt)
+    {
+		nbt.setDouble("posX", this.posX);
+		nbt.setDouble("posY", this.posY);
+		nbt.setDouble("posZ", this.posZ);
+    }
 }

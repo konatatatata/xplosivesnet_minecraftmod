@@ -203,6 +203,7 @@ public class genericComponent extends Item
         }
     }
 
+    /*
     private boolean useFertilizer(EntityPlayer player, World world)
     {
     	MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, false);
@@ -225,6 +226,7 @@ public class genericComponent extends Item
     	}
     	return false;
 	}
+	*/
 
 	private ItemStack func_150910_a(ItemStack p_150910_1_, EntityPlayer p_150910_2_, Item p_150910_3_)
     {

@@ -38,10 +38,11 @@ public class xplosivesnet
     	xMachines.loadMachines();
     	xFluids.loadFluids();
     	xOres.loadOres();
-    	xRecipes.loadRecipes();
+    	
     	xSynthesisHandler.loadSynthesis();
     	xWeapons.loadWeapons();
     	xAchievements.loadAchivements();
+    	xRecipes.loadRecipes();
     	
 		this.proxy.init(event);
 		FMLCommonHandler.instance().bus().register(new xTicker());

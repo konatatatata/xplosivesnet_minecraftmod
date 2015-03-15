@@ -104,6 +104,7 @@ public class xRecipes
 			    	'o', xItems.getItemByName("titaniumIngot"),
 			    	'i', Items.blaze_rod
 				});
+		/*
 		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("timedCharge"), 2), new Object[]
 				{
 			    	"iii",
@@ -122,7 +123,7 @@ public class xRecipes
 			    	'h', xBlocks.getBlockByName("HMTD"),
 			    	'i', Items.iron_ingot
 				});
-		
+		*/
 		//filling s.t. in bottle
 		//ingots
 		GameRegistry.addShapelessRecipe(
@@ -177,7 +178,6 @@ public class xRecipes
 				ic2.api.item.IC2Items.getItem("cell").getItem()
 		        );
 		
-		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("electrolyzer"), 1),
 		        xItems.getItemByName("bottle"),
@@ -210,6 +210,26 @@ public class xRecipes
 				xItems.getItemByName("nitroGlycerine"),
 				Blocks.sand
 		        );
+		
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("mine"), 2), new Object[]
+				{
+			    	"sps",
+			    	"sas",
+			    	"srs",
+			    	'r', xItems.getItemByName("RDX"),
+			    	'a', xBlocks.getBlockByName("APEX"),
+			    	's', xItems.getItemByName("shell")
+				});
+		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("mine"), 2), new Object[]
+				{
+			    	"sps",
+			    	"sas",
+			    	"srs",
+			    	'p', Blocks.wooden_pressure_plate,
+			    	'r', xItems.getItemByName("RDX"),
+			    	'a', xBlocks.getBlockByName("HMTD"),
+			    	's', xItems.getItemByName("shell")
+				});
 		
 		//smelting
 		GameRegistry.addSmelting(xOres.getBlockByName("sulfur"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);

@@ -6,6 +6,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.xplosivesnet.building.itemKey;
 import com.xplosivesnet.components.genericComponent;
@@ -64,6 +65,10 @@ public class xItems
 		addGenericArmor("hazmaLeggins", 2);
 		addGenericArmor("hazmaBoots", 3);
     	
+		OreDictionary.registerOre("ingotAluminium", xItems.getItemByName("aluminiumIngot"));
+		OreDictionary.registerOre("dustAluminium", xItems.getItemByName("aluminium"));
+		
+		
 		for(String name : xBlocks.blockNamesExplosives)
 		{
 			if(name == null) break;

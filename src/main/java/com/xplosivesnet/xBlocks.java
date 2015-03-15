@@ -146,5 +146,12 @@ public class xBlocks
 		return xBlocks.blocks;
 	}
 	
+	public static void registerBlock(Block block, String name)
+	{
+		blocks[counter] = block;
+		blockNames[counter] = name;
+		counter++;
+	}
+	
 }
 

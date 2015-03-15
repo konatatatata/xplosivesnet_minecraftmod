@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
@@ -93,6 +94,13 @@ public class genericExplosive extends BlockFalling
 	            explode(world, x, y, z);
 	        }
     	}
+    }
+    
+    @Override
+    public boolean canPlaceBlockAt(World p_149742_1_, int p_149742_2_, int p_149742_3_, int p_149742_4_)
+    {
+        return true;
+    	//return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_);
     }
 
     /**

@@ -109,3 +109,9 @@ tile.FLASH.name=Flash
 tile.ATOMIC.name=Atomic Bomb
 
 tile.timedCharge.name=Timed Charge (DONT USE!)
+tile.mine.name=Mine
+tile.cannon.name=Cannon (DONT USE!)
+item.cannonMarker.name=Cannon marker (DONT USE!)
+item.APEX_rocket.name=APEX rocket (DONT USE!)
+
+item.itemTest.name=Test Item (DONT USE!)

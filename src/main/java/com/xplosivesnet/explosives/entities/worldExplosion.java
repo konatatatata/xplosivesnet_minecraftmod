@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.xplosivesnet.xHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;
@@ -20,12 +18,13 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+
+import com.xplosivesnet.xDamageSource;
 
 public class worldExplosion extends Explosion
 {
@@ -66,7 +65,7 @@ public class worldExplosion extends Explosion
      */
     public void doExplosionA()
     {
-        float f = this.explosionSize;
+    	float f = this.explosionSize;
         HashSet hashset = new HashSet();
         int i;
         int j;
@@ -152,19 +151,16 @@ public class worldExplosion extends Explosion
                     d7 /= d9;
                     double d10 = (double)this.worldObj.getBlockDensity(vec3, entity.boundingBox);
                     double d11 = (1.0D - d4) * d10;
-                    
-                    if(xHelper.isPlayer(entity))
-                    {
-                    	entity.attackEntityFrom(DamageSource.setExplosionSource(this), (float)((int)((d11 * d11 + d11) / 2.0D * 8.0D * (double)this.explosionSize + 1.0D)));
-                        double d8 = EnchantmentProtection.func_92092_a(entity, d11);
-                        entity.motionX += d5 * d8;
-                        entity.motionY += d6 * d8;
-                        entity.motionZ += d7 * d8;
-                    }
+                
+                    double d8 = EnchantmentProtection.func_92092_a(entity, d11);
+                    entity.motionX += d5 * d8;
+                    entity.motionY += d6 * d8;
+                    entity.motionZ += d7 * d8;
 
                     if (entity instanceof EntityPlayer)
                     {
                         this.field_77288_k.put((EntityPlayer)entity, Vec3.createVectorHelper(d5 * d11, d6 * d11, d7 * d11));
+                        entity.attackEntityFrom(xDamageSource.explosion, (float)((int)((d11 * d11 + d11) / 2.0D * 8.0D * (double)this.explosionSize + 1.0D)));
                     }
                 }
             }

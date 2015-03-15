@@ -4,6 +4,7 @@ import com.xplosivesnet.models.tileMine;
 import com.xplosivesnet.weapons.cannonTile;
 import com.xplosivesnet.weapons.genericRocket;
 
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -23,15 +24,18 @@ public class xWeapons
 		mine = new com.xplosivesnet.weapons.mine();
 		GameRegistry.registerBlock(mine, "mine");
 		GameRegistry.registerTileEntity(tileMine.class, "tileMine");
+		xBlocks.registerBlock(mine, "mine");
 		
 		cannon = new com.xplosivesnet.weapons.cannon();
 		GameRegistry.registerBlock(cannon, "cannon");
 		GameRegistry.registerTileEntity(cannonTile.class, "cannonTile");
+		xBlocks.registerBlock(cannon, "cannon");
 		
 		addRocket("APEX_rocket", 10f);
 		
 		cannonMarker = new com.xplosivesnet.weapons.cannonMarker();
 		GameRegistry.registerItem(cannonMarker, "cannonMarker");
+		
 	}
 	
 	private static void addRocket(String name, float strength)

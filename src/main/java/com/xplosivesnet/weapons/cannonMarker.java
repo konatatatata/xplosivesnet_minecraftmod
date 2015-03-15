@@ -3,12 +3,17 @@ package com.xplosivesnet.weapons;
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xTabs;
 import com.xplosivesnet.xWeapons;
+import com.xplosivesnet.xplosivesnet;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -17,8 +22,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 public class cannonMarker extends Item
 {
 	private int x = 0, y = 0, z = 0;
-	private boolean isSet = false;
-	
+
 	public cannonMarker()
 	{
 		this.maxStackSize = 1;
@@ -31,34 +35,32 @@ public class cannonMarker extends Item
 		if( itemStack.stackTagCompound == null )
 		{
 			itemStack.setTagCompound( new NBTTagCompound( ));
-		    System.out.println("created!");
 		}
 		
 		//Vec3 posVec = Vec3.createVectorHelper(player.posX, player.posY + player.getEyeHeight(), player.posZ);
 		//Vec3 lookVec = player.getLookVec();
-		MovingObjectPosition mop = player.rayTrace(200, 1f);
-		
-		if(mop != null)
+		if(world.isRemote)
 		{
-			x = mop.blockX;
-			y = mop.blockY;
-			z = mop.blockZ;
-			
-			if(!this.isSet)
+			MovingObjectPosition mop = player.rayTrace(200, 1f);
+		
+			if(mop != null)
 			{
-				if(world.isRemote) xHelper.sendMessage(player, "Coords saved (" + x + "/" + y + "/" + z + ")");
-
+				x = mop.blockX;
+				y = mop.blockY;
+				z = mop.blockZ;			
+				
+				if(!world.getBlock(x, y, z).getUnlocalizedName().equals(xWeapons.cannon.getUnlocalizedName()))
+				{
+					addInformation(itemStack, "posX", x);
+					addInformation(itemStack, "posY", y);
+					addInformation(itemStack, "posZ", z);
+					if(world.isRemote) xHelper.sendMessage(player, "Coords saved (" + getInformation(itemStack, "posX") + "/" + getInformation(itemStack, "posY") + "/" + getInformation(itemStack, "posZ") + ")");
+				}
+				else
+				{
+					if(world.isRemote) xHelper.sendMessage(player, "cannon block, skipped");
+				}
 			}
-			else
-			{
-				xHelper.sendMessage(player, "Coords already set!");
-			}
-			if(y == Math.round(player.posY - player.getEyeHeight()) + 1)
-			{
-				xHelper.sendMessage(player, "Coords reset!");
-				this.isSet = false;
-			}
-			xHelper.sendMessage(player, (Math.round(player.posY - player.getEyeHeight()) + 1) + " " + y);
 		}
 		
 		return itemStack;
@@ -68,11 +70,29 @@ public class cannonMarker extends Item
 	{
 	    if( itemStack.stackTagCompound == null )
 	    	itemStack.setTagCompound( new NBTTagCompound( ) );
-	    itemStack.getTagCompound().removeTag(name);
 	    itemStack.getTagCompound().setInteger(name, i);
 	    
 	}
 	
+	public int getInformation(ItemStack itemStack, String name)
+	{
+		return itemStack.getTagCompound().getInteger(name);
+	}
 	
+
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister p_94581_1_)
+    {
+        this.itemIcon = p_94581_1_.registerIcon(xplosivesnet.MODID + ":weapons/" + this.getUnlocalizedName().substring(5));
+    }
+
+    /**
+     * used to cycle through icons based on their used duration, i.e. for the bow
+     */
+    @SideOnly(Side.CLIENT)
+    public IIcon getItemIconForUseDuration(int p_94599_1_)
+    {
+        return this.itemIcon;
+    }
 	 
 }

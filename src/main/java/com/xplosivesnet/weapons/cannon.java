@@ -3,14 +3,17 @@ package com.xplosivesnet.weapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xTabs;
 import com.xplosivesnet.xWeapons;
+import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.explosives.entities.rocketEntity;
 
 import cpw.mods.fml.relauncher.Side;
@@ -18,6 +21,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class cannon extends BlockContainer
 {
+	EntityPlayer lastPlayer = null;
+	private IIcon icon;
+	
 	public cannon()
 	{
 		super(Material.rock);
@@ -49,12 +55,14 @@ public class cannon extends BlockContainer
 				if(world.isRemote) xHelper.sendMessage(player, "Coords imported");
 				int hitX = tool.getTagCompound().getInteger("posX");
 				int hitZ = tool.getTagCompound().getInteger("posZ");
-				tile.setX(hitX);
-				tile.setZ(hitZ);
-				if(world.isRemote) xHelper.sendMessage(player, "Set: " + hitX + "/" + hitZ);
+				tile.hitX = hitX;
+				tile.hitZ = hitZ;
 			}
 		}
 		if(world.isRemote) xHelper.sendMessage(player, "Destination: " + tile.hitX + "/" + tile.hitZ);
+		
+		lastPlayer = player;
+		tile.markDirty();
 		return true;
     }
 	
@@ -66,10 +74,23 @@ public class cannon extends BlockContainer
 		{
 			if(tile.isRocketLoaded())
 			{
-				tile.fireRocket();
+				tile.fireRocket(lastPlayer);
+				tile.markDirty();
 				System.out.println("fired");
 			}
     	}
     }
+    
+    @SideOnly(Side.CLIENT)
+	public IIcon getIcon(int side, int meta)
+	{
+		return this.icon;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister icon)
+	{
+		this.icon = icon.registerIcon(xplosivesnet.MODID + ":weapons/" + this.getUnlocalizedName().substring(5));
+	}
 
 }

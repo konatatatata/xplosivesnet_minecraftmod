@@ -2,6 +2,8 @@ package com.xplosivesnet;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.xplosivesnet.ores.genericOre;
 

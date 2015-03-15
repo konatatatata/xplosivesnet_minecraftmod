@@ -79,7 +79,7 @@ public class testItem extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister p_94581_1_)
     {
-        this.itemIcon = p_94581_1_.registerIcon(xplosivesnet.MODID + ":explosives/" + this.getUnlocalizedName().substring(5));
+        this.itemIcon = p_94581_1_.registerIcon(xplosivesnet.MODID + ":" + this.getUnlocalizedName().substring(5));
     }
 
     /**

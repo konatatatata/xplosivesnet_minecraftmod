@@ -154,22 +154,16 @@ public class xHelper
 	
 	public static boolean isPlayer(Entity ent)
 	{
-		if (ent.canAttackWithItem())
-		{
+		if(ent instanceof EntityPlayer)
 			return true;
-		} else {
-			return false;
-		}
+		return false;
 	}
 	
 	public static boolean isPlayer(EntityPlayer ent)
 	{
-		if (ent.canAttackWithItem())
-		{
+		if(ent instanceof EntityPlayer)
 			return true;
-		} else {
-			return false;
-		}
+		return false;
 	}
 	
 	public static boolean isPlayer(ICommandSender sender)

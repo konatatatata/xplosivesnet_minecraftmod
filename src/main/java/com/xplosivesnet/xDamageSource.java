@@ -9,6 +9,8 @@ public class xDamageSource extends DamageSource
 	public static DamageSource acid = new DamageSource("acid");
 	public static DamageSource acid_heavy = new DamageSource("acid_heavy");
 	public static DamageSource radiation = new DamageSource("radiation");
+	public static DamageSource explosion = new DamageSource("explosion");
+	
 	
 	public xDamageSource(String name)
 	{
