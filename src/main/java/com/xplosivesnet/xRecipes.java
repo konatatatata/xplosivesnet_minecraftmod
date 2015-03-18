@@ -22,7 +22,6 @@ public class xRecipes
 		xHelper.removeRecipe(new ItemStack(Blocks.tnt));
 		xHelper.removeRecipe(ic2.api.item.IC2Items.getItem("industrialTnt"));
 		
-		
 		//crafting
 		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("detonatingCord"), 6), new Object[]
 			{
@@ -202,13 +201,12 @@ public class xRecipes
 		//crafting explosives
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(Items.gunpowder, 5),
-				xItems.getItemByName("sodiumNitrate"),
-				xItems.getItemByName("sodiumNitrate"),
-				xItems.getItemByName("sodiumNitrate"),
-		        xItems.getItemByName("sulfur"),
-		        xItems.getItemByName("carbon")
+				xItems.getItemByName("nitratineDust"),
+				xItems.getItemByName("nitratineDust"),
+		        xItems.getItemByName("sulfurDust"),
+		        ic2.api.item.IC2Items.getItem("coalDust")
 		        );
-
+		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("dynamite"), 1),
 				xItems.getItemByName("nitroGlycerine"),
@@ -220,8 +218,9 @@ public class xRecipes
 			    	"sps",
 			    	"sas",
 			    	"srs",
+			    	'p', Blocks.wooden_pressure_plate,
 			    	'r', xItems.getItemByName("RDX"),
-			    	'a', xBlocks.getBlockByName("APEX"),
+			    	'a', xItems.getItemByName("APEX"),
 			    	's', xItems.getItemByName("shell")
 				});
 		GameRegistry.addRecipe(new ItemStack(xBlocks.getBlockByName("mine"), 2), new Object[]
@@ -231,7 +230,7 @@ public class xRecipes
 			    	"srs",
 			    	'p', Blocks.wooden_pressure_plate,
 			    	'r', xItems.getItemByName("RDX"),
-			    	'a', xBlocks.getBlockByName("HMTD"),
+			    	'a', xItems.getItemByName("HMTD"),
 			    	's', xItems.getItemByName("shell")
 				});
 		
@@ -258,11 +257,11 @@ public class xRecipes
 		addMaceratorRecipe("magnesiumIngot", "magnesiumDust");
 		addMaceratorRecipe("nitratineIngot", "nitratineDust");
 		
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("sulfur"))), null, new ItemStack(xItems.getItemByName("sulfurDust"), 2));
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("nitratine"))), null, new ItemStack(xItems.getItemByName("nitratineDust"), 2));
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("ilmenite"))), null, new ItemStack(xItems.getItemByName("titaniumDust"), 2));
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("aluminosilicate"))), null, new ItemStack(xItems.getItemByName("aluminiumDust"), 2));
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xBlocks.getBlockByName("magnesite"))), null, new ItemStack(xItems.getItemByName("magnesiumDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xOres.getBlockByName("sulfur"))), null, new ItemStack(xItems.getItemByName("sulfurDust")));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xOres.getBlockByName("nitratine"))), null, new ItemStack(xItems.getItemByName("nitratineDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xOres.getBlockByName("ilmenite"))), null, new ItemStack(xItems.getItemByName("titaniumDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xOres.getBlockByName("aluminosilicate"))), null, new ItemStack(xItems.getItemByName("aluminiumDust"), 2));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(xOres.getBlockByName("magnesite"))), null, new ItemStack(xItems.getItemByName("magnesiumDust"), 2));
 
 		addMaceratorRecipe("uraniumIngot", ic2.api.item.IC2Items.getItem("crushedUraniumOre").getItem(), 4);
 	}

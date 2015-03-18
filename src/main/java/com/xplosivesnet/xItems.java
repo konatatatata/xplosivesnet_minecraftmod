@@ -62,7 +62,6 @@ public class xItems
 		addGenericComponent("magnesiumIngot", false, 64);
 		
 		addGenericComponent("sulfurDust", false, 64);
-		//addGenericComponent("uraniumDust", false, 64);
 		addGenericComponent("titaniumDust", false, 64);
 		addGenericComponent("aluminiumDust", false, 64);
 		addGenericComponent("magnesiumDust", false, 64);
@@ -77,7 +76,6 @@ public class xItems
 		OreDictionary.registerOre("dustSulfur", xItems.getItemByName("sulfurDust"));
 		
 		OreDictionary.registerOre("ingotUranium", xItems.getItemByName("uraniumIngot"));
-		//OreDictionary.registerOre("dustUranium", xItems.getItemByName("uraniumDust"));
 		
 		OreDictionary.registerOre("ingotTitanium", xItems.getItemByName("titaniumIngot"));
 		OreDictionary.registerOre("dustTitanium", xItems.getItemByName("titaniumDust"));
@@ -128,7 +126,7 @@ public class xItems
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
 	
-	private static void addGenericComponent(String itemName, boolean inBottle, int maxStack)
+	public static void addGenericComponent(String itemName, boolean inBottle, int maxStack)
 	{
 		Item item = new genericComponent(itemName, inBottle, maxStack);
 		items[counter] = item;
@@ -139,6 +137,13 @@ public class xItems
 	
 	public static Item getItemByName(String itemName)
 	{
+		
+		if(ic2.api.item.IC2Items.getItem(itemName) != null)
+		{
+			return ic2.api.item.IC2Items.getItem(itemName).getItem();
+		}
+		
+		
 		int counter = 0;
 		for (Item item : xItems.items)
 		{

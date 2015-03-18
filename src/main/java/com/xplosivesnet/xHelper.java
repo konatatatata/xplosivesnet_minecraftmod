@@ -124,10 +124,30 @@ public class xHelper
 	    return true;
 	}
 	
+	public static boolean isBoolean(String in)
+	{
+	    try { 
+	        Boolean.parseBoolean(in); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    }
+	    return true;
+	}
+	
 	public static boolean isDouble(String in)
 	{
 		 try { 
 			 Double.parseDouble(in);
+		    } catch(NumberFormatException e) { 
+		        return false; 
+		    }
+		    return true;
+	}
+	
+	public static boolean isFloat(String in)
+	{
+		 try { 
+			 Float.parseFloat(in);
 		    } catch(NumberFormatException e) { 
 		        return false; 
 		    }
@@ -146,10 +166,22 @@ public class xHelper
 		return 0;
 	}
 	
+	public static boolean getBoolean(String in)
+	{
+		if(isBoolean(in)) return Boolean.parseBoolean(in);
+		return false;
+	}
+	
 	public static int getInt(Double in)
 	{
 		if(isInteger(in.toString())) return Integer.parseInt(in.toString());
 		return 0;
+	}
+	
+	public static float getFloat(String in)
+	{
+		if(isFloat(in.toString())) return Float.parseFloat(in.toString());
+		return 0f;
 	}
 	
 	public static boolean isPlayer(Entity ent)

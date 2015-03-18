@@ -26,6 +26,14 @@ item.magnesium.name=Magnesium
 item.titanium.name=Titanium
 item.heater.name=Heater
 item.electrolyzer.name=Electrolyzer
+item.uranium.name=Uranium
+
+item.aluminiumDust.name=Aluminium dust
+item.titaniumDust.name=Titanium dust
+item.magnesiumDust.name=Magnesium dust
+item.sulfurDust.name=Sulfur dust
+item.uraniumDust.name=Uranium dust
+item.nitratineDust.name=Nitratine dust
 
 tile.acetone.name=Acetone
 tile.glycerine.name=Glycerine

@@ -35,12 +35,10 @@ public class xBlocks
 		addExplosive("HMTD", true, true, false, 1.5f, 0.1f, 20f); //
 		addExplosive("leadAzide", true, true, false, 1.5f, 0.1f, 20f);
 		addExplosive("APAN", false, true, true, 2.5f, 1f, 20f);
-		addCustomExplosive("detonatingCord", true, false, false, 2.5f, 2f, 50f);
-		addCustomExplosive("quickFuse", true, false, false, 0.5f, 0.1f, 50f);
 		addExplosive("ANFO", false, false, true, 3.5f, 5f, 100f);
 		addExplosive("ANNM", false, false, true, 5f, 2f, 90f);
 		addExplosive("AMMONAL", false, false, true, 4f, 5f, 90f); //
-		addExplosive("dynamite", false, false, true, 5f, 2f, 50f); //
+		addExplosive("dynamite", true, false, true, 5f, 2f, 50f); //
 		addExplosive("RDX", false, false, true, 7f, 2f, 10f); //
 		addExplosive("CL20", false, false, true, 10f, 2f, 10f);
 		addExplosive("ONC", false, false, true, 12f, 2f, 10f);
@@ -49,6 +47,9 @@ public class xBlocks
 		addExplosive("ETN", false, false, true, 7.5f, 2f, 40f);
 		addExplosive("FLASH", true, false, false, 2.5f, 0.5f, 90f); //
 		addExplosive("ATOMIC", false, false, false, 75f, 10f, 1f);
+		
+		addCustomExplosive("detonatingCord", true, false, false, 2.5f, 2f, 50f);
+		addCustomExplosive("quickFuse", true, false, false, 0.5f, 0.1f, 50f);
 		
 		addTimedCharge("timedCharge", false, false, false, 5, 2, 40f);
 		
@@ -152,6 +153,12 @@ public class xBlocks
 		blocks[counter] = block;
 		blockNames[counter] = name;
 		counter++;
+	}
+
+	public static boolean isRegistered(String itemName)
+	{
+		if(getBlockByName(itemName) != null) return true;
+		return false;
 	}
 	
 }

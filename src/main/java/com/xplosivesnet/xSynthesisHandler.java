@@ -19,9 +19,9 @@ public class xSynthesisHandler
 	private static Item[][] vesselSynthesisOutput = new Item[arrayBounds][itemBounds];
 	private static int counter = 0;
 	
-	static void loadSynthesis()
+	static void loadSyntheses()
 	{
-		Item[] input, output;
+		//Item[] input, output;
 		
 		addSynthesis(new Item[] 
 				{

@@ -34,12 +34,15 @@ public class xplosivesnet
     	//xPotions.loadPotions();
     	xTabs.loadTabs();
     	xBlocks.loadBlocks();
+    	xImporter.importExplosives();
     	xItems.loadItems();
+    	xImporter.importItems();
     	xMachines.loadMachines();
     	xFluids.loadFluids();
     	xOres.loadOres();
     	
-    	xSynthesisHandler.loadSynthesis();
+    	xSynthesisHandler.loadSyntheses();
+    	xImporter.importSyntheses();
     	xWeapons.loadWeapons();
     	xAchievements.loadAchivements();
     	xRecipes.loadRecipes();
