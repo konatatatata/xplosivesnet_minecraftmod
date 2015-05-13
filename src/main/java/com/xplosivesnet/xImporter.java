@@ -165,6 +165,7 @@ public class xImporter
 			BufferedReader br;
 			br = new BufferedReader(new FileReader(name));
 	        String line;
+	        int time = 10;
 	        ArrayList<Item> inputList = new ArrayList<Item>();
 	        ArrayList<Item> outputList = new ArrayList<Item>();
 	        while((line = br.readLine()) != null)
@@ -196,13 +197,21 @@ public class xImporter
 	        				System.out.println("Skipping invalid item: " + item);
 	        			}
 	        		}
+	        		else if(line.startsWith("="))
+	        		{
+	        			String t = line.substring(1);
+	        			if(xHelper.isInteger(t))
+	        			{
+	        				time = xHelper.getInt(t);
+	        			}
+	        		}
 	        	}
 	        }
 	        Item[] inputArray = new Item[inputList.size()];
 	        inputArray = inputList.toArray(inputArray);
 	        Item[] outputArray = new Item[outputList.size()];
 	        outputArray = outputList.toArray(outputArray);
-	        xSynthesisHandler.addSynthesis(inputArray, outputArray);
+	        xSynthesisHandler.addSynthesis(time, inputArray, outputArray);
 		}
 		catch(Exception e)
 		{

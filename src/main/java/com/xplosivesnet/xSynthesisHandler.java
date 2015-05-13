@@ -17,13 +17,13 @@ public class xSynthesisHandler
 	public static int itemBounds = 10;
 	private static Item[][] vesselSynthesisInput = new Item[arrayBounds][itemBounds];
 	private static Item[][] vesselSynthesisOutput = new Item[arrayBounds][itemBounds];
+	private static int[] vesselSynthesisTimer = new int[arrayBounds];
+	
 	private static int counter = 0;
 	
 	static void loadSyntheses()
 	{
-		//Item[] input, output;
-		
-		addSynthesis(new Item[] 
+		addSynthesis(30, new Item[] 
 				{
 					xItems.getItemByName("acetone"), 
 					xItems.getItemByName("hydrochloricAcid"),
@@ -35,7 +35,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("toxicWaste")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(5, new Item[] 
 				{
 					xItems.getItemByName("electrolyzer"), 
 					xItems.getItemByName("sulfuricAcid")
@@ -44,19 +44,19 @@ public class xSynthesisHandler
 					xItems.getItemByName("hydrogenPeroxide")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(30, new Item[]
 				{
 					xItems.getItemByName("hexamine"), 
 					xItems.getItemByName("hydrochloricAcid"),
 					xItems.getItemByName("hydrogenPeroxide"),
 					xItems.getItemByName("distilledWater")
-				}, new Item[] 
+				}, new Item[]
 				{
 					xItems.getItemByName("HMTD"),
 					xItems.getItemByName("toxicWaste")
 				});
 
-		addSynthesis(new Item[] 
+		addSynthesis(20, new Item[] 
 				{
 					xItems.getItemByName("ammoniumNitrate"), 
 					xItems.getItemByName("potassiumCarbonate"),
@@ -68,7 +68,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("ammonia")
 				});
 		
-		addSynthesis(new Item[]
+		addSynthesis(2, new Item[]
 				{
 					xItems.getItemByName("carbon"), 
 					xItems.getItemByName("distilledWater")
@@ -79,7 +79,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("water")
 				});
 
-		addSynthesis(new Item[] 
+		addSynthesis(15, new Item[] 
 				{
 					xItems.getItemByName("electrolyzer"), 
 					xItems.getItemByName("sulfur"),
@@ -89,7 +89,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("sulfuricAcid")
 				});
 
-		addSynthesis(new Item[] 
+		addSynthesis(15, new Item[] 
 				{
 					xItems.getItemByName("sodiumNitrate"), 
 					xItems.getItemByName("sulfuricAcid")
@@ -98,7 +98,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("nitricAcid")
 				});
 
-		addSynthesis(new Item[] 
+		addSynthesis(15, new Item[] 
 				{
 					xItems.getItemByName("ammoniumNitrate"), 
 					xItems.getItemByName("sulfuricAcid")
@@ -107,7 +107,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("nitricAcid")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(15, new Item[] 
 				{
 					xItems.getItemByName("potassiumNitrate"), 
 					xItems.getItemByName("sulfuricAcid")
@@ -116,7 +116,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("nitricAcid")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(15, new Item[] 
 				{
 					xItems.getItemByName("electrolyzer"), 
 					xItems.getItemByName("water")
@@ -125,7 +125,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("hydrochloricAcid")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(20, new Item[] 
 				{
 					xItems.getItemByName("ammonia"),
 					xItems.getItemByName("nitricAcid")
@@ -136,7 +136,7 @@ public class xSynthesisHandler
 				});
 		
 		
-		addSynthesis(new Item[] 
+		addSynthesis(10, new Item[] 
 				{
 					xItems.getItemByName("distilledWater"), 
 					xItems.getItemByName("ammonia"),
@@ -148,7 +148,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("toxicWaste")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(10, new Item[] 
 				{
 					xItems.getItemByName("distilledWater"), 
 					xItems.getItemByName("heater"),
@@ -161,7 +161,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("toxicWaste")
 				});
 
-		addSynthesis(new Item[] 
+		addSynthesis(45, new Item[] 
 				{
 					xItems.getItemByName("nitricAcid"), 
 					xItems.getItemByName("glycerine")
@@ -171,7 +171,7 @@ public class xSynthesisHandler
 					xItems.getItemByName("nitroGlycerine")
 				});
 		
-		addSynthesis(new Item[] 
+		addSynthesis(60, new Item[] 
 				{
 					xItems.getItemByName("nitricAcid"), 
 					xItems.getItemByName("hexamine")
@@ -181,6 +181,28 @@ public class xSynthesisHandler
 					xItems.getItemByName("RDX")
 				});
 		
+		addSynthesis(60, new Item[] 
+				{
+					xItems.getItemByName("ammoniumNitrate"), 
+					xItems.getItemByName("TNT")
+				}, new Item[]
+				{
+					xItems.getItemByName("AMATOL"),
+					xItems.getItemByName("AMATOL")
+				});
+		
+		addSynthesis(5, new Item[] 
+				{
+					xItems.getItemByName("APEX"),
+					xItems.getItemByName("APEX"),
+					xItems.getItemByName("ammoniumNitrate"),
+					xItems.getItemByName("ammoniumNitrate")
+				}, new Item[]
+				{
+					xItems.getItemByName("APAN"),
+					xItems.getItemByName("APAN"),
+					xItems.getItemByName("APAN")
+				});
 		
 		addExp("ammoniumNitrate", "aluminium", "AMMONAL");
 		addExp("ammoniumNitrate", "magnesium", "AMMONAL");
@@ -237,6 +259,15 @@ public class xSynthesisHandler
 	{
 		vesselSynthesisInput[counter] = input;
 		vesselSynthesisOutput[counter] = output;
+		vesselSynthesisTimer[counter] = 10 * 20;
+		counter++;
+	}
+	
+	public static void addSynthesis(int time, Item[] input, Item[] output)
+	{
+		vesselSynthesisInput[counter] = input;
+		vesselSynthesisOutput[counter] = output;
+		vesselSynthesisTimer[counter] = time * 20;
 		counter++;
 	}
 	
@@ -267,8 +298,36 @@ public class xSynthesisHandler
 			}
 			vsc++;
 		}
+		return output;
+	}
+	
+	public static int getSynthesisTime(Item[] input)
+	{
+		int output = 10;
 		
-		
+		int vsc = 0;
+		boolean valid = false;
+		boolean found = false;
+		for(Item[] vsi : vesselSynthesisInput)
+		{
+			if(vsi == null || found) break;
+			valid = true;
+			for(Item i : vsi)
+			{
+				if(i == null) break;
+				if(!inArray(i, input))
+				{
+					valid = false;
+				}
+			}
+			if(valid)
+			{
+				output = vesselSynthesisTimer[vsc];
+				found = true;
+				break;
+			}
+			vsc++;
+		}
 		return output;
 	}
 	

@@ -191,7 +191,6 @@ public class xRecipes
 		        xItems.getItemByName("bottle"),
 		        Items.redstone
 		        );
-		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("ammonia"), 2),
 		        xItems.getItemByName("distilledWater"),

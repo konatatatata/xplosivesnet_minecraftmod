@@ -2,7 +2,10 @@ package com.xplosivesnet.fluids;
 
 import java.util.Random;
 
+import com.xplosivesnet.xBlocks;
+import com.xplosivesnet.xFluids;
 import com.xplosivesnet.xHelper;
+import com.xplosivesnet.xMaterials;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xDamageSource;
 import com.xplosivesnet.xTabs;
@@ -13,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -35,7 +39,7 @@ public class genericFluid  extends BlockFluidClassic
     
 	public genericFluid(Fluid fluid, int density, int particleType, boolean doDamage, float damage, boolean destroyItems, DamageSource dmg)
 	{
-		super(fluid, Material.water);
+		super(fluid, xMaterials.Chemical);
 		this.setCreativeTab(xTabs.components);
 		this.setDensity(density);
 		this.damageSource = dmg;
@@ -59,13 +63,13 @@ public class genericFluid  extends BlockFluidClassic
    
     @Override
     public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
-            if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
+            if (world.getBlock(x,  y,  z) == Blocks.water) return false;
             return super.canDisplace(world, x, y, z);
     }
    
     @Override
     public boolean displaceIfPossible(World world, int x, int y, int z) {
-            if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
+            if (world.getBlock(x,  y,  z) == Blocks.water) return false;
             return super.displaceIfPossible(world, x, y, z);
     }
     
@@ -94,7 +98,7 @@ public class genericFluid  extends BlockFluidClassic
     
     @SideOnly(Side.CLIENT)
    	public void randomDisplayTick(World world, int x, int y, int z, Random random)
-       {
+    {
    		float f1 = (float)x + 0.5F;
    		float f2 = (float)y + 1.1F;
    		float f3 =(float)z + 0.5F;
@@ -114,8 +118,19 @@ public class genericFluid  extends BlockFluidClassic
    		default:
    			break;
    		}
-   		
-   		
    	}
-
+    
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random rnd)
+    {
+    	/*
+    	if(world.getBlock(x, y, z) == xFluids.getFluidByName("toxicWaste").getBlock())
+    	{
+	    	if(world.getBlock(x+1, y, z) == Blocks.water && !(world.getBlock(x+1, y, z) == Blocks.flowing_water))
+	    	{
+	    		world.setBlock(x+1, y, z, xFluids.getFluidByName("toxicWaste").getBlock());
+	    	}
+    	}
+    	 */
+    }
 }

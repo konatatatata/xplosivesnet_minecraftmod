@@ -14,12 +14,12 @@ import com.xplosivesnet.xSynthesisHandler;
 
 public class reactionVesselTile extends TileEntity
 {
-	private Item[] itemsHolding = new Item[xSynthesisHandler.itemBounds];
+	public Item[] itemsHolding = new Item[xSynthesisHandler.itemBounds];
 	private Item[] synthesisOutput = new Item[xSynthesisHandler.itemBounds];
 	
 	private int counter = 0;
 	public boolean synthesisRunning = false;
-	protected int synthesisRuntime = 10 * 20; //10 sec
+	private int synthesisRuntime = 10 * 20; //10 sec, re-set by synthesis handler!
 	private int synthesisLeft = 0;
 	private boolean validSynthesis = false;
 	
@@ -54,7 +54,6 @@ public class reactionVesselTile extends TileEntity
             }
             
         }
-		System.out.println("nbt read");
 		super.readFromNBT(par1);
 	}
 	
@@ -78,10 +77,6 @@ public class reactionVesselTile extends TileEntity
             nbttaglist.appendTag(nbttagcompound1);
         }
         par1.setTag("Items", nbttaglist);
-        
-        
-        System.out.println("nbt write");
-        
         super.writeToNBT(par1);
 	}
 	
@@ -98,7 +93,7 @@ public class reactionVesselTile extends TileEntity
 	{
 		if(this.synthesisRunning)
 		{
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "Synthesis running: " + Math.round(this.synthesisLeft / 20) + "s");
 		}
 		else
 		{
@@ -120,7 +115,7 @@ public class reactionVesselTile extends TileEntity
 		}
 		if(this.synthesisRunning)
 		{
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-Synthesis running: " + this.synthesisLeft + "-");
+			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-Synthesis running: " + Math.round(this.synthesisLeft / 20) + "s");
 			return false;
 		}
 		
@@ -132,6 +127,7 @@ public class reactionVesselTile extends TileEntity
 		if(xSynthesisHandler.validSynthesis(itemsHolding))
 		{
 			synthesisOutput = xSynthesisHandler.getSynthesisOutput(itemsHolding);
+			synthesisRuntime = xSynthesisHandler.getSynthesisTime(itemsHolding);
 			startSynthesis();
 			if(player.worldObj.isRemote) xHelper.sendMessage(player, "----Synthesis started----");
 		}
@@ -158,6 +154,15 @@ public class reactionVesselTile extends TileEntity
 		super.updateEntity();
 		if(this.synthesisRunning)
 		{
+			if(this.worldObj.isRemote)
+			{
+				double d = (float)this.xCoord + 0.5F;
+				double d1 = (float)this.yCoord + 1F;
+				double d2 = (float)this.zCoord + 0.5F;
+			    
+				this.worldObj.spawnParticle("smoke", d, d1, d2, 0.0D, 0.0D, 0.0D);
+				this.worldObj.spawnParticle("flame", d, d1, d2, 0.0D, 0.0D, 0.0D);
+			}
 			if(this.synthesisLeft <= 0)
 			{
 				this.synthesisRunning = false;

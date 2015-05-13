@@ -79,6 +79,7 @@ itemGroup.machines=Machines
 itemGroup.explosives=Explosives
 itemGroup.ores=Ores
 itemGroup.building=Building
+itemGroup.weapons=Weapons
 
 item.APEX.name=APEX
 item.HMTD.name=HMTD
@@ -96,6 +97,8 @@ item.PETN.name=PETN
 item.ETN.name=ETN
 item.FLASH.name=Flash
 item.ATOMIC.name=Atomic Bomb
+item.AMATOL.name=AMATOL
+item.TNT.name=TNT
 
 tile.APEX.name=APEX
 tile.HMTD.name=HMTD
@@ -115,6 +118,8 @@ tile.PETN.name=PETN
 tile.ETN.name=ETN
 tile.FLASH.name=Flash
 tile.ATOMIC.name=Atomic Bomb
+tile.AMATOL.name=AMATOL
+tile.TNT.name=TNT
 
 tile.timedCharge.name=Timed Charge (DONT USE!)
 tile.mine.name=Mine

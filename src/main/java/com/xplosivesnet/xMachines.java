@@ -3,7 +3,6 @@ package com.xplosivesnet;
 import net.minecraft.block.Block;
 
 import com.xplosivesnet.devices.reactionVessel;
-import com.xplosivesnet.explosives.timedCharge;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

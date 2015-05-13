@@ -53,6 +53,7 @@ public class xItems
 		addGenericComponent("electrolyzer", false, 64);
 		addGenericComponent("heater", false, 64);
 		addGenericComponent("uranium", false, 64);
+		addGenericComponent("oil", false, 64);
 		
 		addGenericComponent("sulfurIngot", false, 64);
 		addGenericComponent("nitratineIngot", false, 64);
@@ -92,6 +93,7 @@ public class xItems
 		for(String name : xBlocks.blockNamesExplosives)
 		{
 			if(name == null) break;
+			if(isComponentItem(name)) break;
 			addGenericComponent(name, false, 64);
 		}
 		

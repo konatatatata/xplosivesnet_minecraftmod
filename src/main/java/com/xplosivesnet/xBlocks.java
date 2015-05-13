@@ -44,9 +44,6 @@ public class xBlocks
 		addExplosive("ONC", false, false, true, 12f, 2f, 10f);
 		addExplosive("astroliteG", false, false, true, 8.5f, 4f, 10f);
 		addExplosive("PETN", false, false, true, 7.5f, 2f, 40f);
-		addExplosive("ETN", false, false, true, 7.5f, 2f, 40f);
-		addExplosive("FLASH", true, false, false, 2.5f, 0.5f, 90f); //
-		addExplosive("ATOMIC", false, false, false, 75f, 10f, 1f);
 		
 		addCustomExplosive("detonatingCord", true, false, false, 2.5f, 2f, 50f);
 		addCustomExplosive("quickFuse", true, false, false, 0.5f, 0.1f, 50f);
@@ -59,7 +56,6 @@ public class xBlocks
 		addBuildingBlock("hardenedGlass", 30f, 7f, true,1 );
 		addBuildingBlock("reinforcedGlass", 50f, 14f, true, 1);
 		addBuildingBlock("lockedDoor", 50f, 14f, true, 2);
-		
 	}
 	
 	private static void addBuildingBlock(String name, float hardness, float resistance, boolean glassy, int type)
@@ -89,7 +85,7 @@ public class xBlocks
 
 	public static void addExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness, float chance)
 	{
-		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength, chance);
+		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength, chance * 0.7f);
 		blocks[counter] = block;
 		blockNames[counter] = name;
 		blockNamesExplosives[explosivesCounter] = name;

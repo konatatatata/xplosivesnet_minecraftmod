@@ -1,9 +1,13 @@
 package com.xplosivesnet.devices;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -41,10 +45,9 @@ public class reactionVessel extends BlockContainer
 
 	public boolean onItemUse(ItemStack tool, EntityPlayer player, World world, int x, int y, int z, int par7, float xFloat, float yFloat, float zFloat)
 	{
-		return false;
+		return true;
 	}
 	
-	//@SideOnly(Side.CLIENT)
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
 		if(player == null) return false;
@@ -130,5 +133,18 @@ public class reactionVessel extends BlockContainer
 	{
 		return new reactionVesselTile();
 	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y, int z, Block p_149749_5_, int p_149749_6_)
+    {
+		reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+		for(Item i : tile.itemsHolding)
+		{
+			if(i == null) break;
+			Entity ent = new EntityItem(world, x, y, z, new ItemStack(i));
+			world.spawnEntityInWorld(ent);
+		}
+        world.removeTileEntity(x, y, z);
+    }
 
 }
