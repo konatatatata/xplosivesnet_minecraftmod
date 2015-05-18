@@ -1,5 +1,6 @@
 package com.xplosivesnet.devices;
 
+import ic2.api.energy.event.EnergyTileUnloadEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import com.xplosivesnet.xHelper;
@@ -52,15 +54,16 @@ public class reactionVessel extends BlockContainer
     {
 		if(player == null) return false;
 		reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
+		
+		if(!player.worldObj.isRemote) xHelper.sendMessage(player, "Energy holding: " + tile.energy + "/" + tile.maxEnergy + "EU");
+		
 		if(player.inventory.getCurrentItem() == null)
 		{
-			if(world.isRemote) tile.getInfo(player);
 			return false;
 		}
 		ItemStack tool = player.inventory.getCurrentItem();
 		if(tool.getItem() == null || tile.synthesisRunning)
 		{
-			if(world.isRemote) tile.getInfo(player);
 			return false;
 		}
 		if(tool.stackSize == 0) return false;
@@ -98,8 +101,6 @@ public class reactionVessel extends BlockContainer
 	    {
 	    	//xHelper.sendMessage(player, "This is not a valid item");
 	    }
-	    if(world.isRemote) tile.getInfo(player);
-				
 	    return true;
     }
 	
@@ -117,7 +118,7 @@ public class reactionVessel extends BlockContainer
 			return this.texture_front;
 		}
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister icon)
 	{
@@ -126,8 +127,7 @@ public class reactionVessel extends BlockContainer
 		this.texture_side = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
 		this.texture_front = icon.registerIcon(xplosivesnet.MODID + ":"	+ this.getUnlocalizedName().substring(5) + "_side");
 	}
-
-
+	
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
 	{
@@ -144,6 +144,10 @@ public class reactionVessel extends BlockContainer
 			Entity ent = new EntityItem(world, x, y, z, new ItemStack(i));
 			world.spawnEntityInWorld(ent);
 		}
+		
+		EnergyTileUnloadEvent unloadEvent = new EnergyTileUnloadEvent(tile);
+		MinecraftForge.EVENT_BUS.post(unloadEvent);
+		
         world.removeTileEntity(x, y, z);
     }
 

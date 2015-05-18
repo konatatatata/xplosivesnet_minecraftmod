@@ -1,6 +1,10 @@
 package com.xplosivesnet;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,6 +38,21 @@ public class xHelper
 	    return randomNum;
 	}
 	
+	public static void writeFile(String text, String file)
+	{
+		File out = new File(file);
+		if(out.exists() && out.isFile()) out.delete();
+		
+		try {
+			PrintWriter o = new PrintWriter(file);
+			o.print(text);
+			o.close();
+		} catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public static int countItems(Item[] items)
 	{
 		int i = 0;
@@ -43,6 +62,28 @@ public class xHelper
 			i++;
 		}
 		return i;
+	}
+	
+	public static boolean fileExists(String file)
+	{
+		File f = new File(file);
+		
+		if(f.exists() && f.isFile()) return true;
+		return false;
+	}
+	
+	public static String readFile( String file ) throws IOException {
+	    BufferedReader reader = new BufferedReader( new FileReader (file));
+	    String         line = null;
+	    StringBuilder  stringBuilder = new StringBuilder();
+	    String         ls = System.getProperty("line.separator");
+
+	    while( ( line = reader.readLine() ) != null ) {
+	        stringBuilder.append( line );
+	        stringBuilder.append( ls );
+	    }
+	    reader.close();
+	    return stringBuilder.toString();
 	}
 	
 	public static void removeItem(EntityPlayer ep, ItemStack removeitem)
@@ -57,8 +98,6 @@ public class xHelper
 				{
 					inv.setInventorySlotContents(i, null);
 				}
-				
-				
 			}
 		}
 	}
@@ -103,7 +142,6 @@ public class xHelper
 		 }
 		 if (ItemStack.areItemStacksEqual(resultItem, recipeResult))
 		 {
-			 //System.out.println("[YOUR_MOD_NAME] Removed Recipe: " + recipes.get(scan) + " -> " + recipeResult);
 			 recipes.remove(scan);
 		 }
 	}
@@ -118,7 +156,7 @@ public class xHelper
 	{
 	    try { 
 	        Integer.parseInt(in); 
-	    } catch(NumberFormatException e) { 
+	    } catch(NumberFormatException e) {
 	        return false; 
 	    }
 	    return true;
@@ -157,30 +195,35 @@ public class xHelper
 	public static Double getDouble(String in)
 	{
 		if(isDouble(in)) return Double.parseDouble(in);
+		System.out.println("Failed to parse! " + in);
 		return null;
 	}
 	
 	public static int getInt(String in)
 	{
 		if(isInteger(in)) return Integer.parseInt(in);
+		System.out.println("Failed to parse! " + in);
 		return 0;
 	}
 	
 	public static boolean getBoolean(String in)
 	{
 		if(isBoolean(in)) return Boolean.parseBoolean(in);
+		System.out.println("Failed to parse! " + in);
 		return false;
 	}
 	
 	public static int getInt(Double in)
 	{
 		if(isInteger(in.toString())) return Integer.parseInt(in.toString());
+		System.out.println("Failed to parse! " + in);
 		return 0;
 	}
 	
 	public static float getFloat(String in)
 	{
 		if(isFloat(in.toString())) return Float.parseFloat(in.toString());
+		System.out.println("Failed to parse! " + in);
 		return 0f;
 	}
 	
@@ -249,14 +292,15 @@ public class xHelper
 		MinecraftServer.getServer().addChatMessage(new ChatComponentTranslation(msg));
 	}
 	
-	public static boolean isAlphaNumeric(String s){
+	public static boolean isAlphaNumeric(String s)
+	{
 	    String pattern= "^[a-zA-Z0-9]*$";
-	        if(s.matches(pattern)){
-	            return true;
-	        }
-	        return false;   
+	    if(s.matches(pattern)){
+	    	return true;
+	    }
+	    return false;   
 	}
-		
+	
 	public static int getDimension(EntityPlayer player)
 	{
 		return player.dimension;

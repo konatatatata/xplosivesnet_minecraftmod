@@ -116,6 +116,16 @@ public class xSynthesisHandler
 					xItems.getItemByName("nitricAcid")
 				});
 		
+		addSynthesis(2, new Item[] 
+				{
+					xItems.getItemByName("ammoniumNitrate"), 
+					xItems.getItemByName("oil")
+				}, new Item[]
+				{
+					xItems.getItemByName("ANFO"),
+					xItems.getItemByName("ANFO")
+				});
+		
 		addSynthesis(15, new Item[] 
 				{
 					xItems.getItemByName("electrolyzer"), 

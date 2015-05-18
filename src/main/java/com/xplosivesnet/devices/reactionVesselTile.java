@@ -1,18 +1,26 @@
 package com.xplosivesnet.devices;
 
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+import buildcraft.api.core.EnumColor;
+import buildcraft.api.transport.IInjectable;
 
 import com.xplosivesnet.xAchievements;
 import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
 import com.xplosivesnet.xSynthesisHandler;
 
-public class reactionVesselTile extends TileEntity
+public class reactionVesselTile extends TileEntity implements IEnergySink, IInjectable
 {
 	public Item[] itemsHolding = new Item[xSynthesisHandler.itemBounds];
 	private Item[] synthesisOutput = new Item[xSynthesisHandler.itemBounds];
@@ -23,6 +31,10 @@ public class reactionVesselTile extends TileEntity
 	private int synthesisLeft = 0;
 	private boolean validSynthesis = false;
 	
+	public double energy = 0.0;
+	public double maxEnergy = 1000.0;
+	private boolean eInit;
+	
 	reactionVesselTile()
 	{
 		
@@ -31,6 +43,13 @@ public class reactionVesselTile extends TileEntity
 	@Override
 	public void readFromNBT(NBTTagCompound par1)
 	{
+		super.readFromNBT(par1);
+		
+		if(par1.hasKey("energy"))
+		{
+			this.energy = par1.getDouble("energy");
+		}
+		
 		
 		this.counter = par1.getInteger("counter");
 		this.synthesisRunning = par1.getBoolean("synthesisRunning");
@@ -38,6 +57,7 @@ public class reactionVesselTile extends TileEntity
 		this.synthesisLeft = par1.getInteger("synthesisLeft");
 		this.validSynthesis = par1.getBoolean("validSynthesis");
 		
+		/*
 		NBTTagList nbttaglist = par1.getTagList("Items", xSynthesisHandler.itemBounds);
 		this.itemsHolding = new Item[xSynthesisHandler.itemBounds];
 
@@ -51,15 +71,17 @@ public class reactionVesselTile extends TileEntity
             if (j >= 0 && j < this.itemsHolding.length)
             {
                 this.itemsHolding[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1).getItem();
-            }
-            
+            }  
         }
-		super.readFromNBT(par1);
+        */
+        
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound par1)
 	{
+		par1.setDouble("energy", this.energy);
+		
 		
 		par1.setInteger("counter", this.counter);
 		par1.setBoolean("synthesisRunning", this.synthesisRunning);
@@ -67,6 +89,7 @@ public class reactionVesselTile extends TileEntity
 		par1.setInteger("synthesisLeft", this.synthesisLeft);
 		par1.setBoolean("validSynthesis", this.validSynthesis);
 		
+		/*
 		NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.itemsHolding.length; ++i)
@@ -77,6 +100,8 @@ public class reactionVesselTile extends TileEntity
             nbttaglist.appendTag(nbttagcompound1);
         }
         par1.setTag("Items", nbttaglist);
+        */
+        
         super.writeToNBT(par1);
 	}
 	
@@ -89,33 +114,14 @@ public class reactionVesselTile extends TileEntity
 		validSynthesis = false;
 	}
 	
-	public void getInfo(EntityPlayer player)
-	{
-		if(this.synthesisRunning)
-		{
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "Synthesis running: " + Math.round(this.synthesisLeft / 20) + "s");
-		}
-		else
-		{
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "Holding " + countItems() + "/" + itemsHolding.length);
-		}
-		for(Item item : this.itemsHolding)
-		{
-			if(item == null) break;
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, ">" + item.getUnlocalizedName().substring(5));
-		}
-	}
-		
 	public boolean addItem(Item item, EntityPlayer player)
 	{
 		if(itemsHolding.length == countItems())
 		{
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-----Vessel full-----");
 			return false;
 		}
 		if(this.synthesisRunning)
 		{
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "-Synthesis running: " + Math.round(this.synthesisLeft / 20) + "s");
 			return false;
 		}
 		
@@ -129,7 +135,6 @@ public class reactionVesselTile extends TileEntity
 			synthesisOutput = xSynthesisHandler.getSynthesisOutput(itemsHolding);
 			synthesisRuntime = xSynthesisHandler.getSynthesisTime(itemsHolding);
 			startSynthesis();
-			if(player.worldObj.isRemote) xHelper.sendMessage(player, "----Synthesis started----");
 		}
 		
 		return true;
@@ -152,17 +157,16 @@ public class reactionVesselTile extends TileEntity
 	public void updateEntity()
 	{
 		super.updateEntity();
-		if(this.synthesisRunning)
+		
+		if(!worldObj.isRemote)
 		{
-			if(this.worldObj.isRemote)
-			{
-				double d = (float)this.xCoord + 0.5F;
-				double d1 = (float)this.yCoord + 1F;
-				double d2 = (float)this.zCoord + 0.5F;
-			    
-				this.worldObj.spawnParticle("smoke", d, d1, d2, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("flame", d, d1, d2, 0.0D, 0.0D, 0.0D);
-			}
+			EnergyTileLoadEvent loadEvent = new EnergyTileLoadEvent(this);
+			MinecraftForge.EVENT_BUS.post(loadEvent);
+			eInit = true;
+		}
+		
+		if(this.synthesisRunning)
+		{	
 			if(this.synthesisLeft <= 0)
 			{
 				this.synthesisRunning = false;
@@ -180,10 +184,28 @@ public class reactionVesselTile extends TileEntity
 			}
 			else
 			{
-				this.synthesisLeft--;
+				if(this.energy >= 8)
+				{
+					this.energy = this.energy - 8;
+					this.synthesisLeft--;
+				}
 			}
 		}
-		this.getWorldObj().notifyBlockChange(xCoord, yCoord, zCoord, this.getBlockType());
+		else
+		{
+			
+		}
+		//this.getWorldObj().notifyBlockChange(xCoord, yCoord, zCoord, this.getBlockType());
+		
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		markDirty();
+	}
+	
+	@Override
+	public void invalidate()
+	{
+		EnergyTileUnloadEvent unloadEvent = new EnergyTileUnloadEvent(this);
+		MinecraftForge.EVENT_BUS.post(unloadEvent);
 	}
 	
 	public Item fillBottle(EntityPlayer player)
@@ -239,5 +261,63 @@ public class reactionVesselTile extends TileEntity
 			}
 		}
 		return c;
+	}
+	
+	@Override
+	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction)
+	{
+		return true;
+	}
+
+	@Override
+	public double getDemandedEnergy()
+	{
+		return this.maxEnergy - this.energy;
+	}
+
+	@Override
+	public int getSinkTier()
+	{
+		return 2;
+	}
+	
+	@Override
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage)
+	{
+		if(this.energy >= this.maxEnergy) return amount;
+		double freeEnergy = this.maxEnergy - this.energy;
+		if(freeEnergy >= amount)
+		{
+			this.energy += amount;
+			return 0.0;
+		}
+		else if (amount > freeEnergy)
+		{
+			this.energy = this.maxEnergy;
+			return amount - freeEnergy;
+		}
+		return 0;
+	}
+
+	@Override
+	public boolean canInjectItems(ForgeDirection from)
+	{
+		return true;
+	}
+
+	@Override
+	public int injectItem(ItemStack stack, boolean doAdd, ForgeDirection from, EnumColor color)
+	{
+		int added = 0;
+		for(int i = 0; i <= stack.stackSize; i++)
+		{
+			if(countItems() < xSynthesisHandler.itemBounds)
+			{
+				this.addItem(stack.getItem());
+				added++;
+			}
+		}
+		
+		return added;
 	}
 }

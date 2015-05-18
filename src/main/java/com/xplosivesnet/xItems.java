@@ -24,24 +24,24 @@ public class xItems
 	
 	public static void loadItems()
 	{
-		addGenericComponent("bottle", false, 64);
-		addGenericComponent("shell", false, 64);
-		addGenericComponent("acetone", true, 64);
-		addGenericComponent("ammonia", true, 64);
+		addGenericComponent("bottle", false, 64, "Used to transport all kind of components");
+		addGenericComponent("shell", false, 64, "Housing for all explosives");
+		addGenericComponent("acetone", true, 64, "Poor mans hexamine");
+		addGenericComponent("ammonia", true, 64, "Stinky..");
 		addGenericComponent("glycerine", true, 64);
 		addGenericComponent("hydrochloricAcid", true, 64);
 		addGenericComponent("hydrogenPeroxide", true, 64);
 		addGenericComponent("nitricAcid", true, 64);
 		addGenericComponent("sulfuricAcid", true, 64);
-		addGenericComponent("acetonePeroxide", false, 64);
+		addGenericComponent("acetonePeroxide", false, 64, "Free O's anyone??");
 		addGenericComponent("nitroGlycerine", true, 64);
-		addGenericComponent("ammoniumNitrate", false, 64);
+		addGenericComponent("ammoniumNitrate", false, 64, "Core of cheap explosives");
 		addGenericComponent("potassiumNitrate", false, 64);
 		addGenericComponent("bariumNitrate", false, 64);
 		addGenericComponent("sodiumNitrate", false, 64);
 		addGenericComponent("potassiumCarbonate", false, 64);
-		addGenericComponent("distilledWater", true, 64);
-		addGenericComponent("toxicWaste", true, 64);
+		addGenericComponent("distilledWater", true, 64, "You should not drink that");
+		addGenericComponent("toxicWaste", true, 64, "You should NOT drink that!");
 		addGenericComponent("sulfur", false, 64);
 		addGenericComponent("carbon", false, 64);
 		addGenericComponent("hexamine", false, 64);
@@ -94,11 +94,8 @@ public class xItems
 		{
 			if(name == null) break;
 			if(isComponentItem(name)) break;
-			addGenericComponent(name, false, 64);
+			addGenericComponent(name, false, 64, "EXPLOSIVE! Combine with shell");
 		}
-		
-		
-		//addKey("itemKey");
 		
 		//test item
 		Item item = new testItem();
@@ -106,15 +103,6 @@ public class xItems
 		item.setCreativeTab(xTabs.machines);
 		items[counter] = item;
 		itemNames[counter] = "testItem";
-		counter++;
-		GameRegistry.registerItem(item, item.getUnlocalizedName());
-	}
-	
-	private static void addKey(String itemName)
-	{
-		Item item = new itemKey(itemName);
-		items[counter] = item;
-		itemNames[counter] = itemName;
 		counter++;
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
@@ -128,9 +116,18 @@ public class xItems
 		GameRegistry.registerItem(item, item.getUnlocalizedName());
 	}
 	
-	public static void addGenericComponent(String itemName, boolean inBottle, int maxStack)
+	public static void addGenericComponent(String itemName, boolean fluid, int maxStack, String desc)
 	{
-		Item item = new genericComponent(itemName, inBottle, maxStack);
+		Item item = new genericComponent(itemName, fluid, maxStack, desc);
+		items[counter] = item;
+		itemNames[counter] = itemName;
+		counter++;
+		GameRegistry.registerItem(item, item.getUnlocalizedName());
+	}
+	
+	public static void addGenericComponent(String itemName, boolean fluid, int maxStack)
+	{
+		Item item = new genericComponent(itemName, fluid, maxStack, "");
 		items[counter] = item;
 		itemNames[counter] = itemName;
 		counter++;

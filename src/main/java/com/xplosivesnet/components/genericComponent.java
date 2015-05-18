@@ -1,5 +1,6 @@
 package com.xplosivesnet.components;
 
+import java.util.List;
 import java.util.Random;
 
 import com.xplosivesnet.xBlocks;
@@ -28,14 +29,25 @@ import net.minecraftforge.event.entity.player.FillBucketEvent;
 public class genericComponent extends Item
 {
 	private boolean isDisposableFluid = false;
+	private String desc;
+	private String name;
 	
-	public genericComponent(String name, boolean isDisposableFluid, int maxStackSize)
+	public genericComponent(String name, boolean isDisposableFluid, int maxStackSize, String desc)
 	{
+		this.name = name;
 		this.isDisposableFluid = isDisposableFluid;
+		this.desc = desc;
 		setMaxStackSize(maxStackSize);
 		setCreativeTab(xTabs.components);
 		setUnlocalizedName(name);
+		
 		setTextureName(xplosivesnet.MODID + ":components/" + this.getUnlocalizedName().substring(5));
+	}
+	
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par2List, boolean par4)
+	{
+		par2List.add("\u00a7a" + this.desc);
+		if(xFluids.getFluidByName(this.name) != null) par2List.add("\u00a7a" + "(disposable fluid)");
 	}
 
 	/**
@@ -43,15 +55,6 @@ public class genericComponent extends Item
      */
     public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_)
     {
-    	/*
-    	if(p_77659_1_.getItem().getUnlocalizedName().substring(5).equals("ammoniumNitrate"))
-    	{
-    		if(useFertilizer(p_77659_3_, p_77659_2_))
-    		{
-    			p_77659_1_.stackSize--;
-    		}
-    	}
-    	*/
     	if(p_77659_1_.stackSize < 1)
     	{
     		if(p_77659_2_.isRemote) xHelper.sendMessage(p_77659_3_, "Can only fill/dispose single bottle stack!");
@@ -91,9 +94,19 @@ public class genericComponent extends Item
         }
         else
         {
+        	Block b = p_77659_2_.getBlock(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ);
+            if(b.getUnlocalizedName().substring(5).equals("blockOil"))
+            {
+            	p_77659_2_.setBlockToAir(movingobjectposition.blockX, movingobjectposition.blockY, movingobjectposition.blockZ);
+            	xHelper.giveItem(p_77659_3_, xItems.getItemByName("oil"));
+            	p_77659_1_.stackSize--;
+            	return p_77659_1_;
+            }
+            
             FillBucketEvent event = new FillBucketEvent(p_77659_3_, p_77659_1_, p_77659_2_, movingobjectposition);
             if (MinecraftForge.EVENT_BUS.post(event))
             {
+            	p_77659_1_.stackSize--;
                 return p_77659_1_;
             }
 
@@ -130,7 +143,7 @@ public class genericComponent extends Item
                     {
                         return p_77659_1_;
                     }
-
+                    
                     Block toPickUp = p_77659_2_.getBlock(i, j, k);
                     if(toPickUp != null)
                     {

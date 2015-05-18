@@ -120,10 +120,11 @@ public class genericFluid  extends BlockFluidClassic
    		}
    	}
     
+    /*
     @Override
     public void updateTick(World world, int x, int y, int z, Random rnd)
     {
-    	/*
+    	
     	if(world.getBlock(x, y, z) == xFluids.getFluidByName("toxicWaste").getBlock())
     	{
 	    	if(world.getBlock(x+1, y, z) == Blocks.water && !(world.getBlock(x+1, y, z) == Blocks.flowing_water))
@@ -131,6 +132,6 @@ public class genericFluid  extends BlockFluidClassic
 	    		world.setBlock(x+1, y, z, xFluids.getFluidByName("toxicWaste").getBlock());
 	    	}
     	}
-    	 */
     }
+    */
 }
