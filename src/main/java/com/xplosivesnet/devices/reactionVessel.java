@@ -55,17 +55,28 @@ public class reactionVessel extends BlockContainer
 		if(player == null) return false;
 		reactionVesselTile tile = (reactionVesselTile) world.getTileEntity(x, y, z);
 		
-		if(!player.worldObj.isRemote) xHelper.sendMessage(player, "Energy holding: " + tile.energy + "/" + tile.maxEnergy + "EU");
+		if(!player.worldObj.isRemote)
+		{
+			xHelper.sendMessage(player, "Energy Stored: ");
+			xHelper.sendMessage(player, tile.EUenergy + "/" + tile.EUmaxEnergy + "EU");
+			xHelper.sendMessage(player, tile.RFenergy + "/" + tile.RFmaxEnergy + "RF");
+			xHelper.sendMessage(player, "{infinite}");
+		}
 		
 		if(player.inventory.getCurrentItem() == null)
 		{
 			return false;
 		}
 		ItemStack tool = player.inventory.getCurrentItem();
-		if(tool.getItem() == null || tile.synthesisRunning)
+		if(tool.getItem() == null )
 		{
 			return false;
 		}
+		if(tile.synthesisRunning)
+		{
+			return true;
+		}
+		
 		if(tool.stackSize == 0) return false;
 	    
 	    if(xItems.isComponentItem(tool.getItem().getUnlocalizedName().substring(5)))
@@ -149,6 +160,7 @@ public class reactionVessel extends BlockContainer
 		MinecraftForge.EVENT_BUS.post(unloadEvent);
 		
         world.removeTileEntity(x, y, z);
+        world.markBlockForUpdate(x, y, z);
     }
 
 }

@@ -27,6 +27,7 @@ item.titanium.name=Titanium
 item.heater.name=Heater
 item.electrolyzer.name=Electrolyzer
 item.uranium.name=Uranium
+item.oil.name=Oil
 
 item.aluminiumDust.name=Aluminium dust
 item.titaniumDust.name=Titanium dust

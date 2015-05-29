@@ -1,5 +1,6 @@
 package com.xplosivesnet.explosives;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -11,10 +12,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
+import com.xplosivesnet.xFluids;
 import com.xplosivesnet.xplosivesnet;
 import com.xplosivesnet.xTabs;
 import com.xplosivesnet.explosives.entities.genericExplosion;
@@ -53,19 +56,13 @@ public class genericExplosive extends BlockFalling
 		this.setHarvestLevel("shovel", 0);
 		this.chance = chance;
     }
-    
-    /**
-     * Gets the block's texture. Args: side, meta
-     */
+
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int p_149691_1_, int p_149691_2_)
     {
         return this.texture_generic;
     }
 
-    /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
-     */
     public void onBlockAdded(World world, int x, int y, int z)
     {
         super.onBlockAdded(world, x, y, z);
@@ -79,10 +76,6 @@ public class genericExplosive extends BlockFalling
         }
     }
 
-    /**
-     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
-     * their own) Args: x, y, z, neighbor Block
-     */
     public void onNeighborBlockChange(World world, int x, int y, int z, Block p_149695_5_)
     {
     	if(explodeOnPower)
@@ -103,17 +96,11 @@ public class genericExplosive extends BlockFalling
     	//return World.doesBlockHaveSolidTopSurface(p_149742_1_, p_149742_2_, p_149742_3_ - 1, p_149742_4_);
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
     public int quantityDropped(Random p_149745_1_)
     {
         return 1;
     }
 
-    /**
-     * Called upon the block being destroyed by an explosion
-     */
     public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion explo)
     {
         if (!world.isRemote)
@@ -121,10 +108,6 @@ public class genericExplosive extends BlockFalling
         	explode(world, x, y, z, explo);
         }
     }
-
-    /**
-     * Called right before the block is destroyed by a player.  Args: world, x, y, z, metaData
-     */
     
     public void explode(World world, int x, int y, int z, Explosion explo)
     {

@@ -8,19 +8,18 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import buildcraft.api.core.EnumColor;
 import buildcraft.api.transport.IInjectable;
+import cofh.api.energy.IEnergyReceiver;
 
 import com.xplosivesnet.xAchievements;
-import com.xplosivesnet.xHelper;
 import com.xplosivesnet.xItems;
 import com.xplosivesnet.xSynthesisHandler;
 
-public class reactionVesselTile extends TileEntity implements IEnergySink, IInjectable
+public class reactionVesselTile extends TileEntity implements IEnergySink, IInjectable, IInventory, IEnergyReceiver
 {
 	public Item[] itemsHolding = new Item[xSynthesisHandler.itemBounds];
 	private Item[] synthesisOutput = new Item[xSynthesisHandler.itemBounds];
@@ -31,13 +30,16 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	private int synthesisLeft = 0;
 	private boolean validSynthesis = false;
 	
-	public double energy = 0.0;
-	public double maxEnergy = 1000.0;
+	public double EUenergy = 0.0;
+	public double EUmaxEnergy = 2048.0;
+	public int RFenergy = 0;
+	public int RFmaxEnergy = (int)(EUmaxEnergy * 8.0);
 	private boolean eInit;
 	
 	reactionVesselTile()
 	{
-		
+		this.EUenergy = this.EUmaxEnergy;
+		this.RFenergy = this.RFmaxEnergy;
 	}
 	
 	@Override
@@ -45,11 +47,14 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	{
 		super.readFromNBT(par1);
 		
-		if(par1.hasKey("energy"))
+		if(par1.hasKey("EUenergy"))
 		{
-			this.energy = par1.getDouble("energy");
+			this.EUenergy = par1.getDouble("EUenergy");
 		}
-		
+		if(par1.hasKey("RFenergy"))
+		{
+			this.RFenergy = par1.getInteger("RFenergy");
+		}
 		
 		this.counter = par1.getInteger("counter");
 		this.synthesisRunning = par1.getBoolean("synthesisRunning");
@@ -71,7 +76,7 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
             if (j >= 0 && j < this.itemsHolding.length)
             {
                 this.itemsHolding[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1).getItem();
-            }  
+            }
         }
         */
         
@@ -80,9 +85,9 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	@Override
 	public void writeToNBT(NBTTagCompound par1)
 	{
-		par1.setDouble("energy", this.energy);
-		
-		
+		par1.setDouble("EUenergy", this.EUenergy);
+		par1.setInteger("RFenergy", this.RFenergy);
+
 		par1.setInteger("counter", this.counter);
 		par1.setBoolean("synthesisRunning", this.synthesisRunning);
 		par1.setInteger("synthesisRuntime", this.synthesisRuntime);
@@ -128,7 +133,6 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 		itemsHolding[counter] = item;
 		counter++;
 		
-		//getInfo(player);
 		
 		if(xSynthesisHandler.validSynthesis(itemsHolding))
 		{
@@ -138,12 +142,6 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 		}
 		
 		return true;
-	}
-	
-	private void addItem(Item item)
-	{
-		itemsHolding[counter] = item;
-		counter++;
 	}
 	
 	private void startSynthesis()
@@ -156,7 +154,9 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	@Override
 	public void updateEntity()
 	{
-		super.updateEntity();
+		//super.updateEntity();
+		this.EUenergy = this.EUmaxEnergy;
+		this.RFenergy = this.RFmaxEnergy;
 		
 		if(!worldObj.isRemote)
 		{
@@ -172,21 +172,28 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 				this.synthesisRunning = false;
 				if(this.validSynthesis == false)
 				{
-					this.addItem(xItems.getItemByName("toxicWaste"));
-				} else {
+					this.addItem(xItems.getItemByName("toxicWaste"), null);
+				}
+				else
+				{
 					reset();
 					for(Item item : synthesisOutput)
 					{
 						if(item == null) break;
-						this.addItem(item);
+						this.addItem(item, null);
 					}
 				}
 			}
 			else
 			{
-				if(this.energy >= 8)
+				if(this.EUenergy >= 8)
 				{
-					this.energy = this.energy - 8;
+					this.EUenergy -= 8;
+					this.synthesisLeft--;
+				}
+				else if(this.RFenergy >= 64)
+				{
+					this.RFenergy -= 64;
 					this.synthesisLeft--;
 				}
 			}
@@ -266,13 +273,13 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	@Override
 	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction)
 	{
-		return true;
+		return false;
 	}
 
 	@Override
 	public double getDemandedEnergy()
 	{
-		return this.maxEnergy - this.energy;
+		return this.EUmaxEnergy - this.EUenergy;
 	}
 
 	@Override
@@ -284,16 +291,16 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	@Override
 	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage)
 	{
-		if(this.energy >= this.maxEnergy) return amount;
-		double freeEnergy = this.maxEnergy - this.energy;
+		if(this.EUenergy >= this.EUmaxEnergy) return amount;
+		double freeEnergy = this.EUmaxEnergy - this.EUenergy;
 		if(freeEnergy >= amount)
 		{
-			this.energy += amount;
+			this.EUenergy += amount;
 			return 0.0;
 		}
 		else if (amount > freeEnergy)
 		{
-			this.energy = this.maxEnergy;
+			this.EUenergy = this.EUmaxEnergy;
 			return amount - freeEnergy;
 		}
 		return 0;
@@ -302,22 +309,126 @@ public class reactionVesselTile extends TileEntity implements IEnergySink, IInje
 	@Override
 	public boolean canInjectItems(ForgeDirection from)
 	{
-		return true;
+		return false;
 	}
 
 	@Override
 	public int injectItem(ItemStack stack, boolean doAdd, ForgeDirection from, EnumColor color)
 	{
-		int added = 0;
-		for(int i = 0; i <= stack.stackSize; i++)
+		System.out.println(stack.getItem().getUnlocalizedName());
+		if(countItems() < xSynthesisHandler.itemBounds)
 		{
-			if(countItems() < xSynthesisHandler.itemBounds)
-			{
-				this.addItem(stack.getItem());
-				added++;
-			}
+			this.addItem(stack.getItem(), null);
+			return 1;
 		}
+		return 0;
+	}
+	
+	@Override
+	public int getSizeInventory() {
+		// TODO Auto-generated method stub
+		return xSynthesisHandler.itemBounds;
+	}
+	
+	@Override
+	public ItemStack getStackInSlot(int p_70301_1_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public ItemStack getStackInSlotOnClosing(int p_70304_1_) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
+		// TODO Auto-generated method stub
 		
-		return added;
+	}
+	
+	@Override
+	public String getInventoryName()
+	{
+		return null;
+	}
+	
+	@Override
+	public boolean hasCustomInventoryName()
+	{
+		return false;
+	}
+	
+	@Override
+	public int getInventoryStackLimit()
+	{
+		return 1;
+	}
+	
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer p_70300_1_)
+	{
+		return false;
+	}
+	
+	@Override
+	public void openInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void closeInventory() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean canConnectEnergy(ForgeDirection from) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate)
+	{
+		if(this.RFenergy >= this.RFmaxEnergy) return maxReceive;
+		double freeEnergy = this.RFmaxEnergy - this.RFenergy;
+		if(freeEnergy >= maxReceive)
+		{
+			this.RFenergy += maxReceive;
+			return 0;
+		}
+		else if (maxReceive > freeEnergy)
+		{
+			this.RFenergy = this.RFmaxEnergy;
+			return (int)(maxReceive - freeEnergy);
+		}
+		return 0;
+	}
+	
+	@Override
+	public int getEnergyStored(ForgeDirection from)
+	{
+		return this.RFenergy;
+	}
+	
+	@Override
+	public int getMaxEnergyStored(ForgeDirection from)
+	{
+		return this.RFmaxEnergy;
 	}
 }

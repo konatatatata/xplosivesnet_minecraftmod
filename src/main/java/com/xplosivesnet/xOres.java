@@ -32,7 +32,6 @@ public class xOres
 		OreDictionary.registerOre("oreAluminium", xOres.getBlockByName("aluminosilicate"));
 		OreDictionary.registerOre("oreMagnesium", xOres.getBlockByName("magnesite"));
 		
-		
 		xGeneration ore_gen = new xGeneration();
 		GameRegistry.registerWorldGenerator(ore_gen, 0);
 	}

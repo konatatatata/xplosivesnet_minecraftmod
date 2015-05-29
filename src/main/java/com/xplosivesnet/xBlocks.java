@@ -43,7 +43,24 @@ public class xBlocks
 		addExplosive("CL20", false, false, true, 10f, 2f, 10f);
 		addExplosive("ONC", false, false, true, 12f, 2f, 10f);
 		addExplosive("astroliteG", false, false, true, 8.5f, 4f, 10f);
-		addExplosive("PETN", false, false, true, 7.5f, 2f, 40f);
+		addExplosive("PETN", false, false, true, 7.5f, 2f, 30f);
+		
+		addExplosive("AMATOL", false, false, true, 5f, 4.5f, 50f);
+		addExplosive("ANNMNC", false, false, true, 4f, 3f, 30f);
+		addExplosive("ATOMIC", false, false, true, 100f, 20f, 0f);
+		addExplosive("C4", false, false, true, 4f, 3f, 30f);
+		addExplosive("cheddite", false, false, true, 4f, 3f, 30f);
+		addExplosive("EGDN", false, false, true, 4f, 3f, 30f);
+		addExplosive("ETN", false, false, true, 6.5f, 2f, 30f);
+		addExplosive("FLASH", true, false, true, 2.5f, 1f, 75f);
+
+		addExplosive("HMX", false, false, true, 4f, 3f, 30f);
+		addExplosive("MEKP", false, false, true, 4f, 3f, 30f);
+		addExplosive("MEKPAN", false, false, true, 4f, 3f, 30f);
+		addExplosive("semtex", false, false, true, 4f, 3f, 30f);
+		addExplosive("TNP", false, false, true, 4f, 3f, 40f);
+		addExplosive("TNT", false, false, true, 3f, 3f, 40f);
+		
 		
 		addCustomExplosive("detonatingCord", true, false, false, 2.5f, 2f, 50f);
 		addCustomExplosive("quickFuse", true, false, false, 0.5f, 0.1f, 50f);
@@ -85,7 +102,7 @@ public class xBlocks
 
 	public static void addExplosive(String name, boolean explodeOnPower, boolean explodeOnHit, boolean needsIni, float strength, float hardness, float chance)
 	{
-		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength, chance * 0.7f);
+		Block block = new genericExplosive(name, hardness, false, explodeOnPower, explodeOnHit, needsIni, strength, chance);
 		blocks[counter] = block;
 		blockNames[counter] = name;
 		blockNamesExplosives[explosivesCounter] = name;

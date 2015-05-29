@@ -62,7 +62,7 @@ public class xItems
 		addGenericComponent("aluminiumIngot", false, 64);
 		addGenericComponent("magnesiumIngot", false, 64);
 		
-		addGenericComponent("sulfurDust", false, 64);
+		addGenericComponent("sulphurDust", false, 64);
 		addGenericComponent("titaniumDust", false, 64);
 		addGenericComponent("aluminiumDust", false, 64);
 		addGenericComponent("magnesiumDust", false, 64);
@@ -74,7 +74,7 @@ public class xItems
 		addGenericArmor("hazmaBoots", 3);
     	
 		OreDictionary.registerOre("ingotSulfur", xItems.getItemByName("sulfurIngot"));
-		OreDictionary.registerOre("dustSulfur", xItems.getItemByName("sulfurDust"));
+		OreDictionary.registerOre("dustSulfur", xItems.getItemByName("sulphurDust"));
 		
 		OreDictionary.registerOre("ingotUranium", xItems.getItemByName("uraniumIngot"));
 		
