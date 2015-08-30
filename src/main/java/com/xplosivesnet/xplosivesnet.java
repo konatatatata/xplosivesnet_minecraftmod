@@ -48,7 +48,7 @@ public class xplosivesnet
     	xSynthesisHandler.loadSyntheses();
     	xWeapons.loadWeapons();
     	xAchievements.loadAchivements();
-    	xRecipes.loadRecipes();
+    	//xRecipes.loadRecipes();
     	
 		this.proxy.init(event);
 		FMLCommonHandler.instance().bus().register(new xTicker());
