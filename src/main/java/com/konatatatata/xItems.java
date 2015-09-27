@@ -44,8 +44,8 @@ public class xItems
 		addGenericComponent("electrolyzer", false, 64);
 		addGenericComponent("heater", false, 64);
 		addGenericComponent("uranium", false, 64);
-		//addGenericComponent("oil", false, 64);
 		
+		//ingots
 		addGenericComponent("sulfurIngot", false, 64);
 		addGenericComponent("nitratineIngot", false, 64);
 		addGenericComponent("uraniumIngot", false, 64);
@@ -53,12 +53,14 @@ public class xItems
 		addGenericComponent("aluminiumIngot", false, 64);
 		addGenericComponent("magnesiumIngot", false, 64);
 		
+		//dusts
 		addGenericComponent("sulphurDust", false, 64);
 		addGenericComponent("titaniumDust", false, 64);
 		addGenericComponent("aluminiumDust", false, 64);
 		addGenericComponent("magnesiumDust", false, 64);
 		addGenericComponent("nitratineDust", false, 64);
-    	
+		addGenericComponent("uraniumDust", false, 64);
+		
 		OreDictionary.registerOre("ingotSulfur", xItems.getItemByName("sulfurIngot"));
 		OreDictionary.registerOre("dustSulfur", xItems.getItemByName("sulphurDust"));
 		

@@ -64,9 +64,21 @@ public class xRecipes
 			    	'x', Items.iron_ingot,
 			    	'c', Items.brick
 				});
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("bottle"), 1),
+				Items.glass_bottle
+		        );
 		//basic chemicals	
 		
-		//basic explosives
+		////basic explosives
+		//flash
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName("FLASH"), 2),
+				xItems.getItemByName("sodiumNitrate"),
+				xItems.getItemByName("sodiumNitrate"),
+		        xItems.getItemByName("sulfur"),
+		        xItems.getItemByName("magnesium")
+		        );
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(xItems.getItemByName("FLASH"), 2),
 				xItems.getItemByName("sodiumNitrate"),
@@ -74,6 +86,7 @@ public class xRecipes
 		        xItems.getItemByName("sulfur"),
 		        xItems.getItemByName("carbon")
 		        );
+		
 		GameRegistry.addShapelessRecipe(
 				new ItemStack(Items.gunpowder, 4),
 		        xItems.getItemByName("FLASH")
@@ -116,14 +129,36 @@ public class xRecipes
 		GameRegistry.addSmelting(xOres.getBlockByName("magnesite"), new ItemStack(xItems.getItemByName("magnesiumIngot")), 0.5f);
 		GameRegistry.addSmelting(xItems.getItemByName("water"), new ItemStack(xItems.getItemByName("distilledWater")), 0.5f);
 		GameRegistry.addSmelting(new ItemStack(Items.potionitem, 1, 0), new ItemStack(xItems.getItemByName("distilledWater")), 0.5f);
-		GameRegistry.addSmelting(xItems.getItemByName("carbon"), new ItemStack(xItems.getItemByName("acetone")), 0.5f);
-		
+
 		GameRegistry.addSmelting(xItems.getItemByName("sulphurDust"), new ItemStack(xItems.getItemByName("sulfurIngot")), 0.5f);
 		GameRegistry.addSmelting(xItems.getItemByName("nitratineDust"), new ItemStack(xItems.getItemByName("nitratineIngot")), 0.5f);
 		GameRegistry.addSmelting(xItems.getItemByName("titaniumDust"), new ItemStack(xItems.getItemByName("titaniumIngot")), 0.5f);
 		GameRegistry.addSmelting(xItems.getItemByName("aluminiumDust"), new ItemStack(xItems.getItemByName("aluminiumIngot")), 0.5f);
 		GameRegistry.addSmelting(xItems.getItemByName("magnesiumDust"), new ItemStack(xItems.getItemByName("magnesiumIngot")), 0.5f);
 		
+		//dusting
+		addDustRecipeII("sulfurIngot","sulphurDust");
+		addDustRecipeOI("sulfur", "sulphurDust");
+		addDustRecipeII("nitratineIngot","nitratineDust");
+		addDustRecipeOI("nitratine", "nitratineDust");
+		addDustRecipeII("titaniumIngot","titaniumDust");
+		addDustRecipeOI("ilmenite", "titaniumDust");
+		addDustRecipeII("aluminiumIngot","aluminiumDust");
+		addDustRecipeOI("aluminosilicate", "aluminiumDust");
+		addDustRecipeII("magnesiumIngot","magnesiumDust");
+		addDustRecipeOI("magnesite", "magnesiumDust");
+		addDustRecipeII("uraniumIngot","uraniumDust");
+		addDustRecipeOI("uraninite", "uraniumDust");
+		
+		//filling
+		addBottleRecipe("sulphurDust","sulfur");
+		addBottleRecipe("titaniumDust","titanium");
+		addBottleRecipe("aluminiumDust","aluminium");
+		addBottleRecipe("magnesiumDust","magnesium");
+		addBottleRecipe("nitratineDust","sodiumNitrate");
+		addBottleRecipe("uraniumDust","uranium");
+		
+		//shells
 		for(String name : xBlocks.blockNamesExplosives)
 		{
 			if(name == null) break;
@@ -132,6 +167,30 @@ public class xRecipes
 		
 	}
 	
+	static void addDustRecipeII(String m, String n)
+	{
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName(n), 1),
+		        xItems.getItemByName(m)
+		        );
+	}
+	
+	static void addDustRecipeOI(String m, String n)
+	{
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName(n), 1),
+				xOres.getBlockByName(m)
+		        );
+	}
+	
+	static void addBottleRecipe(String m, String n)
+	{
+		GameRegistry.addShapelessRecipe(
+				new ItemStack(xItems.getItemByName(n), 1),
+		        xItems.getItemByName("bottle"),
+		        xItems.getItemByName(m)
+		        );
+	}
 	
 	static void addShellRecipe(String n)
 	{
